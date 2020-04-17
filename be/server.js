@@ -5,7 +5,14 @@ const port = 8000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-require('./routes')(app, {});
+//routes
+const homeRouter = require("./routes/homeRoute");
+
+
+app.use("/", homeRouter);
+//end routes
+
+
 app.listen(port, () => {
   console.log('We are live on ' + port);
 });
