@@ -1,5 +1,6 @@
-export interface User
-{
+export class User {
+  constructor() {
+  }
   id: number;
   name: string;
   family: string;

@@ -5,6 +5,12 @@ import {AppComponent} from './app.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
+
+
 
 import {PagesModule} from './modules/pages/pages.module';
 import { HomeComponent } from './modules/pages/components/home/home.component';
@@ -32,6 +38,9 @@ const appRoutes: Routes = [
     MatSliderModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
   ],

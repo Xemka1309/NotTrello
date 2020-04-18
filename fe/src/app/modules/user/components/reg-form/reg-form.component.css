@@ -1,0 +1,16 @@
+.reg-card{
+  margin-top: 100px;
+  margin-left: 35%;
+  text-align: center;
+  max-width: 30%;
+}
+mat-form-field, button, h3{
+  font-size: 25px;
+  width: 65%;
+  text-align: center;
+  align-content: center;
+  align-self: center;
+}
+h3{
+  padding-left: 100px;
+}
