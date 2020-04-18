@@ -8,3 +8,7 @@ exports.edit = (async function (body) {
         body,
         {where: {id: body.id}})
 });
+
+exports.findOne = async (reqParams) => {
+  return User.findOne({where: reqParams});
+};

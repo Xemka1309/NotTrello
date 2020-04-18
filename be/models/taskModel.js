@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
-const TaskPriority = require("taskPriorityModel");
-const Column = require("columnModel");
+const TaskPriority = require("./taskPriorityModel");
+const Column = require("./columnModel");
 const Task = seq.define("task", {
     id: {
         type: Sequelize.INTEGER,
