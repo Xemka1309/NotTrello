@@ -1,5 +1,5 @@
-import * as Sequelize from "sequelize";
-const seq = require("../dbConnection").sequelize;
+const Sequelize = require('sequelize');
+const seq = require("../dbConnection");
 
 const TaskPriority = require("taskPriorityModel");
 const Column = require("columnModel");
@@ -34,7 +34,4 @@ const Task = seq.define("task", {
 TaskPriority.hasMany(Task);
 Column.hasMany(Task);
 
-seq.sync().then(result=>console.log(result))
-    .catch(err=> console.log(err));
-
-module.exports(Task);
+module.exports = Task;

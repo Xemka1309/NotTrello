@@ -1,5 +1,5 @@
-import * as Sequelize from "sequelize";
-const seq = require("../dbConnection").sequelize;
+const Sequelize = require('sequelize');
+const seq = require("../dbConnection");
 
 const TaskPriority = seq.define("task_priority", {
     id: {
@@ -10,10 +10,9 @@ const TaskPriority = seq.define("task_priority", {
     },
     priority: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     }
 });
-seq.sync().then(result=>console.log(result))
-    .catch(err=> console.log(err));
 
-module.exports(TaskPriority);
+module.exports = TaskPriority;

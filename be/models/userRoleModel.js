@@ -1,5 +1,5 @@
-const {Sequelize} = require('sequelize');
-const {seq} = require("../dbConnection");
+const Sequelize = require('sequelize');
+const seq = require("../dbConnection");
 
 const UserRole = seq.define("user_role", {
     id: {
@@ -10,11 +10,9 @@ const UserRole = seq.define("user_role", {
     },
     role: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     }
 });
 
-seq.sync().then(result=>console.log(result))
-    .catch(err=> console.log(err));
-
-module.exports(UserRole);
+module.exports = UserRole;

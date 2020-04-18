@@ -1,5 +1,5 @@
-import * as Sequelize from "sequelize";
-const seq = require("../dbConnection").sequelize;
+const Sequelize = require('sequelize');
+const seq = require("../dbConnection");
 
 const CheckList = require("checkListModel");
 const CheckListItem = seq.define("check_list_item", {
@@ -21,7 +21,4 @@ const CheckListItem = seq.define("check_list_item", {
 });
 CheckList.hasMany(CheckListItem);
 
-seq.sync().then(result=>console.log(result))
-    .catch(err=> console.log(err));
-
-module.exports(CheckListItem);
+module.exports = CheckListItem;
