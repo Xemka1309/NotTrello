@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 @NgModule({
   declarations: [HomeComponent],
-  imports: [ CommonModule,MatSliderModule, MatButtonModule, BrowserAnimationsModule, MatProgressSpinnerModule ],
+  imports: [ CommonModule, MatSliderModule, MatButtonModule, BrowserAnimationsModule, MatProgressSpinnerModule ],
   exports: [HomeComponent],
   providers: [],
 })
