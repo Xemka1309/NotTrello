@@ -35,5 +35,6 @@ export class RegFormComponent implements OnInit {
     user.login = this.regForm.controls.login.value;
     user.nickname = this.regForm.controls.nickname.value;
     user.password = this.regForm.controls.password.value;
+    document.location.href = document.location.hostname;
   }
 }
