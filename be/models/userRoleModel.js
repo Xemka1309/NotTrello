@@ -1,4 +1,5 @@
-const seq = require ("sequelizeInit");
+const {Sequelize} = require('sequelize');
+const {seq} = require("../dbConnection");
 
 const UserRole = seq.define("user_role", {
     id: {

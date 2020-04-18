@@ -1,4 +1,5 @@
-const seq = require ("sequelizeInit");
+import * as Sequelize from "sequelize";
+const seq = require("../dbConnection").sequelize;
 
 const Board = require("boardModel");
 const Column = seq.define("column", {
