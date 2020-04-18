@@ -1,15 +1,33 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {RouterModule, Routes } from '@angular/router';
 import {AppComponent} from './app.component';
+import { MatSliderModule } from '@angular/material/slider';
 
+import {PagesModule} from './modules/pages/pages.module';
+import { HomeComponent } from './modules/pages/components/home/home.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { UserModule } from './modules/user/user.module';
+import { RegFormComponent } from './modules/user/components/reg-form/reg-form.component';
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent},
+  { path: 'reg', component: RegFormComponent},
+  { path: '**', component: HomeComponent}
+];
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule
+    PagesModule,
+    UserModule,
+    MatSliderModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]
