@@ -1,4 +1,5 @@
-const seq = require ("sequelizeInit");
+import * as Sequelize from "sequelize";
+const seq = require("../dbConnection").sequelize;
 
 const BoardType = seq.define("board_type", {
     id: {

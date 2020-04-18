@@ -1,4 +1,5 @@
-const seq = require ("sequelizeInit");
+const {Sequelize} = require('sequelize');
+const seq = require("../dbConnection");
 
 const User = seq.define("user", {
     id: {
@@ -29,7 +30,5 @@ const User = seq.define("user", {
         allowNull: false
     }
 });
-seq.sync().then(result=>console.log(result))
-    .catch(err=> console.log(err));
 
-module.exports(User);
+module.exports = User;

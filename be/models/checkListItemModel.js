@@ -1,4 +1,5 @@
-const seq = require ("sequelizeInit");
+import * as Sequelize from "sequelize";
+const seq = require("../dbConnection").sequelize;
 
 const CheckList = require("checkListModel");
 const CheckListItem = seq.define("check_list_item", {
