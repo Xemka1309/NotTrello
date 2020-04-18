@@ -1,5 +1,5 @@
-import * as Sequelize from "sequelize";
-const seq = require("../dbConnection").sequelize;
+const Sequelize = require('sequelize');
+const seq = require("../dbConnection");
 
 const Task = require("taskModel");
 const CheckList = seq.define("check_list", {
@@ -19,7 +19,4 @@ const CheckList = seq.define("check_list", {
 });
 Task.hasMany(CheckList);
 
-seq.sync().then(result=>console.log(result))
-    .catch(err=> console.log(err));
-
-module.exports(CheckList);
+module.exports = CheckList;

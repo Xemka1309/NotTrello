@@ -1,10 +1,11 @@
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("mydb", "user", "password", {
+const sequelize = new Sequelize("mydb", "user", "123", {
     dialect: "mysql",
     host: "localhost",
     port: 3306,
     define: {
-        timestamps: false
+        timestamps: false,
+        freezeTableName: true
     }
 });
 

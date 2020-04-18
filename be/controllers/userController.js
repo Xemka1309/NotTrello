@@ -5,8 +5,10 @@ exports.index = function (request, response) {
 };
 exports.register = function (request, response) {
 
-    UserService(request.body).then(result => {
-        console.log(result);
-        response.send(result);
-    }).catch(err => console.log(err));
+    UserService(request.body)
+        .then(result => {
+            console.log(result);
+            response.send(result);})
+        .catch(err =>
+            console.log(err));
 };

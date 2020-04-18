@@ -1,4 +1,4 @@
-const {Sequelize} = require('sequelize');
+const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
 const User = seq.define("user", {
@@ -16,18 +16,22 @@ const User = seq.define("user", {
     },
     nickname: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
     },
     login: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     password: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     }
 });
 
