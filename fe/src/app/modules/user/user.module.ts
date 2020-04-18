@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     MatSliderModule,
     BrowserAnimationsModule
-
   ],
   exports: [RegFormComponent],
   providers: [],
