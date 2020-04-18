@@ -11,12 +11,8 @@ const Column = seq.define("column", {
     },
     title: {
         type: Sequelize.STRING
-    },
-    position: {
-        type: Sequelize.INTEGER,
-        allowNull: false
     }
 });
-Board.hasMany(Column);
+Board.hasMany(Column, {foreignKey: 'board_id'});
 
 module.exports = Column;

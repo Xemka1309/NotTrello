@@ -18,6 +18,6 @@ const Mark = seq.define("mark", {
         default: null
     }
 });
-Board.hasMany(Mark);
+Board.hasMany(Mark, {foreignKey: 'board_id'});
 
 module.exports = Mark;

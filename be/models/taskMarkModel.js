@@ -11,6 +11,7 @@ const TaskMark = seq.define("task_mark", {
         allowNull: false
     }
 });
+// Primary key fields not added yet
 Task.belongsToMany(Mark, {through: TaskMark});
 Mark.belongsToMany(Task, {through: TaskMark});
 

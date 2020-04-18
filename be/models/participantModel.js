@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
 const Board = require("boardModel");
-const Role = require("userRoleModel");
+const Role = require("be/models/participantRoleModel");
 const User = require("userModel");
 const Participant = seq.define("participant", {
     id: {
@@ -12,8 +12,8 @@ const Participant = seq.define("participant", {
         allowNull: false
     }
 });
-Board.hasMany(Participant);
-Role.hasMany(Participant);
-User.hasMany(Participant);
+Board.hasMany(Participant, {foreignKey: 'board_id'});
+Role.hasMany(Participant, {foreignKey: 'role_id'});
+User.hasMany(Participant, {foreignKey: 'user_id'});
 
 module.exports = Participant;
