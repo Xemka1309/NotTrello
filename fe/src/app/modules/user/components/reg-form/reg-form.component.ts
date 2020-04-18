@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User } from '../../models/user';
+import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
   selector: 'app-reg-form',
@@ -9,7 +10,9 @@ import { User } from '../../models/user';
 })
 export class RegFormComponent implements OnInit {
   public regForm: FormGroup;
-  constructor() { }
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
     this.regForm = new FormGroup({
@@ -35,6 +38,12 @@ export class RegFormComponent implements OnInit {
     user.login = this.regForm.controls.login.value;
     user.nickname = this.regForm.controls.nickname.value;
     user.password = this.regForm.controls.password.value;
-    document.location.href = document.location.hostname;
+    this.userService.registerUser(user).subscribe((result) => {
+      console.log(result);
+      if (result.status == 200){
+        alert(`Registration ok, user login:${user.login} `);
+      }
+    }), error => console.log(error);
+    //document.location.href = document.location.hostname;
   }
 }

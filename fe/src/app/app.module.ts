@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AppComponent} from './app.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,10 +22,12 @@ import {} from '@angular/material';
 
 import { UserModule } from './modules/user/user.module';
 import { RegFormComponent } from './modules/user/components/reg-form/reg-form.component';
+import { LogInFormComponent } from './modules/user/components/log-in-form/log-in-form.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'reg', component: RegFormComponent},
+  { path: 'login', component: LogInFormComponent},
   { path: '**', component: HomeComponent}
 ];
 @NgModule({
@@ -33,6 +36,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     PagesModule,
     UserModule,
     MatSliderModule,

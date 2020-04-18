@@ -11,8 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { NavBarComponent } from './components/navigation/nav-bar.component';
+import { LogInFormComponent } from './components/log-in-form/log-in-form.component';
 @NgModule({
-  declarations: [RegFormComponent, NavBarComponent],
+  declarations: [RegFormComponent, NavBarComponent, LogInFormComponent],
   imports: [
     CommonModule,
     MatSliderModule,
@@ -26,7 +27,7 @@ import { NavBarComponent } from './components/navigation/nav-bar.component';
     MatCardModule,
     MatMenuModule
   ],
-  exports: [RegFormComponent, NavBarComponent],
+  exports: [RegFormComponent, NavBarComponent, LogInFormComponent],
   providers: [],
 })
 export class UserModule {
