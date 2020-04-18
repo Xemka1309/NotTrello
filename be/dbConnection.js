@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("mydb", "root", "password", {
+const sequelize = new Sequelize("mydb", "user", "123", {
     dialect: "mysql",
     host: "localhost",
     port: 3306,
@@ -8,6 +8,7 @@ const sequelize = new Sequelize("mydb", "root", "password", {
         freezeTableName: true
     }
 });
+
 sequelize.sync().then(result=>console.log(result))
     .catch(err=> console.log(err));
 
