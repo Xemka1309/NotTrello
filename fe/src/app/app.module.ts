@@ -23,6 +23,7 @@ import {} from '@angular/material';
 import { UserModule } from './modules/user/user.module';
 import { RegFormComponent } from './modules/user/components/reg-form/reg-form.component';
 import { LogInFormComponent } from './modules/user/components/log-in-form/log-in-form.component';
+import {APIInterceptor} from './interceptors/APIInterceptor';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -48,7 +49,11 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [APIInterceptor, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: APIInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -28,9 +28,10 @@ export class LogInFormComponent implements OnInit {
     const password = this.logInForm.controls.password.value;
     this.userService.logIn(login, password).subscribe((result) => {
       console.log(result);
-      if (result.status == 200) {
-        alert(`Sign in ok `);
+      if (result.status === 200) {
+        alert(`log in ok `);
+        localStorage.setItem('token', result.body.token);
       }
-    }), error => console.log(error);
+    }, error => console.log(error));
   }
 }
