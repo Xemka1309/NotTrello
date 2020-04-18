@@ -4,6 +4,7 @@ exports.index = function (request, response) {
     response.status(200).send({message: "all ok!"})
 };
 exports.add = function (request, response) {
+    request.body.user_id = request.decoded.id;
     BoardService.add(request.body)
         .then(result => {
             console.log(result);
@@ -30,6 +31,7 @@ exports.edit = function (request, response){
             response.send(err.message);
         });
 };
+
 exports.delete = function (request, response){
     BoardService.delete(request.body)
         .then(result => {
@@ -40,5 +42,31 @@ exports.delete = function (request, response){
             console.log(err);
             response.status(406);
             response.send(err.message);
+        });
+};
+
+exports.getBoards = function(request, response){
+    BoardService.getBoards(request.body.typeId)
+        .then(result => {
+            response.status(200);
+            response.send(result);
+        })
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message)
+        });
+};
+
+exports.getTypes = function(request, response){
+    BoardService.getTypes()
+        .then(result => {
+            response.status(200);
+            response.send(result);
+        })
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message)
         });
 };

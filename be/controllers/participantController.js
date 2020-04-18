@@ -1,11 +1,11 @@
-const BoardService = require("../services/boardService");
+const ParticipantService = require("../services/participantService");
 
 exports.index = function (request, response) {
     response.status(200).send({message: "all ok!"})
 };
-exports.add = function (request, response) {
 
-    BoardService.add(request.body)
+exports.get = function(request, response){
+    ParticipantService.get(request.decoded.id)
         .then(result => {
             console.log(result);
             response.status(200);
@@ -16,8 +16,24 @@ exports.add = function (request, response) {
             response.send(err.message);
         });
 };
+
+exports.add = function (request, response) {
+    request.body.user_id = request.decoded.id;
+    ParticipantService.add(request.body)
+        .then(result => {
+            console.log(result);
+            response.status(200);
+            response.send(result);})
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message);
+        });
+};
+
 exports.edit = function (request, response){
-    BoardService.edit(request.body)
+    request.body.user_id = request.decoded.id;
+    ParticipantService.edit(request.body)
         .then(result => {
             console.log(result);
             response.status(200);
@@ -29,9 +45,10 @@ exports.edit = function (request, response){
             response.send(err.message);
         });
 };
+
 // Body contains id
 exports.delete = function (request, response){
-    BoardService.delete(request.body)
+    ParticipantService.delete(request.body)
         .then(result => {
             console.log(result);
             response.status(200);
