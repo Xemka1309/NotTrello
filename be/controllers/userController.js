@@ -4,6 +4,7 @@ exports.index = function (request, response) {
     response.status(200).send({message: "all ok!"})
 };
 exports.register = function (request, response) {
-    console.log(request.body);
-    response.status(200).send(UserService(request.body));
+    const result = UserService(request.body);
+    console.log("result ",result);
+    response.status(200).send(result);
 };

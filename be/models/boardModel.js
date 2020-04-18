@@ -1,5 +1,5 @@
-import * as Sequelize from "sequelize";
-const seq = require("../dbConnection").sequelize;
+const Sequelize = require('sequelize');
+const seq = require("../dbConnection");
 
 const BoardType = require("boardTypeModel");
 const Board = seq.define("board", {
@@ -20,7 +20,4 @@ const Board = seq.define("board", {
 });
 BoardType.hasMany(Board);
 
-seq.sync().then(result=>console.log(result))
-    .catch(err=> console.log(err));
-
-module.exports(Board);
+module.exports = Board;

@@ -4,7 +4,8 @@ const sequelize = new Sequelize("mydb", "root", "password", {
     host: "localhost",
     port: 3306,
     define: {
-        timestamps: false
+        timestamps: false,
+        freezeTableName: true
     }
 });
 sequelize.sync().then(result=>console.log(result))

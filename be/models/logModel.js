@@ -1,5 +1,5 @@
-import * as Sequelize from "sequelize";
-const seq = require("../dbConnection").sequelize;
+const Sequelize = require('sequelize');
+const seq = require("../dbConnection");
 
 const Task = require("taskModel");
 const Participant = require("participantModel");
@@ -22,7 +22,4 @@ const Log = seq.define("log", {
 Task.hasMany(Log);
 Participant.hasMany(Log);
 
-seq.sync().then(result=>console.log(result))
-    .catch(err=> console.log(err));
-
-module.exports(Log);
+module.exports = Log;

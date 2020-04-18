@@ -1,5 +1,5 @@
-import * as Sequelize from "sequelize";
-const seq = require("../dbConnection").sequelize;
+const Sequelize = require('sequelize');
+const seq = require("../dbConnection");
 
 const Board = require("boardModel");
 const Column = seq.define("column", {
@@ -19,7 +19,4 @@ const Column = seq.define("column", {
 });
 Board.hasMany(Column);
 
-seq.sync().then(result=>console.log(result))
-    .catch(err=> console.log(err));
-
-module.exports(Column);
+module.exports = Column;
