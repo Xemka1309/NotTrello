@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BoardDisplayerComponent } from './components/board-displayer/board-displayer.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardsListComponent } from './components/bords-list/boards-list-component';
+import { RouterModule } from '@angular/router';
+
+
 
 @NgModule({
   declarations: [BoardsConstructorComponent, BoardsConstructorDialog, BoardsListComponent, BoardDisplayerComponent],
@@ -23,6 +26,7 @@ import { BoardsListComponent } from './components/bords-list/boards-list-compone
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
+    RouterModule
   ],
   entryComponents: [BoardsConstructorDialog],
   exports: [

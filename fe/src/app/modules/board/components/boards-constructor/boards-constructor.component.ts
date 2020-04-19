@@ -47,6 +47,7 @@ export class BoardsConstructorComponent implements OnInit {
         console.log('response');
         console.log(response);
       });
+
     });
   }
 }
