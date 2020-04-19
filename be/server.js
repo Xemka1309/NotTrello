@@ -12,10 +12,11 @@ const DBInitInsert = require("./dbInitInserts");
 const homeRouter = require("./routes/homeRoute");
 const userRouter = require("./routes/userRoute");
 const boardRouter = require("./routes/boardRoute");
-const participantRouter = require("./routes/participantRouter");
+const participantRouter = require("./routes/participantRoute");
 const columnRouter = require("./routes/columnRoute");
 const taskRouter = require("./routes/taskRoute");
-//const checkListRouter = require("./routes/checkListRoute");
+const checkListRouter = require("./routes/checkListRoute");
+const clItemRouter = require("./routes/checkListItemRoute");
 const regAndAuthRouter = require("./routes/regAndAuthRoute");
 
 const security = require('./services/auth');
@@ -29,7 +30,8 @@ app.use("/api/board", jsonParser, boardRouter);
 app.use("/api/partic", jsonParser, participantRouter);
 app.use("/api/column", jsonParser, columnRouter);
 app.use("/api/task", jsonParser, taskRouter);
-//app.use("/api/checklist", jsonParser, checkListRouter);
+app.use("/api/checklist", jsonParser, checkListRouter);
+app.use("/api/clitem", jsonParser, clItemRouter);
 //end routes
 
 //not found

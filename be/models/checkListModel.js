@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
-const Task = require("taskModel");
+const Task = require("./taskModel");
 const CheckList = seq.define("check_list", {
     id: {
         type: Sequelize.INTEGER,

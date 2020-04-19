@@ -40,7 +40,7 @@ exports.delete = function (request, response){
 };
 
 exports.getById = function(request, response){
-    TaskService.getById(request.body.id)
+    TaskService.getById(request.query.id)
         .then(result => {
             response.status(200);
             response.send(result);
@@ -65,10 +65,9 @@ exports.getByColumn = function(request, response){
         });
 };
 
-exports.taskToParticipant = function(request, response){
-    TaskService.taskToParticipant(request.body)
+exports.taskToPT = function(request, response){
+    TaskService.taskToPT(request.body)
         .then(result => {
-            console.log("HUI");
             response.status(200);
             response.send(result);
         })
