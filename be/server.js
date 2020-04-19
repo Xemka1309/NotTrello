@@ -9,15 +9,17 @@ app.set('jwt-secret', config.secret);
 const jsonParser = bodyParser.json();
 
 const DBInitInsert = require("./dbInitInserts");
-//routes
 const homeRouter = require("./routes/homeRoute");
 const userRouter = require("./routes/userRoute");
-const security = require('./security/auth');
 const boardRouter = require("./routes/boardRoute");
+const regAndAuthRouter = require("./routes/regAndAuthRoute");
+
+const security = require('./services/auth');
 const errorThrower = require("./errorResponseGenerator");
 
-app.use("/api/user", jsonParser, userRouter);
+app.use("/api/user", jsonParser, regAndAuthRouter);
 app.use("/", security.auth);
+app.use("/api/user", jsonParser, userRouter);
 app.use("/api", homeRouter);
 app.use("/api/board", jsonParser, boardRouter);
 //end routes
