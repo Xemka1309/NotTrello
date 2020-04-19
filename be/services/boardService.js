@@ -55,21 +55,22 @@ exports.delete = (async function (body) {
 
 exports.getTypes = (async function () {
     return await BoardType.findAll({
-        attributes: ['type'],
+        attributes: ['type']
     });
 });
 
-exports.getBoards = (async function (boardType) {
-    const type = await BoardType.findAll({
-        attributes: ['id'],
+exports.getBoards = (async function (userId) {
+    const participants = await Participant.findAll({
+        attributes: ['board_id'],
         where: {
-            type: boardType
+            user_id: userId
         }
     });
+
     return await Board.findAll({
         attributes: ['id', 'title', 'description', 'type_id'],
         where: {
-            type_id: type[0].id
+            id: participants.map(val => val.board_id)
         }
     });
 });

@@ -1,13 +1,8 @@
 const ParticipantService = require("../services/participantService");
 
-exports.index = function (request, response) {
-    response.status(200).send({message: "all ok!"})
-};
-
 exports.get = function(request, response){
     ParticipantService.get(request.decoded.id)
         .then(result => {
-            console.log(result);
             response.status(200);
             response.send(result);})
         .catch(err =>  {
@@ -21,7 +16,6 @@ exports.add = function (request, response) {
     request.body.user_id = request.decoded.id;
     ParticipantService.add(request.body)
         .then(result => {
-            console.log("RESULT",result);
             response.status(200);
             response.send(result);})
         .catch(err =>  {
@@ -35,7 +29,6 @@ exports.edit = function (request, response){
     request.body.user_id = request.decoded.id;
     ParticipantService.edit(request.body)
         .then(result => {
-            console.log(result);
             response.status(200);
             response.send(result);
         })
@@ -50,7 +43,6 @@ exports.edit = function (request, response){
 exports.delete = function (request, response){
     ParticipantService.delete(request.body)
         .then(result => {
-            console.log(result);
             response.sendStatus(200);
         })
         .catch(err =>  {
