@@ -4,7 +4,7 @@
     <div mat-dialog-content>
       <mat-form-field>
         <mat-label>Title</mat-label>
-        <input matInput [(ngModel)]="data.title">
+        <input  required matInput [(ngModel)]="data.title">
       </mat-form-field>
       <br />
       <mat-form-field>
@@ -14,13 +14,17 @@
       <br />
       <mat-form-field>
         <mat-label>Bord Type</mat-label>
-        <input matInput [(ngModel)]="data.bordType">
+          <mat-select [(ngModel)]="data.bordType" required>
+            <mat-option  *ngFor="let bordType of data.bordTypes" [value]="bordType" >
+              {{bordType}}
+            </mat-option>
+          </mat-select>
       </mat-form-field>
       <br/>
     </div>
     <div mat-dialog-actions>
+      <button [disabled]="!validate()" class="btn btn-primary" [mat-dialog-close]="data" cdkFocusInitial>Create</button>
       <button class="btn btn-primary" (click)="onNoClick()">No Thanks</button>
-      <button class="btn btn-primary" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
     </div>
   </div>
 </div>

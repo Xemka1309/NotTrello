@@ -1,7 +1,7 @@
 
-export class Bord {
+export interface Bord {
   id: number;
-  type_id: number;
   title: string;
   description: string;
+  boardType: string;
 }
