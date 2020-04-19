@@ -67,10 +67,20 @@ exports.getBoards = (async function (userId) {
         }
     });
 
-    return await Board.findAll({
+    const boards = await Board.findAll({
         attributes: ['id', 'title', 'description', 'type_id'],
         where: {
             id: participants.map(val => val.board_id)
         }
     });
+
+    const types = await BoardType.findAll({
+        attributes: ['id','type'],
+    });
+    return boards.map(function(board){
+        let boardData = board.dataValues;
+        boardData.task_priority = types.find(element => element.id = board.type_id).type;
+        delete boardData.type_id;
+        return boardData;
+    })
 });

@@ -23,6 +23,9 @@ exports.getById = (async function (id) {
             id: id
         }
     });
+    const taskReturnData = task.dataValues;
+
+    return taskReturnData;
 });
 
 exports.getByColumn = (async function (columnId) {
