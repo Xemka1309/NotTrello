@@ -13,7 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 
 
-import {PagesModule} from './modules/pages/pages.module';
+import { PagesModule } from './modules/pages/pages.module';
 import { HomeComponent } from './modules/pages/components/home/home.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +23,8 @@ import {} from '@angular/material';
 import { UserModule } from './modules/user/user.module';
 import { RegFormComponent } from './modules/user/components/reg-form/reg-form.component';
 import { LogInFormComponent } from './modules/user/components/log-in-form/log-in-form.component';
+import { BordsModule } from './modules/bords/bords.module';
+import { BordsConstructorComponent } from './modules/bords/components/bords-constructor/bords-constructor.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -45,6 +47,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    BordsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
   ],

@@ -1,0 +1,27 @@
+<div class="container row">
+  <div class="col">
+    <h1 mat-dialog-title>New Bord</h1>
+    <div mat-dialog-content>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="data.title">
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="data.description">
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Bord Type</mat-label>
+        <input matInput [(ngModel)]="data.bordType">
+      </mat-form-field>
+      <br/>
+    </div>
+    <div mat-dialog-actions>
+      <button class="btn btn-primary" (click)="onNoClick()">No Thanks</button>
+      <button class="btn btn-primary" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+    </div>
+  </div>
+</div>
+
