@@ -6,5 +6,6 @@ taskRouter.get("/get", taskController.getById);// Task with id
 taskRouter.post("/add", taskController.add);
 taskRouter.put("/edit", taskController.edit);
 taskRouter.delete("/delete", taskController.delete);
+taskRouter.post("/tasktopt", taskController.taskToParticipant);
 
 module.exports = taskRouter;
