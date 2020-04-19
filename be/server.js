@@ -14,6 +14,7 @@ const userRouter = require("./routes/userRoute");
 const boardRouter = require("./routes/boardRoute");
 const participantRouter = require("./routes/participantRouter");
 const columnRouter = require("./routes/columnRoute");
+const taskRouter = require("./routes/taskRoute");
 const regAndAuthRouter = require("./routes/regAndAuthRoute");
 
 const security = require('./services/auth');
@@ -26,6 +27,7 @@ app.use("/api", homeRouter);
 app.use("/api/board", jsonParser, boardRouter);
 app.use("/api/partic", jsonParser, participantRouter);
 app.use("/api/column", jsonParser, columnRouter);
+app.use("/api/task", jsonParser, taskRouter);
 //end routes
 
 //not found

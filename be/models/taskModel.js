@@ -19,7 +19,7 @@ const Task = seq.define("task", {
         default: null
     },
     due_time: {
-        type: 'TIMESTAMP',
+        type: Sequelize.DATE,
         allowNull: false
     },
     position: {
@@ -29,19 +29,10 @@ const Task = seq.define("task", {
     completed: {
         type: Sequelize.TINYINT,
         allowNull: false
-    },
-    taskPriorityId: {
-        type: Sequelize.INTEGER,
-        references: 'task_priority',
-        referencesKey: 'id'
-    },
-    columnId: {
-        type: Sequelize.INTEGER,
-        references: 'column',
-        referencesKey: 'id'
     }
 });
 TaskPriority.hasMany(Task, {foreignKey: 'task_priority_id'});
+Task.belongsTo(TaskPriority, {foreignKey: 'task_priority_id'});
 Column.hasMany(Task, {foreignKey: 'column_id'});
 
 module.exports = Task;

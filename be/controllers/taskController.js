@@ -1,9 +1,9 @@
-const ColumnService = require("../services/columnService");
+const TaskService = require("../services/taskService");
 
 // title and board_id
 exports.add = function (request, response) {
     request.body.user_id = request.decoded.id;
-    ColumnService.add(request.body)
+    TaskService.add(request.body)
         .then(result => {
             response.status(200);
             response.send(result);})
@@ -16,7 +16,7 @@ exports.add = function (request, response) {
 
 // id, title and board_id
 exports.edit = function (request, response){
-    ColumnService.edit(request.body)
+    TaskService.edit(request.body)
         .then(result => {
             response.status(200);
             response.send(result);
@@ -28,7 +28,7 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    ColumnService.delete(request.body)
+    TaskService.delete(request.body)
         .then(result => {
             response.sendStatus(200);
         })
@@ -39,8 +39,21 @@ exports.delete = function (request, response){
         });
 };
 
-exports.get = function(request, response){
-    ColumnService.get(request.query.board_id)
+exports.getById = function(request, response){
+    TaskService.getById(request.body.id)
+        .then(result => {
+            response.status(200);
+            response.send(result);
+        })
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message)
+        });
+};
+
+exports.getByColumn = function(request, response){
+    TaskService.getByColumn(request.body.column_id)
         .then(result => {
             response.status(200);
             response.send(result);
