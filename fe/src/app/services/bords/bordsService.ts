@@ -23,7 +23,7 @@ export class BordsService {
   }
 
   public getBordTypes(): Observable<any> {
-    return this.http.get<string[]>(this.getBordTypesUrl);
+    return this.http.get(this.getBordTypesUrl);
   }
 
   public getBords(): Observable<any> {
