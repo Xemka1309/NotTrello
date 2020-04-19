@@ -15,16 +15,17 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserModule} from './modules/user/user.module';
 import {RegFormComponent} from './modules/user/components/reg-form/reg-form.component';
 import {LogInFormComponent} from './modules/user/components/log-in-form/log-in-form.component';
-
+import {BoardModule} from './modules/board/board.module';
 
 import {APIInterceptor} from './interceptors/APIInterceptor';
 import {CanActivateLoginPagesService} from './services/security/can-activate-login-pages.service';
 import {CanActivateNotLoginPagesService} from './services/security/can-activate-not-login-pages.service';
 import {NavBarModule} from './modules/navigation/nav-bar.module';
-import { BoardModule } from './modules/board/board.module';
+import {BoardPageComponent} from './modules/pages/components/board/board-page.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [CanActivateLoginPagesService]},
+  { path: 'board/:id', component: BoardPageComponent, canActivate: [CanActivateLoginPagesService]},
   { path: 'reg', component: RegFormComponent, canActivate: [CanActivateNotLoginPagesService]},
   { path: 'login', component: LogInFormComponent, canActivate: [CanActivateNotLoginPagesService]},
   { path: '**', component: HomeComponent}

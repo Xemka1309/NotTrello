@@ -6,9 +6,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {BoardPageComponent} from './components/board/board-page.component';
-import { BoardModule } from '../board/board.module';
-
-
+import {BoardModule} from "../board/board.module";
 @NgModule({
   declarations: [HomeComponent, BoardPageComponent],
   imports: [
