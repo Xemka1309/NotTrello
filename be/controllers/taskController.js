@@ -68,6 +68,7 @@ exports.getByColumn = function(request, response){
 exports.taskToParticipant = function(request, response){
     TaskService.taskToParticipant(request.body)
         .then(result => {
+            console.log("HUI");
             response.status(200);
             response.send(result);
         })
@@ -75,5 +76,17 @@ exports.taskToParticipant = function(request, response){
             console.log(err);
             response.status(406);
             response.send(err.message)
+        });
+};
+
+exports.deleteTaskToPT = function (request, response){
+    TaskService.deleteTaskToPT(request.body)
+        .then(result => {
+            response.sendStatus(200);
+        })
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message);
         });
 };
