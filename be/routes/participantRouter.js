@@ -2,7 +2,6 @@ const express = require("express");
 const participantController = require("../controllers/participantController.js");
 const participantRouter = express.Router();
 
-participantRouter.get("/add", participantController.index);
 participantRouter.get("/get", participantController.get);
 participantRouter.post("/add", participantController.add);
 participantRouter.put("/edit", participantController.edit);

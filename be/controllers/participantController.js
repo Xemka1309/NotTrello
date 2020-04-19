@@ -1,9 +1,5 @@
 const ParticipantService = require("../services/participantService");
 
-exports.index = function (request, response) {
-    response.status(200).send({message: "all ok!"})
-};
-
 exports.get = function(request, response){
     ParticipantService.get(request.decoded.id)
         .then(result => {
