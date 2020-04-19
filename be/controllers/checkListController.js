@@ -1,8 +1,9 @@
-const BoardService = require("../services/boardService");
+const CheckListService = require("../services/checkListService");
 
+// title and board_id
 exports.add = function (request, response) {
     request.body.user_id = request.decoded.id;
-    BoardService.add(request.body)
+    CheckListService.add(request.body)
         .then(result => {
             response.status(200);
             response.send(result);})
@@ -10,11 +11,12 @@ exports.add = function (request, response) {
             console.log(err);
             response.status(406);
             response.send(err.message);
-    });
+        });
 };
 
+// id, title and board_id
 exports.edit = function (request, response){
-    BoardService.edit(request.body)
+    CheckListService.edit(request.body)
         .then(result => {
             response.status(200);
             response.send(result);
@@ -26,7 +28,7 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    BoardService.delete(request.body)
+    CheckListService.delete(request.body)
         .then(result => {
             response.sendStatus(200);
         })
@@ -37,34 +39,8 @@ exports.delete = function (request, response){
         });
 };
 
-exports.getBoards = function(request, response){
-    BoardService.getBoards(request.decoded.id)
-        .then(result => {
-            response.status(200);
-            response.send(result);
-        })
-        .catch(err =>  {
-            console.log(err);
-            response.status(406);
-            response.send(err.message)
-        });
-};
-
-exports.getBoard = function(request, response){
-    BoardService.getBoard(request.query.board_id)
-        .then(result => {
-            response.status(200);
-            response.send(result);
-        })
-        .catch(err =>  {
-            console.log(err);
-            response.status(406);
-            response.send(err.message)
-        });
-};
-
-exports.getTypes = function(request, response){
-    BoardService.getTypes()
+exports.get = function(request, response){
+    CheckListService.get(request.query.task_id)
         .then(result => {
             response.status(200);
             response.send(result);

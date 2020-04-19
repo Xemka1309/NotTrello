@@ -12,7 +12,13 @@ const ParticipantTask = seq.define("participant_task", {
     }
 });
 // Primary key fields not added yet
-Task.belongsToMany(Participant, {through: ParticipantTask});
-Participant.belongsToMany(Task, {through: ParticipantTask});
+Task.belongsToMany(Participant, {
+        through: ParticipantTask,
+        as: 'tasks',
+        foreignKey: 'taskId'});
+Participant.belongsToMany(Task, {
+        through: ParticipantTask,
+        as: 'participants',
+        foreignKey: 'participantId'});
 
 module.exports = ParticipantTask;

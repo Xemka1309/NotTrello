@@ -1,5 +1,6 @@
 const Board = require("../models/boardModel");
 const BoardType = require("../models/boardTypeModel");
+const ColumnService = require("../services/columnService");
 const ParticipantRole = require("../models/participantRoleModel");
 const Participant = require("../models/participantModel");
 
@@ -79,8 +80,26 @@ exports.getBoards = (async function (userId) {
     });
     return boards.map(function(board){
         let boardData = board.dataValues;
-        boardData.task_priority = types.find(element => element.id = board.type_id).type;
+        boardData.type = types.find(element => element.id = board.type_id).type;
         delete boardData.type_id;
         return boardData;
     })
+});
+
+exports.getBoard = (async function (board_id) {
+    const board = await Board.findOne({
+        attributes: ['id','title','description','type_id'],
+        where: {
+            id: board_id
+        }
+    });
+    const types = await BoardType.findAll({
+        attributes: ['id','type'],
+    });
+    let boardData = board.dataValues;
+    boardData.type = types.find(element => element.id = board.type_id).type;
+    delete boardData.type_id;
+
+    boardData.columns = await ColumnService.get(boardData.id);
+    return boardData;
 });
