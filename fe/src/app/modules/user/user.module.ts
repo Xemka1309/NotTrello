@@ -9,11 +9,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { NavBarComponent } from './components/navigation/nav-bar.component';
 import { LogInFormComponent } from './components/log-in-form/log-in-form.component';
 @NgModule({
-  declarations: [RegFormComponent, NavBarComponent, LogInFormComponent],
+  declarations: [RegFormComponent, LogInFormComponent],
   imports: [
     CommonModule,
     MatSliderModule,
@@ -24,10 +22,9 @@ import { LogInFormComponent } from './components/log-in-form/log-in-form.compone
     FormsModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatCardModule,
-    MatMenuModule
+    MatCardModule
   ],
-  exports: [RegFormComponent, NavBarComponent, LogInFormComponent],
+  exports: [RegFormComponent, LogInFormComponent],
   providers: [],
 })
 export class UserModule {
