@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Column} from '../../modules/bords/models/column';
+import { Column } from 'src/app/modules/board/models/column';
+
 
 @Injectable({
   providedIn: 'root'
