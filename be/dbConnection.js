@@ -1,15 +1,24 @@
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("mydb", "user", "password", {
-    dialect: "mysql",
-    host: "localhost",
-    port: 3306,
+const conf = require('./config').db;
+
+const sequelize = new Sequelize(conf.name, conf.login, conf.password, {
+    dialect: conf.dialect,
+    host: conf.host,
+    port: conf.port,
     define: {
         timestamps: false,
-        freezeTableName: true
+        freezeTableName: true,
+        pool: {
+            max: 10,
+            min: 1,
+            acquire: 30000,
+            idle: 10000
+        }
     }
 });
 
-sequelize.sync().then(result=>console.log(result))
-    .catch(err=> console.log(err));
+sequelize.sync()
+    .then(() => console.log("db successfully synchronized"))
+    .catch(err => console.log(err));
 
 module.exports = sequelize;

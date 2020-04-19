@@ -25,6 +25,7 @@ import { RegFormComponent } from './modules/user/components/reg-form/reg-form.co
 import { LogInFormComponent } from './modules/user/components/log-in-form/log-in-form.component';
 import { BordsModule } from './modules/bords/bords.module';
 import { BordsConstructorComponent } from './modules/bords/components/bords-constructor/bords-constructor.component';
+import {APIInterceptor} from './interceptors/APIInterceptor';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -51,7 +52,11 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [APIInterceptor, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: APIInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

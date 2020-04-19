@@ -19,7 +19,7 @@ const Comment = seq.define("comment", {
         allowNull: false
     }
 });
-Task.hasMany(Comment);
-Participant.hasMany(Comment);
+Task.hasMany(Comment, {foreignKey: 'task_id'});
+Participant.hasMany(Comment, {foreignKey: 'participant_id'});
 
 module.exports = Comment;

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User } from '../../models/user';
-import { UserService } from 'src/app/services/user/user-service';
+import { UserService } from 'src/app/services/user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-reg-form',
@@ -11,7 +12,8 @@ import { UserService } from 'src/app/services/user/user-service';
 export class RegFormComponent implements OnInit {
   public regForm: FormGroup;
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +25,10 @@ export class RegFormComponent implements OnInit {
       login: new FormControl(),
       password: new FormControl(),
     });
+  }
+
+  public goToLogIn() {
+    this.router.navigate(['/login']);
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -40,10 +46,9 @@ export class RegFormComponent implements OnInit {
     user.password = this.regForm.controls.password.value;
     this.userService.registerUser(user).subscribe((result) => {
       console.log(result);
-      if (result.status == 200){
+      if (result.status === 200) {
         alert(`Registration ok, user login:${user.login} `);
       }
-    }), error => console.log(error);
-    //document.location.href = document.location.hostname;
+    }, error => console.log(error));
   }
 }

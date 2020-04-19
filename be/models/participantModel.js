@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
-const Board = require("boardModel");
-const Role = require("userRoleModel");
-const User = require("userModel");
+const Board = require("./boardModel");
+const Role = require("./participantRoleModel");
+const User = require("./userModel");
 const Participant = seq.define("participant", {
     id: {
         type: Sequelize.INTEGER,
@@ -12,8 +12,8 @@ const Participant = seq.define("participant", {
         allowNull: false
     }
 });
-Board.hasMany(Participant);
-Role.hasMany(Participant);
-User.hasMany(Participant);
+User.hasMany(Participant, {foreignKey: 'user_id'});
+Board.hasMany(Participant, {foreignKey: 'board_id'});
+Role.hasMany(Participant, {foreignKey: 'role_id'});
 
 module.exports = Participant;

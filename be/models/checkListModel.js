@@ -17,6 +17,6 @@ const CheckList = seq.define("check_list", {
         allowNull: false
     }
 });
-Task.hasMany(CheckList);
+Task.hasMany(CheckList, {foreignKey: 'task_id'});
 
 module.exports = CheckList;

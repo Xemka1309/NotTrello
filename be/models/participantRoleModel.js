@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
-const UserRole = seq.define("user_role", {
+const ParticipantRole = seq.define("participant_role", {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -15,4 +15,4 @@ const UserRole = seq.define("user_role", {
     }
 });
 
-module.exports = UserRole;
+module.exports = ParticipantRole;

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
-const BoardType = require("boardTypeModel");
+const BoardType = require("./boardTypeModel");
 const Board = seq.define("board", {
     id: {
         type: Sequelize.INTEGER,
@@ -18,6 +18,6 @@ const Board = seq.define("board", {
         default: null
     }
 });
-BoardType.hasMany(Board);
+BoardType.hasMany(Board, {foreignKey: 'type_id'});
 
 module.exports = Board;

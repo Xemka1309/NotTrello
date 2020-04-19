@@ -19,7 +19,7 @@ const Log = seq.define("log", {
         allowNull: false
     }
 });
-Task.hasMany(Log);
-Participant.hasMany(Log);
+Task.hasMany(Log, {foreignKey: 'task_id'});
+Participant.hasMany(Log, {foreignKey: 'participant_id'});
 
 module.exports = Log;

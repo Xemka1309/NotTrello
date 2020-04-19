@@ -1,20 +1,36 @@
 const express        = require('express');
 const bodyParser     = require('body-parser');
 const app            = express();
-const port = 8000;
+
+const config = require('./config');
+const port = config.serverPort;
+app.set('jwt-secret', config.secret);
 
 const jsonParser = bodyParser.json();
-//routes
+
+const DBInitInsert = require("./dbInitInserts");
 const homeRouter = require("./routes/homeRoute");
 const userRouter = require("./routes/userRoute");
-const errorThrower = require("./errorResponseGenerator")
+const boardRouter = require("./routes/boardRoute");
+const participantRouter = require("./routes/participantRouter");
+const regAndAuthRouter = require("./routes/regAndAuthRoute");
 
-app.use("/", homeRouter);
+const security = require('./services/auth');
+const errorThrower = require("./errorResponseGenerator");
+
+app.use("/api/user", jsonParser, regAndAuthRouter);
+app.use("/", security.auth);
 app.use("/api/user", jsonParser, userRouter);
+app.use("/api", homeRouter);
+app.use("/api/board", jsonParser, boardRouter);
+app.use("/api/partic", jsonParser, participantRouter);
 //end routes
 
 //not found
 app.use("/", errorThrower.notFound);
+
+// Initial database inserts
+DBInitInsert.init();
 
 app.listen(port, () => {
   console.log('We are live on ' + port);
