@@ -6,9 +6,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {BoardPageComponent} from './components/board/board-page.component';
-import {BoardModule} from "../board/board.module";
+import {BoardModule} from '../board/board.module';
+import { ProfileComponent } from './components/profile/profile-component';
 @NgModule({
-  declarations: [HomeComponent, BoardPageComponent],
+  declarations: [HomeComponent, BoardPageComponent, ProfileComponent],
   imports: [
     CommonModule,
     MatSliderModule,
@@ -17,7 +18,7 @@ import {BoardModule} from "../board/board.module";
     MatProgressSpinnerModule,
     BoardModule
   ],
-  exports: [HomeComponent, BoardPageComponent],
+  exports: [HomeComponent, BoardPageComponent, ProfileComponent],
   providers: [],
 })
 export class PagesModule {

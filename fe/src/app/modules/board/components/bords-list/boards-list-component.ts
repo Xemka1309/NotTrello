@@ -31,7 +31,4 @@ export class BoardsListComponent implements OnInit {
 
   }
 
-  public createLink(id: number):string {
-    return this.router.createUrlTree(['/boards' + id]).fragment;
-  }
 }

@@ -11,9 +11,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
-      <button (click)="logOut()" class="nav-item">
-        <a class="nav-link" >Logout</a>
-      </button>
+
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
@@ -33,6 +31,12 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
+    <button (click)="goToProfile()" class="nav-item btn">
+      <a class="nav-link">Profile</a>
+    </button>
+    <button (click)="logOut()" class="nav-item btn">
+      <a class="nav-link">Logout</a>
+    </button>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
