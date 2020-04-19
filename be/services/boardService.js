@@ -10,7 +10,8 @@ exports.add = (async function(body){
             type: body.boardType
         }
     });
-    const createdBoard = Board.build({
+
+    const createdBoard = await Board.create({
         title: body.title,
         description: body.description,
         type_id: boardType[0].id,
@@ -18,19 +19,21 @@ exports.add = (async function(body){
     const participantRole = await ParticipantRole.findAll({
         attributes: ['id'],
         where: {
-            type: "ADMINISTRATOR"
+            role: "ADMINISTRATOR"
         }
     });
+
     Participant.create({
         user_id: body.user_id,
         board_id: createdBoard.id,
         role_id: participantRole[0].id
     });
-    return Board.save(createdBoard);
+    return createdBoard;
 });
 
 exports.edit = (async function (body) {
-    const boardType = await BoardType.findAll({
+    console.log(body);
+    const boardType = await BoardType.findOne({
         attributes: ['id'],
         where: {
             type: body.boardType
@@ -40,7 +43,7 @@ exports.edit = (async function (body) {
         {
             title: body.title,
             description: body.description,
-            type_id: boardType[0].id,
+            type_id: boardType.id,
         },
         {where: {id: body.id}})
 });
@@ -56,11 +59,17 @@ exports.getTypes = (async function () {
     });
 });
 
-exports.getBoards = (async function (typeId) {
+exports.getBoards = (async function (boardType) {
+    const type = await BoardType.findAll({
+        attributes: ['id'],
+        where: {
+            type: boardType
+        }
+    });
     return await Board.findAll({
         attributes: ['id', 'title', 'description', 'type_id'],
         where: {
-            type_id: typeId
+            type_id: type[0].id
         }
     });
 });

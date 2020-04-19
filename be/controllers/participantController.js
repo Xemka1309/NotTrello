@@ -21,7 +21,7 @@ exports.add = function (request, response) {
     request.body.user_id = request.decoded.id;
     ParticipantService.add(request.body)
         .then(result => {
-            console.log(result);
+            console.log("RESULT",result);
             response.status(200);
             response.send(result);})
         .catch(err =>  {
@@ -51,8 +51,7 @@ exports.delete = function (request, response){
     ParticipantService.delete(request.body)
         .then(result => {
             console.log(result);
-            response.status(200);
-            response.send(result);
+            response.sendStatus(200);
         })
         .catch(err =>  {
             console.log(err);

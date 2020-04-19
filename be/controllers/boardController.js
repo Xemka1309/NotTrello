@@ -21,12 +21,10 @@ exports.add = function (request, response) {
 exports.edit = function (request, response){
     BoardService.edit(request.body)
         .then(result => {
-            console.log(result);
             response.status(200);
             response.send(result);
         })
         .catch(err =>  {
-            console.log(err);
             response.status(406);
             response.send(err.message);
         });
@@ -46,7 +44,7 @@ exports.delete = function (request, response){
 };
 
 exports.getBoards = function(request, response){
-    BoardService.getBoards(request.body.typeId)
+    BoardService.getBoards(request.body.boardType)
         .then(result => {
             response.status(200);
             response.send(result);

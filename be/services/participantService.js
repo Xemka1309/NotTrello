@@ -1,6 +1,5 @@
 const Participant = require("../models/participantModel");
-const Board = require("../models/boardModel");
-const BoardType = require("../models/boardTypeModel");
+const ParticipantRole = require("../models/participantRoleModel");
 
 exports.get = (async function(userId){
     return await Participant.findAll({
@@ -12,34 +11,28 @@ exports.get = (async function(userId){
 });
 
 exports.add = (async function(body){
-    const boardType = await BoardType.findAll({
-        attributes: ['id'],
-        where: {
-            type: body.boardType
-        }
-    });
-    const board = await Board.findAll({
-        attributes: ['id'],
-        where: {
-            type: boardType[0].id
-        }
-    });
-    body.board_id = board[0].id;
-    const participantRole = await BoardType.findAll({
+    const participantRole = await ParticipantRole.findOne({
         attributes: ['id'],
         where: {
             role: "DEVELOPER"
         }
     });
-    body.role_id = participantRole[0].id;
-    return Participant.create(body);
+    return Participant.create({
+        user_id: body.user_id,
+        role_id: participantRole.id,
+        board_id: body.board_id
+    });
 });
 exports.edit = (async function (body) {
-    return Participant.update(
-        {name: body.name},
+    return await Participant.update(
+        {
+            user_id: body.user_id,
+            role_id: body.role_id,
+            board_id: body.board_id
+        },
         {where: {id: body.id}})
 });
 exports.delete = (async function (body) {
-    Participant.destroy(
+    await Participant.destroy(
         {where: {id: body.id}})
 });

@@ -12,6 +12,7 @@ const DBInitInsert = require("./dbInitInserts");
 const homeRouter = require("./routes/homeRoute");
 const userRouter = require("./routes/userRoute");
 const boardRouter = require("./routes/boardRoute");
+const participantRouter = require("./routes/participantRouter");
 const regAndAuthRouter = require("./routes/regAndAuthRoute");
 
 const security = require('./services/auth');
@@ -22,6 +23,7 @@ app.use("/", security.auth);
 app.use("/api/user", jsonParser, userRouter);
 app.use("/api", homeRouter);
 app.use("/api/board", jsonParser, boardRouter);
+app.use("/api/partic", jsonParser, participantRouter);
 //end routes
 
 //not found
