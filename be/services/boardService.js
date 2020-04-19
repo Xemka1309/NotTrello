@@ -80,7 +80,7 @@ exports.getBoards = (async function (userId) {
     });
     return boards.map(function(board){
         let boardData = board.dataValues;
-        boardData.task_priority = types.find(element => element.id = board.type_id).type;
+        boardData.type = types.find(element => element.id = board.type_id).type;
         delete boardData.type_id;
         return boardData;
     })
