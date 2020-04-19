@@ -1,0 +1,15 @@
+<div class="example-container">
+  <div cdkDropListGroup>
+    <div cdkDropList *ngFor="let column of boardModel.columns">
+      <div
+        cdkDropList
+        [cdkDropListData]="column.tasks"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of column.tasks" cdkDrag>
+          {{item}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

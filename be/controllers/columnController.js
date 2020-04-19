@@ -40,7 +40,7 @@ exports.delete = function (request, response){
 };
 
 exports.get = function(request, response){
-    ColumnService.get(request.query.board_id)
+    ColumnService.get(request.query.id)
         .then(result => {
             response.status(200);
             response.send(result);

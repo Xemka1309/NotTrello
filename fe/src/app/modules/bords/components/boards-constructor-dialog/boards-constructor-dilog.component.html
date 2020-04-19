@@ -1,6 +1,6 @@
 <div class="container row">
   <div class="col">
-    <h1 mat-dialog-title>New Bord</h1>
+    <h1 mat-dialog-title>New Board</h1>
     <div mat-dialog-content>
       <mat-form-field>
         <mat-label>Title</mat-label>
@@ -13,7 +13,7 @@
       </mat-form-field>
       <br />
       <mat-form-field>
-        <mat-label>Bord Type</mat-label>
+        <mat-label>Board Type</mat-label>
           <mat-select [(ngModel)]="data.bordType" required>
             <mat-option  *ngFor="let bordType of data.bordTypes" [value]="bordType" >
               {{bordType}}

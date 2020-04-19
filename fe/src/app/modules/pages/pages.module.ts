@@ -5,10 +5,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import {BoardPageComponent} from './components/board/board-page.component';
 @NgModule({
-  declarations: [HomeComponent],
-  imports: [ CommonModule, MatSliderModule, MatButtonModule, BrowserAnimationsModule, MatProgressSpinnerModule ],
-  exports: [HomeComponent],
+  declarations: [HomeComponent, BoardPageComponent],
+  imports: [
+    CommonModule,
+    MatSliderModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule ],
+  exports: [HomeComponent, BoardPageComponent],
   providers: [],
 })
 export class PagesModule {

@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BordsService } from 'src/app/services/bords/bordsService';
+import { BoardService } from 'src/app/services/board/boardService';
 import { FormGroup, FormControl } from '@angular/forms';
 
-export interface BordsConstructorDialogData {
+export interface BoardsConstructorDialogData {
   title: string;
   description: string;
   bordType: string;
@@ -11,41 +11,41 @@ export interface BordsConstructorDialogData {
 }
 
 @Component({
-  selector: 'app-bords-constructor',
-  templateUrl: './bords-constructor.component.html',
-  styleUrls: ['./bords-constructor.component.css']
+  selector: 'app-boards-constructor',
+  templateUrl: './boards-constructor.component.html',
+  styleUrls: ['./boards-constructor.component.css']
 })
-export class BordsConstructorComponent implements OnInit {
+export class BoardsConstructorComponent implements OnInit {
   public title: string;
   public description: string;
   public bordType: string;
   public bordTypes: string[];
 
-  constructor(private bordService: BordsService, public dialog: MatDialog) { }
+  constructor(private bordService: BoardService, public dialog: MatDialog) { }
 
   public ngOnInit() {
-    this.bordService.getBordTypes().subscribe( (result) => {
+    this.bordService.getBoardTypes().subscribe( (result) => {
       this.bordTypes = result.map(x => x.type);
     }, error => console.log(error));
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(BordsConstructorDialog, {
+    const dialogRef = this.dialog.open(BoardsConstructorDialog, {
       width: '600px',
       data: { bordTypes: this.bordTypes, title: this.title, description: this.description, bordType: this.bordType }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      const bord = {
+      const board = {
         id: 0,
         title: result.title,
         description: result.title || '',
         boardType: result.bordType
       };
-      this.bordService.createBord(bord).subscribe(respnse => {
-        console.log("response");
-        console.log(respnse);
+      this.bordService.createBord(board).subscribe(response => {
+        console.log('response');
+        console.log(response);
       });
     });
   }
@@ -54,16 +54,17 @@ export class BordsConstructorComponent implements OnInit {
 
 @Component({
   selector: 'app-bords-constructor-dilog',
-  templateUrl: '../bords-constructor-dialog/bords-constructor-dilog.component.html',
-  styleUrls: ['../bords-constructor-dialog/bords-constructor-dilog.component.css']
+  templateUrl: '../boards-constructor-dialog/boards-constructor-dilog.component.html',
+  styleUrls: ['../boards-constructor-dialog/boards-constructor-dilog.component.css']
 })
-export class BordsConstructorDialog implements OnInit {
+// tslint:disable-next-line:component-class-suffix
+export class BoardsConstructorDialog implements OnInit {
   public bordTypes: string[];
   public form: FormGroup;
   constructor(
-    private bordService: BordsService,
-    public dialogRef: MatDialogRef<BordsConstructorDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: BordsConstructorDialogData
+    private bordService: BoardService,
+    public dialogRef: MatDialogRef<BoardsConstructorDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: BoardsConstructorDialogData
   ) { }
 
   public ngOnInit() {
@@ -72,17 +73,15 @@ export class BordsConstructorDialog implements OnInit {
       description: new FormControl(),
       bordType: new FormControl()
     });
-    this.bordService.getBordTypes().subscribe((result) => {
+    this.bordService.getBoardTypes().subscribe((result) => {
       this.bordTypes = result;
     }, error => console.log(error));
   }
 
   validate() {
-    if (this.data.title && this.data.bordType){
-      return true;
-    }
-    return false;
+    return this.data.title && this.data.bordType;
   }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
