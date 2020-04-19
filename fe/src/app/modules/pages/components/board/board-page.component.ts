@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-board-page',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board-page.component.css']
 })
 export class BoardPageComponent implements OnInit {
-  constructor() { }
+  private boardId: string;
+  constructor(private activatedRoute: ActivatedRoute) {
+    console.log(this.activatedRoute.snapshot.params);
+
+    this.boardId = this.activatedRoute.snapshot.params.id;
+  }
   ngOnInit(): void { }
 }

@@ -10,9 +10,14 @@ import { Column } from 'src/app/modules/board/models/column';
 
 export class ColumnService {
   private baseUrl = '/api/column';
+  private addColumnUrl = `${this.baseUrl}/add`;
   private getColumnsByBoardIdUrl = `${this.baseUrl}/getByBoardId`;
 
   constructor(private http: HttpClient) { }
+
+  public addColumn(column: any): Observable<any> {
+    return this.http.post(this.addColumnUrl, column);
+  }
 
   public getColumnsByBoardId(id: string): Observable<Column[]> {
     const params = new HttpParams({

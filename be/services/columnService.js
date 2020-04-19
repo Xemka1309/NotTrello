@@ -2,7 +2,7 @@ const Column = require("../models/columnModel");
 const TaskService = require("../services/taskService");
 
 exports.add = (async function(body){
-    return await Column.create(body);
+    return Column.create(body);
 });
 
 exports.edit = (async function (body) {

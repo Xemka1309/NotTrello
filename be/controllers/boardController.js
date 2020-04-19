@@ -51,7 +51,7 @@ exports.getBoards = function(request, response){
 };
 
 exports.getBoard = function(request, response){
-    BoardService.getBoard(request.query.board_id)
+    BoardService.getBoard(request.query.id)
         .then(result => {
             response.status(200);
             response.send(result);

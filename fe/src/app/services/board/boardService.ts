@@ -1,8 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Board } from 'src/app/modules/board/models/board';
-
+import {Board} from '../../modules/board/models/board';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ export class BoardService {
   private getBordTypesUrl = `${this.baseUrl}/get/types`;
   private getBoardsUrl = `${this.baseUrl}/get/boards`;
   private createBordUrl = `${this.baseUrl}/add`;
-  private getBoardByIdUrl = `${this.baseUrl}/board`;
+  private getBoardByIdUrl = `${this.baseUrl}/get/board`;
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +32,12 @@ export class BoardService {
     return this.http.get<any>(this.getBoardsUrl);
   }
 
-  public getBoardById(): Observable<any> {
-    return this.http.get<any>(this.getBoardByIdUrl);
+  public getBoardById(id: string): Observable<Board> {
+    const params = new HttpParams({
+      fromObject: {id}
+    });
+    console.log(this.getBoardByIdUrl);
+
+    return this.http.get<Board>(this.getBoardByIdUrl, {params});
   }
 }
