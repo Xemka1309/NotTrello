@@ -9,13 +9,10 @@ import { BoardsConstructorComponent, BoardsConstructorDialog } from './component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BoardDisplayerComponent } from './components/board-displayer/board-displayer.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BordsListComponent } from './components/bords-list/bords-list-component';
 
 @NgModule({
-  declarations: [
-    BoardsConstructorComponent,
-    BoardsConstructorDialog,
-    BoardDisplayerComponent
-  ],
+  declarations: [BoardsConstructorComponent, BoardsConstructorDialog, BordsListComponent],
   imports: [
     CommonModule,
     MatButtonModule,
