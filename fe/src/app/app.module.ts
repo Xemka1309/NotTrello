@@ -23,12 +23,14 @@ import {} from '@angular/material';
 import { UserModule } from './modules/user/user.module';
 import { RegFormComponent } from './modules/user/components/reg-form/reg-form.component';
 import { LogInFormComponent } from './modules/user/components/log-in-form/log-in-form.component';
-import {APIInterceptor} from './interceptors/APIInterceptor';
+import { APIInterceptor } from './interceptors/APIInterceptor';
+import {CanActivateLoginPagesService} from './services/security/can-activate-login-pages.service';
+import {CanActivateNotLoginPagesService} from './services/security/can-activate-not-login-pages.service';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'reg', component: RegFormComponent},
-  { path: 'login', component: LogInFormComponent},
+  { path: '', component: HomeComponent, canActivate: [CanActivateLoginPagesService]},
+  { path: 'reg', component: RegFormComponent, canActivate: [CanActivateNotLoginPagesService]},
+  { path: 'login', component: LogInFormComponent, canActivate: [CanActivateNotLoginPagesService]},
   { path: '**', component: HomeComponent}
 ];
 @NgModule({
