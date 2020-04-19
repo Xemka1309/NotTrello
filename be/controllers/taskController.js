@@ -64,3 +64,16 @@ exports.getByColumn = function(request, response){
             response.send(err.message)
         });
 };
+
+exports.taskToParticipant = function(request, response){
+    TaskService.taskToParticipant(request.body)
+        .then(result => {
+            response.status(200);
+            response.send(result);
+        })
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message)
+        });
+};

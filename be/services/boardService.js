@@ -97,7 +97,7 @@ exports.getBoard = (async function (board_id) {
         attributes: ['id','type'],
     });
     let boardData = board.dataValues;
-    boardData.type = types.find(element => element.id = board.type_id).type;
+    boardData.board_type = types.find(element => element.id = board.type_id).type;
     delete boardData.type_id;
 
     boardData.columns = await ColumnService.get(boardData.id);

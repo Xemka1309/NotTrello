@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
-const Task = require("taskModel");
-const Participant = require("participantModel");
+const Task = require("./taskModel");
+const Participant = require("./participantModel");
 const ParticipantTask = seq.define("participant_task", {
     id: {
         type: Sequelize.INTEGER,
@@ -11,14 +11,13 @@ const ParticipantTask = seq.define("participant_task", {
         allowNull: false
     }
 });
-// Primary key fields not added yet
 Task.belongsToMany(Participant, {
         through: ParticipantTask,
-        as: 'tasks',
-        foreignKey: 'taskId'});
+        //as: 'tasks',
+        foreignKey: 'task_id'});
 Participant.belongsToMany(Task, {
         through: ParticipantTask,
-        as: 'participants',
-        foreignKey: 'participantId'});
+        //as: 'participants',
+        foreignKey: 'participant_id'});
 
 module.exports = ParticipantTask;

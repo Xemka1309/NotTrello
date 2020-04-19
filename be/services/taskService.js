@@ -1,5 +1,6 @@
 const Task = require("../models/taskModel");
 const TaskPriority = require("../models/taskPriorityModel");
+const TaskToParticipant = require("../models/participantTaskModel");
 
 exports.add = (async function(body){
     return await Task.create(body);
@@ -44,4 +45,8 @@ exports.getByColumn = (async function (columnId) {
         delete taskFields.task_priority_id;
         return taskFields;
     })
+});
+
+exports.taskToParticipant = (async function (body) {
+    return await TaskToParticipant.create(body);
 });
