@@ -50,6 +50,19 @@ exports.getBoards = function(request, response){
         });
 };
 
+exports.getBoard = function(request, response){
+    BoardService.getBoard(request.query.board_id)
+        .then(result => {
+            response.status(200);
+            response.send(result);
+        })
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message)
+        });
+};
+
 exports.getTypes = function(request, response){
     BoardService.getTypes()
         .then(result => {
