@@ -26,6 +26,7 @@ export class APIInterceptor implements HttpInterceptor {
         'x-access-token': token
       } : null)
     });
+    // todo delete
     console.log('Intercepted HTTP call', authReq);
     return next.handle(authReq).pipe(tap(evt => console.log(evt), error => {
       console.log(error);

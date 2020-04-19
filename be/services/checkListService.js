@@ -1,13 +1,19 @@
 const CheckList = require("../models/checkListModel");
-const ParticipantRole = require("../models/participantRoleModel");
+const CLItemService = require("./checkListItemService");
 
 exports.get = (async function(taskId){
-    return await CheckList.findAll({
-        attributes: ['id','title','position','task_id'],
+    const checklists = await CheckList.findAll({
+        attributes: ['id','title','position'],
         where: {
             task_id: taskId
         }
     });
+    return Promise.all(checklists.map(async function(checklist) {
+            const withItems = checklist.dataValues;
+            withItems.items = await CLItemService.get(checklist.id);
+            return withItems;
+        })
+    );
 });
 
 exports.add = (async function(body){

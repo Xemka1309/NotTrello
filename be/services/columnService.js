@@ -24,7 +24,7 @@ exports.get = (async function (board_id) {
         }
     });
     return Promise.all(columns.map(async function(column) {
-        let columnWithTasks = column.dataValues;
+        const columnWithTasks = column.dataValues;
         columnWithTasks.tasks = await TaskService.getByColumn(column.id);
         return columnWithTasks;
     })

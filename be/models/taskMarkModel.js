@@ -12,7 +12,11 @@ const TaskMark = seq.define("task_mark", {
     }
 });
 // Primary key fields not added yet
-Task.belongsToMany(Mark, {through: TaskMark});
-Mark.belongsToMany(Task, {through: TaskMark});
+Task.belongsToMany(Mark, {
+    through: TaskMark,
+    foreignKey: 'task_id'});
+Mark.belongsToMany(Task, {
+    through: TaskMark,
+    foreignKey: 'mark_id'});
 
 module.exports = TaskMark;

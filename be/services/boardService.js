@@ -1,6 +1,7 @@
 const Board = require("../models/boardModel");
 const BoardType = require("../models/boardTypeModel");
 const ColumnService = require("../services/columnService");
+const MarkService = require("../services/markService");
 const ParticipantRole = require("../models/participantRoleModel");
 const Participant = require("../models/participantModel");
 
@@ -99,7 +100,7 @@ exports.getBoard = (async function (board_id) {
     let boardData = board.dataValues;
     boardData.boardType = types.find(element => element.id = board.type_id).type;
     delete boardData.type_id;
-
+    boardData.marks = await MarkService.getByBoardId(boardData.id);
     boardData.columns = await ColumnService.get(boardData.id);
     return boardData;
 });

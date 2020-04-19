@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
-const CheckList = require("checkListModel");
+const CheckList = require("./checkListModel");
 const CheckListItem = seq.define("check_list_item", {
     id: {
         type: Sequelize.INTEGER,
@@ -13,10 +13,9 @@ const CheckListItem = seq.define("check_list_item", {
         type: Sequelize.STRING,
         allowNull: false
     },
-    position: {
-        type: 'TINYINT',
-        allowNull: false,
-        default: 0
+    completed: {
+        type: Sequelize.TINYINT,
+        allowNull: false
     }
 });
 CheckList.hasMany(CheckListItem, {foreignKey: 'check_list_id'});
