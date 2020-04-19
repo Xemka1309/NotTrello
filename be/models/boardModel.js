@@ -16,6 +16,9 @@ const Board = seq.define("board", {
     description: {
         type: Sequelize.TEXT,
         default: null
+    },
+    pictureUrl: {
+        type: Sequelize.STRING
     }
 });
 BoardType.hasMany(Board, {foreignKey: 'type_id'});
