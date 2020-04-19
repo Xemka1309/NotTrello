@@ -1,6 +1,6 @@
-<div class="example-container">
-  <div cdkDropListGroup>
-    <div cdkDropList *ngFor="let column of boardModel.columns">
+<div class="container-fluid flex-md-nowrap">
+  <div cdkDropListGroup class="row flex-md-nowrap">
+    <div cdkDropList class="col-3" *ngFor="let column of boardModel.columns">
       <div
         cdkDropList
         [cdkDropListData]="column.tasks"

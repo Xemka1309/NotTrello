@@ -1,0 +1,6 @@
+.custom-sticky {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 1px;
+  left: 1px;
+}
