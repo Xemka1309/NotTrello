@@ -8,6 +8,16 @@ exports.edit = (async function (body) {
         body,
         {where: {id: body.id}})
 });
+exports.getExceptPassword = (async function (userId) {
+     const userData = await User.findOne({
+         attributes: ['id','name','family','nickname','email','login'],
+         where: {
+             id: userId
+         }
+     });
+     userData.password = '*';
+     return userData;
+});
 
 exports.findOne = async (reqParams) => {
   return User.findOne({where: reqParams});
