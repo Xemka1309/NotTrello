@@ -7,7 +7,6 @@ exports.add = function (request, response) {
     request.body.user_id = request.decoded.id;
     BoardService.add(request.body)
         .then(result => {
-            console.log(result);
             response.status(200);
             response.send(result);})
         .catch(err =>  {
@@ -33,7 +32,6 @@ exports.edit = function (request, response){
 exports.delete = function (request, response){
     BoardService.delete(request.body)
         .then(result => {
-            console.log(result);
             response.sendStatus(200);
         })
         .catch(err =>  {
@@ -44,7 +42,7 @@ exports.delete = function (request, response){
 };
 
 exports.getBoards = function(request, response){
-    BoardService.getBoards(request.body.boardType)
+    BoardService.getBoards(request.decoded.id)
         .then(result => {
             response.status(200);
             response.send(result);

@@ -4,7 +4,6 @@ const UserService = require("../services/userService");
 exports.edit = function (request, response){
     UserService.edit(request.body)
         .then(result => {
-            console.log(result);
             response.status(200);
             response.send(result);
         })
