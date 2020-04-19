@@ -12,6 +12,7 @@ export class BordsListComponent implements OnInit {
   constructor(private bordService: BordsService) { }
   public ngOnInit(): void {
     this.bordService.getBords().subscribe(result => {
+      console.log(result);
       this.boards = result;
     }, error => console.log(error));
     console.log("BOARDS");
