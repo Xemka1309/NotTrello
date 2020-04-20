@@ -1,6 +1,5 @@
 const TaskService = require("../services/taskService");
 
-// title and board_id
 exports.add = function (request, response) {
     TaskService.add(request.body)
         .then(result => {
@@ -13,7 +12,6 @@ exports.add = function (request, response) {
         });
 };
 
-// id, title and board_id
 exports.edit = function (request, response){
     TaskService.edit(request.body)
         .then(result => {
