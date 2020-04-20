@@ -8,5 +8,7 @@ taskRouter.put("/edit", taskController.edit);
 taskRouter.delete("/delete/task", taskController.delete);
 taskRouter.post("/add/tasktopt", taskController.taskToPT);
 taskRouter.delete("/delete/tasktopt", taskController.deleteTaskToPT);
+taskRouter.post("/add/tasktomark", taskController.taskToMark);
+taskRouter.delete("/delete/tasktomark", taskController.deleteTaskToMark);
 
 module.exports = taskRouter;
