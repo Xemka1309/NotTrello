@@ -19,6 +19,7 @@ const checkListRouter = require("./routes/checkListRoute");
 const clItemRouter = require("./routes/checkListItemRoute");
 const markRouter = require("./routes/markRoute");
 const commentRouter = require("./routes/commentRoute");
+const logRouter = require("./routes/logRoute");
 const regAndAuthRouter = require("./routes/regAndAuthRoute");
 
 const security = require('./services/auth');
@@ -36,6 +37,7 @@ app.use("/api/checklist", jsonParser, checkListRouter);
 app.use("/api/clitem", jsonParser, clItemRouter);
 app.use("/api/mark", jsonParser, markRouter);
 app.use("/api/comment", jsonParser, commentRouter);
+app.use("/api/log", jsonParser, logRouter);
 //end routes
 
 //not found

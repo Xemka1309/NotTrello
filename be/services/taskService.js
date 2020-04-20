@@ -4,6 +4,7 @@ const TaskToParticipant = require("../models/participantTaskModel");
 const TaskMark = require("../models/taskMarkModel");
 const CheckListService = require("./checkListService");
 const CommentService = require("./commentService");
+const LogService = require("./logService");
 
 exports.add = (async function(body){
     const priority = await TaskPriority.findOne({
@@ -55,6 +56,7 @@ exports.getById = (async function (id) {
     });
     taskReturnData.checkLists = await CheckListService.get(task.id);
     taskReturnData.comments = await CommentService.getByTaskId(task.id);
+    taskReturnData.logs = await LogService.getByTaskId(task.id);
     return taskReturnData;
 });
 
