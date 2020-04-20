@@ -6,7 +6,7 @@ const ParticipantRole = require("../models/participantRoleModel");
 const Participant = require("../models/participantModel");
 
 exports.add = (async function(body){
-    const boardType = await BoardType.findAll({
+    const boardType = await BoardType.findOne({
         attributes: ['id'],
         where: {
             type: body.boardType
@@ -16,19 +16,22 @@ exports.add = (async function(body){
     const createdBoard = await Board.create({
         title: body.title,
         description: body.description,
-        type_id: boardType[0].id,
+        pictureUrl: body.pictureUrl,
+        type_id: boardType.id,
     });
-    const participantRole = await ParticipantRole.findAll({
+    const participantRole = await ParticipantRole.findOne({
         attributes: ['id'],
         where: {
             role: "ADMINISTRATOR"
         }
     });
-
+    console.log(body.user_id);
+    console.log(createdBoard.id);
+    console.log(participantRole.id);
     Participant.create({
         user_id: body.user_id,
         board_id: createdBoard.id,
-        role_id: participantRole[0].id
+        role_id: participantRole.id
     });
     return createdBoard;
 });
@@ -70,7 +73,7 @@ exports.getBoards = (async function (userId) {
     });
 
     const boards = await Board.findAll({
-        attributes: ['id', 'title', 'description', 'type_id'],
+        attributes: ['id', 'title', 'description', 'type_id', 'pictureUrl'],
         where: {
             id: participants.map(val => val.board_id)
         }
@@ -89,7 +92,7 @@ exports.getBoards = (async function (userId) {
 
 exports.getBoard = (async function (board_id) {
     const board = await Board.findOne({
-        attributes: ['id','title','description','type_id'],
+        attributes: ['id','title','description','type_id','pictureUrl'],
         where: {
             id: board_id
         }
