@@ -3,6 +3,7 @@ const TaskPriority = require("../models/taskPriorityModel");
 const TaskToParticipant = require("../models/participantTaskModel");
 const TaskMark = require("../models/taskMarkModel");
 const CheckListService = require("./checkListService");
+const CommentService = require("./commentService");
 
 exports.add = (async function(body){
     const priority = await TaskPriority.findOne({
@@ -53,6 +54,7 @@ exports.getById = (async function (id) {
         }
     });
     taskReturnData.checkLists = await CheckListService.get(task.id);
+    taskReturnData.comments = await CommentService.getByTaskId(task.id);
     return taskReturnData;
 });
 

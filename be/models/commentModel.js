@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
-const Task = require("taskModel");
-const Participant = require("participantModel");
+const Task = require("./taskModel");
+const Participant = require("./participantModel");
 const Comment = seq.define("comment", {
     id: {
         type: Sequelize.INTEGER,
@@ -15,8 +15,9 @@ const Comment = seq.define("comment", {
         default: null
     },
     create_time: {
-        type: 'TIMESTAMP',
-        allowNull: false
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW
     }
 });
 Task.hasMany(Comment, {foreignKey: 'task_id'});
