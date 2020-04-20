@@ -28,7 +28,8 @@ const Task = seq.define("task", {
     },
     completed: {
         type: Sequelize.TINYINT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0
     }
 });
 TaskPriority.hasMany(Task, {foreignKey: 'task_priority_id'});
