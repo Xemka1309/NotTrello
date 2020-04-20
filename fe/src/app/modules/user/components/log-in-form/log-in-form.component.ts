@@ -38,7 +38,6 @@ export class LogInFormComponent implements OnInit {
     this.userService.logIn(login, password).subscribe((result) => {
 
       if (result.status === 200) {
-        alert(result.body.message);
         this.storage.setToken(result.body.token);
         this.goToHome();
       }
