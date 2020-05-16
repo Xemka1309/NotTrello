@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
-const Task = require("taskModel");
-const Participant = require("participantModel");
+const Task = require("./taskModel");
+const Participant = require("./participantModel");
 const Log = seq.define("log", {
     id: {
         type: Sequelize.INTEGER,
@@ -11,8 +11,9 @@ const Log = seq.define("log", {
         allowNull: false
     },
     create_time: {
-        type: 'TIMESTAMP',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW
     },
     action: {
         type: Sequelize.STRING,

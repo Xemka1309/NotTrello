@@ -1,9 +1,20 @@
 const Task = require("../models/taskModel");
 const TaskPriority = require("../models/taskPriorityModel");
 const TaskToParticipant = require("../models/participantTaskModel");
+const TaskMark = require("../models/taskMarkModel");
 const CheckListService = require("./checkListService");
+const CommentService = require("./commentService");
+const LogService = require("./logService");
 
 exports.add = (async function(body){
+    const priority = await TaskPriority.findOne({
+        attributes: ['id'],
+        where: {
+            priority: body.priority
+        }
+    });
+    body.task_priority_id = priority.id;
+    delete body.priority;
     return await Task.create(body);
 });
 
@@ -31,6 +42,12 @@ exports.getById = (async function (id) {
     });
     taskReturnData.task_priority = priorities.find(element => element.id = task.task_priority_id).priority;
     delete taskReturnData.task_priority_id;
+    taskReturnData.mark_ids = await TaskMark.findAll({
+        attributes: ['mark_id'],
+        where: {
+            task_id: task.id
+        }
+    });
     taskReturnData.participant_ids = await TaskToParticipant.findAll({
         attributes: ['participant_id'],
         where: {
@@ -38,6 +55,8 @@ exports.getById = (async function (id) {
         }
     });
     taskReturnData.checkLists = await CheckListService.get(task.id);
+    taskReturnData.comments = await CommentService.getByTaskId(task.id);
+    taskReturnData.logs = await LogService.getByTaskId(task.id);
     return taskReturnData;
 });
 
@@ -66,5 +85,14 @@ exports.taskToPT = (async function (body) {
 
 exports.deleteTaskToPT = (async function (body) {
     return TaskToParticipant.destroy(
-        {where: {id: body.id}})
+        {where: {task_id: body.task_id, participant_id: body.participant_id}})
+});
+
+exports.taskToMark = (async function (body) {
+    return await TaskMark.create(body);
+});
+
+exports.deleteTaskToMark = (async function (body) {
+    return TaskMark.destroy(
+        {where: {task_id: body.task_id, mark_id: body.mark_id}})
 });
