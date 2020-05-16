@@ -41,7 +41,7 @@ exports.edit = function (request, response){
 
 // Body contains id
 exports.delete = function (request, response){
-    ParticipantService.delete(request.body)
+    ParticipantService.delete(request.decoded.id)
         .then(function() {
             response.sendStatus(200);
         })

@@ -28,7 +28,7 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    ColumnService.delete(request.body)
+    ColumnService.delete(request.decoded.id)
         .then(result => {
             response.sendStatus(200);
         })

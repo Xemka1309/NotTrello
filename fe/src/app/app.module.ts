@@ -22,7 +22,8 @@ import {CanActivateLoginPagesService} from './services/security/can-activate-log
 import {CanActivateNotLoginPagesService} from './services/security/can-activate-not-login-pages.service';
 import {NavBarModule} from './modules/navigation/nav-bar.module';
 import {BoardPageComponent} from './modules/pages/components/board/board-page.component';
-import { ProfileComponent } from './modules/pages/components/profile/profile-component';
+import {ProfileComponent } from './modules/pages/components/profile/profile-component';
+import {BoardMenuComponent } from "./modules/board/components/board-menu/board-menu.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [CanActivateLoginPagesService]},
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'reg', component: RegFormComponent, canActivate: [CanActivateNotLoginPagesService]},
   { path: 'login', component: LogInFormComponent, canActivate: [CanActivateNotLoginPagesService]},
   { path: 'profile', component: ProfileComponent, canActivate: [CanActivateLoginPagesService]},
+  { path: 'board/menu/:id', component: BoardMenuComponent, canActivate: [CanActivateLoginPagesService]},
   { path: '**', component: HomeComponent}
 ];
 @NgModule({

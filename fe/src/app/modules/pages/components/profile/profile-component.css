@@ -1,7 +1,36 @@
-.card {
-  width:30%;
-  margin-left:30%;
+.container {
+  width: 30%;
+  margin-left: 35%;
 }
-.user-field {
-  padding: 30px;
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-box input{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 18px;
+  text-align: left;
+  font-size: medium;
+
+  border: 1px solid #ccc;;
+  background: #fafafa;
+  transition:0.2s ease-in-out;
+}
+
+.form-box input:focus{
+  outline: 0;
+  background: #eee;
+}
+
+.form-box input[type="text"]{
+  border-radius: 5px 5px 0 0;
+  text-transform: lowercase;
+}
+
+.form-box button.login{
+  margin-top:15px;
+  padding: 10px 20px;
 }

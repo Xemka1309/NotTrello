@@ -9,6 +9,7 @@ import { User } from 'src/app/modules/user/models/user';
 export class UserService {
   private baseUrl = '/api/user';
   private regUrl = `${this.baseUrl}/add`;
+  private editUrl = `${this.baseUrl}/edit`;
   private logInUrl = `${this.baseUrl}/login`;
   constructor(private http: HttpClient) {}
 
@@ -18,7 +19,14 @@ export class UserService {
         observe: 'response'
       });
     }
+  }
 
+  public editUser(user: User): Observable<any> {
+    if(user) {
+      return this.http.put<User>(this.editUrl, user, {
+        observe: 'response'
+      });
+    }
   }
 
   public logIn(login: string, password: string): Observable<any> {

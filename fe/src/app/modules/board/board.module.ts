@@ -11,11 +11,10 @@ import { BoardDisplayerComponent } from './components/board-displayer/board-disp
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardsListComponent } from './components/bords-list/boards-list-component';
 import { RouterModule } from '@angular/router';
-
-
+import { BoardMenuComponent } from "./components/board-menu/board-menu.component";
 
 @NgModule({
-  declarations: [BoardsConstructorComponent, BoardsConstructorDialog, BoardsListComponent, BoardDisplayerComponent],
+  declarations: [BoardsConstructorComponent, BoardsConstructorDialog, BoardsListComponent, BoardDisplayerComponent, BoardMenuComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -33,6 +32,7 @@ import { RouterModule } from '@angular/router';
     BoardsConstructorComponent,
     BoardDisplayerComponent,
     BoardsListComponent,
+    BoardMenuComponent
   ],
   providers: [],
 })
