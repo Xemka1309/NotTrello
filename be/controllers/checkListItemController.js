@@ -28,7 +28,7 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    CLItemService.delete(request.decoded.id)
+    CLItemService.delete(request.query.id)
         .then(function(){
             response.sendStatus(200);
         })
