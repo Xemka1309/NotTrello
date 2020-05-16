@@ -5,5 +5,6 @@ export interface Board {
   title: string;
   description: string;
   boardType: string;
+  pictureUrl: string;
   columns?: Column[];
 }

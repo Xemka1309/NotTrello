@@ -19,6 +19,7 @@ export class BoardsConstructorComponent implements OnInit {
   public title: string;
   public description: string;
   public bordType: string;
+  public pictureUrl: string;
   public bordTypes: string[];
 
   constructor(private bordService: BoardService, public dialog: MatDialog) { }
@@ -32,7 +33,7 @@ export class BoardsConstructorComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(BoardsConstructorDialog, {
       width: '600px',
-      data: { bordTypes: this.bordTypes, title: this.title, description: this.description, bordType: this.bordType }
+      data: { bordTypes: this.bordTypes, title: this.title, description: this.description, bordType: this.bordType, pictureUrl: this.pictureUrl }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -41,7 +42,8 @@ export class BoardsConstructorComponent implements OnInit {
         id: 0,
         title: result.title,
         description: result.title || '',
-        boardType: result.bordType
+        boardType: result.bordType,
+        pictureUrl: result.pictureUrl
       };
       this.bordService.createBord(board).subscribe(response => {
         console.log('response');
