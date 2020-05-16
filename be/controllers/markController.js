@@ -26,7 +26,7 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    MarkService.delete(request.body)
+    MarkService.delete(request.decoded.id)
         .then(function(){
             response.sendStatus(200);
         })

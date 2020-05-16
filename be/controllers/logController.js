@@ -13,7 +13,7 @@ exports.add = function (request, response) {
 };
 
 exports.delete = function (request, response){
-    LogService.delete(request.body)
+    LogService.delete(request.decoded.id)
         .then(function(){
             response.sendStatus(200);
         })

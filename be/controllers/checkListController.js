@@ -28,7 +28,7 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    CheckListService.delete(request.body)
+    CheckListService.delete(request.decoded.id)
         .then(result => {
             response.sendStatus(200);
         })

@@ -25,7 +25,7 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    TaskService.delete(request.body)
+    TaskService.delete(request.decoded.id)
         .then(function() {
             response.sendStatus(200);
         })
