@@ -15,9 +15,14 @@ const CheckListItem = seq.define("check_list_item", {
     },
     completed: {
         type: Sequelize.TINYINT,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0
     }
 });
-CheckList.hasMany(CheckListItem, {foreignKey: 'check_list_id'});
+CheckList.hasMany(CheckListItem, {
+    foreignKey: 'check_list_id',
+    onDelete: 'CASCADE'
+});
+CheckListItem.belongsTo(CheckList);
 
 module.exports = CheckListItem;

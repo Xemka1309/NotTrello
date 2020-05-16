@@ -5,6 +5,7 @@ const ColumnService = require("../services/columnService");
 const MarkService = require("../services/markService");
 const ParticipantRole = require("../models/participantRoleModel");
 const Participant = require("../models/participantModel");
+const io = require('socket.io-client');
 
 exports.add = (async function(body){
     const boardType = await BoardType.findOne({
@@ -107,5 +108,7 @@ exports.getBoard = (async function (board_id) {
     boardData.participants = await ParticipantService.getByBoardId(boardData.id);
     boardData.marks = await MarkService.getByBoardId(boardData.id);
     boardData.columns = await ColumnService.get(boardData.id);
+    // const socket = io('http://localhost:8000?groupId=' + boardData.id);
+
     return boardData;
 });
