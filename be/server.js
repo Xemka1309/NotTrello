@@ -1,9 +1,15 @@
 const express        = require('express');
 const bodyParser     = require('body-parser');
 const app            = express();
+const sockets         = require('./sockets');
 
 const config = require('./config');
 const port = config.serverPort;
+const server    = app.listen(port, () => {
+  console.log('We are live on ' + port);
+});
+sockets.listen(server);
+
 app.set('jwt-secret', config.secret);
 
 const jsonParser = bodyParser.json();
@@ -45,7 +51,3 @@ app.use("/", errorThrower.notFound);
 
 // Initial database inserts
 DBInitInsert.init();
-
-app.listen(port, () => {
-  console.log('We are live on ' + port);
-});
