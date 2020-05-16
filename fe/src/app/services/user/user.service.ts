@@ -7,9 +7,9 @@ import { User } from 'src/app/modules/user/models/user';
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = '/api';
-  private regUrl = `${this.baseUrl}/user/add`;
-  private logInUrl = `${this.baseUrl}/user/login`;
+  private baseUrl = '/api/user';
+  private regUrl = `${this.baseUrl}/add`;
+  private logInUrl = `${this.baseUrl}/login`;
   constructor(private http: HttpClient) {}
 
   public registerUser(user: User): Observable<any> {
@@ -32,5 +32,8 @@ export class UserService {
       });
     }
 
+  }
+  public getCurrentUser(): Observable<User> {
+    return this.http.get<User>(this.baseUrl);
   }
 }
