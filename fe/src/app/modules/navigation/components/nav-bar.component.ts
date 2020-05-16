@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {StorageService} from '../../../services/storage.service';
+import {StorageService} from '../../../services/storage/storage.service';
 import {Router} from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -17,11 +17,11 @@ export class NavBarComponent implements OnInit {
     this.storage.clearToken();
     this.router.navigate(['/login']);
   }
-  public goToProfile(){
+  public goToProfile() {
     this.router.navigate(['/profile']);
   }
 
-  public get isLoggedIn(){
+  public get isLoggedIn() {
     return this.authService.isAuthenticated();
   }
   ngOnInit(): void { }

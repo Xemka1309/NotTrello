@@ -1,4 +1,4 @@
-import {Column} from './column';
+import {Column} from '../../column/models/column';
 
 export interface Board {
   id: number;

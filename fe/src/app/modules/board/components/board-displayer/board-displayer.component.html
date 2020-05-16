@@ -1,17 +1,14 @@
-<div class="container-fluid flex-md-nowrap">
-  <div cdkDropListGroup class="row flex-md-nowrap">
-    <div cdkDropList class="col-3" *ngFor="let column of boardModel.columns">
-      <div
-        cdkDropList
-        [cdkDropListData]="column.tasks"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of column.tasks" cdkDrag>
-          {{item}}
-        </div>
-      </div>
-    </div>
+<div
+  *ngIf="boardModel"
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  [cdkDropListData]="boardModel.columns"
+  class="board-row-container"
+  (cdkDropListDropped)="drop($event)">
+  <div class="column-box-outside" *ngFor="let column of boardModel.columns ; let i = index" cdkDrag>
+    <img [src]="pickerStyle" class="picker" cdkDragHandle>
+    <app-column-on-board class="column-box-inside" [columnModel]="column"></app-column-on-board>
   </div>
+</div>
 
   <button mat-button (click)="addColumn()">add new column</button>
-</div>

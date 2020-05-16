@@ -1,0 +1,20 @@
+<div class="column-header">
+  <span class="column-header-title">{{columnModel.title}}</span>
+  <img [src]="menuStyle" class="column-header-options">
+</div>
+
+<perfect-scrollbar style="max-width: 280px; max-height: 1000px;">
+   <div
+      cdkDropList
+      class="column-list"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListConnectedTo]="columnsConnectedTo"
+      [cdkDropListData]="columnModel.tasks">
+      <div class="task-box" *ngFor="let task of columnModel.tasks ; let i = index" cdkDrag>
+        <app-task-simple class="w-100" [taskModel]="task"></app-task-simple>
+      </div>
+    </div>
+    <div class="column-add-task">
+      <span>Добавить еще одну задачку</span>
+    </div>
+</perfect-scrollbar>

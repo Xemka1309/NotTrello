@@ -1,4 +1,4 @@
-import { Task } from 'src/app/modules/board/models/task';
+import { Task } from 'src/app/modules/task/models/task';
 
 export class ColumnSnapshot {
   addedTasks: Task[];

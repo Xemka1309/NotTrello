@@ -1,14 +1,14 @@
-import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Socket } from 'ngx-socket-io';
-import { SocketEvents } from './socketEvents';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Socket} from 'ngx-socket-io';
+import {SocketEvents} from './socketEvents';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private socket: Socket) { }
+  constructor(private socket: Socket) {
+  }
 
   public listenBoard(id: number): Observable<any> {
     const data = {
@@ -22,6 +22,6 @@ export class UserService {
       this.socket.on('message', (data: any) => observer.next());
     });
   }
-  //public send()
+
 
 }

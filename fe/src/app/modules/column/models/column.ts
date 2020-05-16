@@ -1,7 +1,7 @@
-import {Task} from './task';
+import {Task} from '../../task/models/task';
 
 export class Column {
-  id: number;
+  id: string;
   title: string;
   position: number;
   tasks: Task[];

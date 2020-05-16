@@ -16,14 +16,24 @@ import {UserModule} from './modules/user/user.module';
 import {RegFormComponent} from './modules/user/components/reg-form/reg-form.component';
 import {LogInFormComponent} from './modules/user/components/log-in-form/log-in-form.component';
 import {BoardModule} from './modules/board/board.module';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import {APIInterceptor} from './interceptors/APIInterceptor';
 import {CanActivateLoginPagesService} from './services/security/can-activate-login-pages.service';
 import {CanActivateNotLoginPagesService} from './services/security/can-activate-not-login-pages.service';
 import {NavBarModule} from './modules/navigation/nav-bar.module';
 import {BoardPageComponent} from './modules/pages/components/board/board-page.component';
-import {ProfileComponent } from './modules/pages/components/profile/profile-component';
-import {BoardMenuComponent } from "./modules/board/components/board-menu/board-menu.component";
+import { ProfileComponent } from './modules/pages/components/profile/profile-component';
+import {TaskModule} from './modules/task/task.module';
+import {ColumnModule} from './modules/column/column.module';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollY: true
+};
+import {BoardMenuComponent } from './modules/board/components/board-menu/board-menu.component';
 
 import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
 const socketIoConfig: SocketIoConfig = {url: 'http://localhost:8000', options: {} };
@@ -47,12 +57,15 @@ const appRoutes: Routes = [
     HttpClientModule,
     PagesModule,
     UserModule,
+    TaskModule,
+    ColumnModule,
     MatSliderModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatSnackBarModule,
     BoardModule,
     BrowserAnimationsModule,
     NavBarModule,
@@ -63,7 +76,12 @@ const appRoutes: Routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: APIInterceptor,
     multi: true
-  }],
+  },
+  {
+    provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

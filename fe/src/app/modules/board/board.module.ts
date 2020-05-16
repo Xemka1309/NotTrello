@@ -11,7 +11,9 @@ import { BoardDisplayerComponent } from './components/board-displayer/board-disp
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardsListComponent } from './components/bords-list/boards-list-component';
 import { RouterModule } from '@angular/router';
-import { BoardMenuComponent } from "./components/board-menu/board-menu.component";
+import {MatIconModule} from '@angular/material/icon';
+import {ColumnModule} from '../column/column.module';
+import { BoardMenuComponent } from './components/board-menu/board-menu.component';
 
 @NgModule({
   declarations: [BoardsConstructorComponent, BoardsConstructorDialog, BoardsListComponent, BoardDisplayerComponent, BoardMenuComponent],
@@ -25,7 +27,9 @@ import { BoardMenuComponent } from "./components/board-menu/board-menu.component
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    RouterModule
+    RouterModule,
+    MatIconModule,
+    ColumnModule
   ],
   entryComponents: [BoardsConstructorDialog],
   exports: [

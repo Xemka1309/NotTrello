@@ -1,0 +1,21 @@
+.button-task-details {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  display: block;
+  padding: 0.25em;
+  cursor: pointer;
+  height: 1.75em;
+  width: 1.75em;
+}
+
+.button-task-details:hover {
+  background-color: #f8f9fa;
+  opacity: .8;
+}
+
+.container-task-simple {
+  position: relative;
+  width: inherit;
+}

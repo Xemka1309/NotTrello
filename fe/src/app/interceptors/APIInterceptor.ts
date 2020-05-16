@@ -9,14 +9,17 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {StorageService} from '../services/storage.service';
+import {StorageService} from '../services/storage/storage.service';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {SnackBarService} from '../services/snack-bar/snack-bar.service';
 
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {
 
-  constructor(private storage: StorageService, private router: Router) {}
+  constructor(private storage: StorageService,
+              private router: Router,
+              private snack: SnackBarService) {}
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -30,8 +33,9 @@ export class APIInterceptor implements HttpInterceptor {
     console.log('Intercepted HTTP call', authReq);
     return next.handle(authReq).pipe(tap(evt => console.log(evt), error => {
       console.log(error);
-      if (error instanceof HttpErrorResponse) {
+      if (error instanceof HttpErrorResponse && 403 === error.status) {
         this.storage.clearToken();
+        this.snack.openSnackBar('Время вашего сеанса истекло, пожалуйста авторизуйтесь еще раз!');
         this.router.navigate(['/login']);
       }
     }));

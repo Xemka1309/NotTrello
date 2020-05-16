@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { Column } from 'src/app/modules/board/models/column';
-import { ColumnSnapshot } from '../models/ColumnSnapshot';
-import { Task } from 'src/app/modules/board/models/task';
-import { ApiUrlBuilder, Models, Actions } from '../urlBuilder';
+import {Actions, ApiUrlBuilder, Models} from '../urlBuilder';
+import {Column} from 'src/app/modules/column/models/column';
+import { Task } from 'src/app/modules/task/models/task';
 
 
 @Injectable({

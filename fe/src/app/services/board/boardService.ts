@@ -1,8 +1,8 @@
-import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {Board} from '../../modules/board/models/board';
-import { ColumnService } from '../column/columnService';
+import {ColumnService} from '../column/columnService';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,8 @@ export class BoardService {
   private createBordUrl = `${this.baseUrl}/add`;
   private getBoardByIdUrl = `${this.baseUrl}/get/board`;
 
-  constructor(private http: HttpClient, private columnService: ColumnService) { }
+  constructor(private http: HttpClient, private columnService: ColumnService) {
+  }
 
   public createBoard(board: Board): Observable<any> {
     if (board) {
