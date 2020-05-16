@@ -26,7 +26,7 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    CommentService.delete(request.decoded.id)
+    CommentService.delete(request.query.id)
         .then(function(){
             response.sendStatus(200);
         })

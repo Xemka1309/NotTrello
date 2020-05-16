@@ -26,7 +26,7 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    BoardService.delete(request.decoded.id)
+    BoardService.delete(request.query.id)
         .then(result => {
             response.sendStatus(200);
         })
