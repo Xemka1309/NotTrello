@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { Column } from 'src/app/modules/board/models/column';
+import { ColumnSnapshot } from '../models/ColumnSnapshot';
+import { Task } from 'src/app/modules/board/models/task';
+import { ApiUrlBuilder, Models, Actions } from '../urlBuilder';
 
 
 @Injectable({
@@ -9,14 +12,11 @@ import { Column } from 'src/app/modules/board/models/column';
 })
 
 export class ColumnService {
-  private baseUrl = '/api/column';
-  private addColumnUrl = `${this.baseUrl}/add`;
-  private getColumnsByBoardIdUrl = `${this.baseUrl}/getByBoardId`;
 
   constructor(private http: HttpClient) { }
 
   public addColumn(column: any): Observable<any> {
-    return this.http.post(this.addColumnUrl, column);
+    return this.http.post(ApiUrlBuilder.getUrl(Models.column, Actions.add), column);
   }
 
   public getColumnsByBoardId(id: string): Observable<Column[]> {
@@ -24,6 +24,30 @@ export class ColumnService {
       fromObject: {id}
     });
 
-    return this.http.get<Column[]>(this.getColumnsByBoardIdUrl, {params});
+    return this.http.get<Column[]>(ApiUrlBuilder.getUrl(Models.column, Actions.getColByBoardId), {params});
+  }
+
+  public addTask(task: Task): Observable<any> {
+    return this.http.post<Task>(ApiUrlBuilder.getUrl(Models.task, Actions.add), task);
+  }
+  public updateTask(task: Task) {
+    return this.http.put<Task>(ApiUrlBuilder.getUrl(Models.task, Actions.edit), task);
+  }
+  public deleteTask(task: Task, id: string) {
+    const params = new HttpParams({
+      fromObject: { id }
+    });
+    return this.http.delete(ApiUrlBuilder.getUrl(Models.task, Actions.delete), {params});
+  }
+  public deleteColumn(column: Column, id: string){
+    const params = new HttpParams({
+      fromObject: { id }
+    });
+    return this.http.delete(ApiUrlBuilder.getUrl(Models.column, Actions.delete), { params });
+  }
+  public reorderTask(column: Column) {
+    column.tasks.forEach(x => {
+      this.updateTask(x);
+    });
   }
 }

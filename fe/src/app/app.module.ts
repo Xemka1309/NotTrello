@@ -24,6 +24,10 @@ import {NavBarModule} from './modules/navigation/nav-bar.module';
 import {BoardPageComponent} from './modules/pages/components/board/board-page.component';
 import { ProfileComponent } from './modules/pages/components/profile/profile-component';
 
+import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
+const socketIoConfig: SocketIoConfig = {url: 'http://localhost:8000', options: {} };
+
+
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [CanActivateLoginPagesService]},
   { path: 'board/:id', component: BoardPageComponent, canActivate: [CanActivateLoginPagesService]},
@@ -51,6 +55,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     NavBarModule,
     RouterModule.forRoot(appRoutes),
+    SocketIoModule.forRoot(socketIoConfig),
   ],
   providers: [APIInterceptor, {
     provide: HTTP_INTERCEPTORS,

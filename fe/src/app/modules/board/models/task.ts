@@ -5,4 +5,5 @@ export class Task {
   description: string;
   dueTime: string;
   completed: boolean;
+  position: number;
 }
