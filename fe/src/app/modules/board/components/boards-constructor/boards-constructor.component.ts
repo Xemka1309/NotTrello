@@ -45,7 +45,7 @@ export class BoardsConstructorComponent implements OnInit {
         boardType: result.bordType,
         pictureUrl: result.pictureUrl
       };
-      this.bordService.createBord(board).subscribe(response => {
+      this.bordService.createBoard(board).subscribe(response => {
         console.log('response');
         console.log(response);
       });

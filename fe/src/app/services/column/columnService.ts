@@ -15,7 +15,10 @@ export class ColumnService {
 
   constructor(private http: HttpClient) { }
 
-  public addColumn(column: any): Observable<any> {
+  public addColumn(column: Column): Observable<any> {
+    if (!column) {
+      return;
+    }
     return this.http.post(ApiUrlBuilder.getUrl(Models.column, Actions.add), column);
   }
 
@@ -30,22 +33,39 @@ export class ColumnService {
   public addTask(task: Task): Observable<any> {
     return this.http.post<Task>(ApiUrlBuilder.getUrl(Models.task, Actions.add), task);
   }
+
   public updateTask(task: Task) {
     return this.http.put<Task>(ApiUrlBuilder.getUrl(Models.task, Actions.edit), task);
   }
+
   public deleteTask(task: Task, id: string) {
     const params = new HttpParams({
       fromObject: { id }
     });
     return this.http.delete(ApiUrlBuilder.getUrl(Models.task, Actions.delete), {params});
   }
-  public deleteColumn(column: Column, id: string){
+
+  public updateColumn(column: Column) {
+    if (!column) {
+      return;
+    }
+    return this.http.put<Column>(ApiUrlBuilder.getUrl(Models.task, Actions.edit), column);
+  }
+  public deleteColumn(column: Column, id: string) {
+    if (!column || !id) {
+      return;
+    }
     const params = new HttpParams({
       fromObject: { id }
     });
     return this.http.delete(ApiUrlBuilder.getUrl(Models.column, Actions.delete), { params });
   }
-  public reorderTask(column: Column) {
+
+  public reorderColumn(column: Column) {
+    if (!column) {
+      return;
+    }
+
     column.tasks.forEach(x => {
       this.updateTask(x);
     });
