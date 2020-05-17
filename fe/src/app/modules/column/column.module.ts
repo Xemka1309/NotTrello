@@ -11,6 +11,8 @@ import {ColumnOnBoardComponent} from './components/column-on-board/column-on-boa
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {TaskModule} from '../task/task.module';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [ColumnOnBoardComponent],
   imports: [
@@ -25,7 +27,9 @@ import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
     MatCardModule,
     DragDropModule,
     TaskModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    MatMenuModule,
+    MatIconModule
   ],
   exports: [ColumnOnBoardComponent],
   providers: [],
