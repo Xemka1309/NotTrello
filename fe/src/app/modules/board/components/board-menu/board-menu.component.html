@@ -1,18 +1,67 @@
-<div class="container-fluid">
-  <div class="menu-container">
-    <h3>Menu</h3>
-    <ul class="board-menu">
-      <li class="mat-menu-item">
-        <button class="mat-button">
-          Board info
-        </button>
-      </li>
-      <li class="board-menu-item">
-        Background
-      </li>
-      <li class="board-menu-item">
-        Marks
-      </li>
-    </ul>
-  </div>
+<div class="menu-container">
+  <ng-container  [ngSwitch]="menuState">
+    <div *ngSwitchCase="'Menu'">
+      <div class="menu-header">
+        <div class="menu-title">
+          <h3>{{menuState}}</h3>
+        </div>
+        <button class="close" (click)="close()">X</button>
+      </div>
+      <ul class="board-menu">
+        <li>
+          <button mat-button (click)="infoClick()">
+            Board info
+          </button>
+        </li>
+        <li>
+          <button mat-button (click)="bgClick()">
+            Background
+          </button>
+        </li>
+        <li>
+          <button mat-button (click)="marksClick()">
+            Marks
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div *ngSwitchCase="'Info'">
+      <div class="menu-header">
+        <button class="close" (click)="back()"><</button>
+        <div class="menu-title">
+          <h3>{{menuState}}</h3>
+        </div>
+        <button class="close" (click)="close()">X</button>
+      </div>
+      <div class="info-field">
+        Title: {{boardModel.title}}
+      </div>
+      <div class="info-field">
+        Description: {{boardModel.description}}
+      </div>
+    </div>
+    <div *ngSwitchCase="'Background'">
+      <div class="menu-header">
+        <button class="close" (click)="back()"><</button>
+        <div class="menu-title">
+          <h3>{{menuState}}</h3>
+        </div>
+        <button class="close" (click)="close()">X</button>
+        <div class="bgContainer" *ngFor="let bg of bgList">
+          <div class="pictureContainer">
+            <img src=>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="'Marks'">
+      <div class="menu-header">
+        <button class="close" (click)="back()"><</button>
+        <div class="menu-title">
+          <h3>{{menuState}}</h3>
+        </div>
+        <button class="close" (click)="close()">X</button>
+      </div>
+    </div>
+  </ng-container>
 </div>

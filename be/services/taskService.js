@@ -62,7 +62,7 @@ exports.getById = (async function (id) {
 
 exports.getByColumn = (async function (columnId) {
     const tasks = await Task.findAll({
-        attributes: ['title','due_time','position','completed','task_priority_id'],
+        attributes: ['id','title','due_time','position','completed','task_priority_id'],
         where: {
             column_id: columnId
         }

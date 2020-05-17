@@ -1,19 +1,31 @@
 .menu-container {
   width: 20%;
+  height: 60%;
   float: right;
   background-color: white;
 }
 
-.mat-menu-item {
-  padding-left: 10px;
+.menu-title {
+  width: 80%;
+  float: left;
+}
+
+.mat-button {
+  width: 100%;
+  text-align: left;
   border-radius: 5px;
 }
 
-.menu-item {
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  border-radius: 5px;
+.close{
+  width: 10%;
+  float: left;
+}
+
+.info-field {
+  width:100%;
+  margin-top: 5px;
+  text-align: center;
+  float: left;
 }
 
 h3 {
