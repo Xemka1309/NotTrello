@@ -37,6 +37,11 @@ export class ColumnService {
     return this.http.put<Task>(ApiUrlBuilder.getUrl(Models.task, Actions.edit), task);
   }
 
+  public taskMoved(prevPos: number, currentPos: number, task: Task){
+    task.position = currentPos;
+    this.updateTask(task);
+  }
+
   public deleteTask(task: Task, id: string) {
     const params = new HttpParams({
       fromObject: { id }

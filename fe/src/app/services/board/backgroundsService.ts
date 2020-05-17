@@ -1,6 +1,13 @@
+import { Injectable } from '@angular/core';
+
+
 declare var require: any;
 
-export class backgroundService {
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BackgroundService {
   private path = '../../../assets/pictures';
 
   public loadPictures(): ImageBitmap {
