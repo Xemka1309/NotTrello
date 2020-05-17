@@ -5,4 +5,5 @@ export class Column {
   title: string;
   position: number;
   tasks: Task[];
+  board_id: number;
 }

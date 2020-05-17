@@ -40,14 +40,14 @@ export class BoardDisplayerComponent implements OnInit {
   }
 
   addColumn() {
-    // const column = {
-    //   board_id: this.boardModel.id,
-    //   title: 'neTestColumn',
-    //   position: this.boardModel.columns.length
-    // };
-    // this.columnService.addColumn(column).subscribe(value => {
-    //   console.log(value);
-    // });
+    const column = {
+      board_id: this.boardModel.id,
+      title: 'новая колонка',
+      position: this.boardModel.columns.length
+    } as Column;
+    this.columnService.addColumn(column).subscribe(value => {
+      this.boardModel.columns.push(value);
+    });
   }
 
   // tslint:disable-next-line:variable-name

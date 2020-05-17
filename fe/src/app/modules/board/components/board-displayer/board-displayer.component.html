@@ -9,6 +9,10 @@
     <img [src]="pickerStyle" class="picker" cdkDragHandle>
     <app-column-on-board class="column-box-inside" [columnModel]="column"></app-column-on-board>
   </div>
+  <div class="column-add-column" (click)="addColumn()">
+    <span>Добавить колонку</span>
+  </div>
+
 </div>
 
   <button mat-button (click)="addColumn()">add new column</button>

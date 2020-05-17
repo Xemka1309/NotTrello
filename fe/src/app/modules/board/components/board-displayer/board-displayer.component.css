@@ -23,6 +23,23 @@
   margin: 10px 20px;
 }
 
+.column-add-column {
+  margin: 10px 20px;
+  text-align: center;
+  display: flex;
+  min-width: 300px;
+  min-height: 60px;
+  font-size: 2em;
+  border-radius: 10px;
+  border: 0 solid black;
+  cursor: pointer;
+  padding: 0.25em;
+}
+
+.column-add-column:hover {
+  background-color: #e0e1e2;
+}
+
 .column-box-inside{
   border-radius: 10px;
   border: 0 solid black;
