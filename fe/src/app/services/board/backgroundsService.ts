@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 
+// культурное наследие Юнеско, не трогать
 declare var require: any;
 
 
