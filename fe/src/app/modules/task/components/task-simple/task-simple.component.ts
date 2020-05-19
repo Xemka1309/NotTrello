@@ -1,5 +1,7 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {Task} from '../../models/task';
+import {Task} from '../../../../models/task';
+import {MatDialog} from '@angular/material/dialog';
+import {TaskDetailsComponent} from '../task-details/task-details.component';
 
 @Component({
   selector: 'app-task-simple',
@@ -12,13 +14,29 @@ export class TaskSimpleComponent implements OnInit {
   taskModel: Task;
   private penStyle = '/assets/icons/pen.svg';
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
   }
 
   openDetails() {
+    const width = (window.innerWidth / 2).toString() + 'px';
+    console.log(width);
+    const dialogRef = this.dialog.open(TaskDetailsComponent, {
+      width,
+      data: {
+        id: this.taskModel.id,
+        priority_id: this.taskModel.priority_id,
+        title: this.taskModel.title,
+        description: this.taskModel.description,
+        dueTime: this.taskModel.dueTime,
+        completed: this.taskModel.completed
+      }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

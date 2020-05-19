@@ -27,6 +27,9 @@ exports.add = (async function(body){
             role: "ADMINISTRATOR"
         }
     });
+    console.log(body.user_id);
+    console.log(createdBoard.id);
+    console.log(participantRole.id);
     Participant.create({
         user_id: body.user_id,
         board_id: createdBoard.id,
@@ -36,6 +39,7 @@ exports.add = (async function(body){
 });
 
 exports.edit = (async function (body) {
+    console.log(body);
     const boardType = await BoardType.findOne({
         attributes: ['id'],
         where: {
@@ -43,13 +47,12 @@ exports.edit = (async function (body) {
         }
     });
     return Board.update(
-    {
-        title: body.title,
-        description: body.description,
-        pictureUrl: body.pictureUrl,
-        type_id: boardType.id,
-    },
-    {where: {id: body.id}})
+        {
+            title: body.title,
+            description: body.description,
+            type_id: boardType.id,
+        },
+        {where: {id: body.id}})
 });
 
 exports.delete = (async function (body) {

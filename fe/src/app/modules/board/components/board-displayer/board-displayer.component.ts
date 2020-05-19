@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import {Board} from '../../models/board';
+import {Board} from '../../../../models/board';
 import {BoardService} from '../../../../services/board/boardService';
 import {ColumnService} from '../../../../services/column/columnService';
 import {TaskService} from '../../../../services/task/taskService';
-import {Column} from '../../../column/models/column';
+import {Column} from '../../../../models/column';
 
 @Component({
   selector: 'app-board-displayer',
@@ -15,8 +15,9 @@ export class BoardDisplayerComponent implements OnInit {
   @Input()
   boardId: string;
   boardModel: Board = null;
+
   private pickerStyle = '/assets/icons/move-picker.svg';
-  menuVisible:string = 'hidden';
+  menuVisible = 'hidden';
 
   constructor(private boardService: BoardService,
               private columnService: ColumnService,
@@ -26,7 +27,16 @@ export class BoardDisplayerComponent implements OnInit {
     console.log(this.boardId);
     this.boardService.getBoardById(this.boardId).subscribe(value => {
       this.boardModel = value;
+      this.boardModel.columns.forEach((col, i) => {
+        col.tasks.forEach(t => {
+          t.column_id = col.id;
+        });
+      });
+      this.listenChanges();
     });
+  }
+
+  private listenChanges() {
     this.menuVisible = 'hidden';
   }
 
@@ -66,11 +76,15 @@ export class BoardDisplayerComponent implements OnInit {
     });
   }
 
+  deleteColumn(event) {
+    console.log(event);
+    Board.deleteColumn(this.boardModel, event as number);
+  }
   showMenu(): void {
     this.menuVisible = 'visible';
   }
 
-  isClosed(closed:any){
-    closed==true?this.menuVisible='hidden':this.menuVisible='visible';
+  isClosed(closed: any) {
+    closed ? this.menuVisible = 'hidden' : this.menuVisible = 'visible';
   }
 }

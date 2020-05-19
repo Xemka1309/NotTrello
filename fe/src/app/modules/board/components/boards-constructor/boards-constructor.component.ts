@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BoardService } from 'src/app/services/board/boardService';
 import { FormGroup, FormControl } from '@angular/forms';
+import {Board} from '../../../../models/board';
 
 export interface BoardsConstructorDialogData {
   title: string;
@@ -44,7 +45,7 @@ export class BoardsConstructorComponent implements OnInit {
         description: result.title || '',
         boardType: result.bordType,
         pictureUrl: result.pictureUrl
-      };
+      } as Board;
       this.bordService.createBoard(board).subscribe(response => {
         console.log('response');
         console.log(response);

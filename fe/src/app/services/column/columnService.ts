@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Actions, ApiUrlBuilder, Models} from '../urlBuilder';
-import {Column} from 'src/app/modules/column/models/column';
-import { Task } from 'src/app/modules/task/models/task';
+import {Column} from 'src/app/models/column';
+import { Task } from 'src/app/models/task';
 
 
 @Injectable({
@@ -37,7 +37,7 @@ export class ColumnService {
     return this.http.put<Task>(ApiUrlBuilder.getUrl(Models.task, Actions.edit), task);
   }
 
-  public taskMoved(prevPos: number, currentPos: number, task: Task){
+  public taskMoved(prevPos: number, currentPos: number, task: Task) {
     task.position = currentPos;
     this.updateTask(task);
   }

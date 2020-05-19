@@ -1,8 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {BoardService} from "../../../../services/board/boardService";
-import {ActivatedRoute} from "@angular/router";
-import {Board} from "../../models/board";
-import {Mark} from "../../../mark/models/mark";
+import {Component, OnInit} from '@angular/core';
+import {BoardService} from '../../../../services/board/boardService';
+import {ActivatedRoute} from '@angular/router';
+import {Board} from '../../../../models/board';
 
 @Component({
   selector: 'app-board-menu',
@@ -19,8 +18,7 @@ export class BoardMenuComponent implements OnInit {
   private creatorVisible = 'hidden';
   private markId: number = 0;
   private menuState = 'Menu';
-  private bgList: string[] = [];
-
+  private bgList: string[];
   constructor(private activatedRoute: ActivatedRoute,
               private boardService: BoardService) {
     console.log(this.activatedRoute.snapshot.params);
@@ -37,15 +35,16 @@ export class BoardMenuComponent implements OnInit {
     this.bgList.push('assets/pictures/bg3.jpg');
   }
 
-  infoClick(): void{
+  infoClick(): void {
     this.menuState = 'Info';
   }
 
-  bgClick(): void{
+  bgClick(): void {
+
     this.menuState = 'Background';
   }
 
-  marksClick(): void{
+  marksClick(): void {
     this.menuState = 'Marks';
   }
 

@@ -1,11 +1,7 @@
 .menu-container {
   width: 20%;
   height: 60%;
-  padding: 10px;
-  position: absolute;
-  right: 0;
-  top: 150px;
-  z-index: 2;
+  float: right;
   background-color: white;
   border: 1px solid silver;
   border-radius: 5px;

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Board} from '../../modules/board/models/board';
+import {Board} from '../../models/board';
 import {ColumnService} from '../column/columnService';
 
 @Injectable({
@@ -30,7 +30,7 @@ export class BoardService {
     if (!board) {
       return;
     }
-    return this.http.put<Board>(this.baseUrl + '/edit', board);
+    return this.http.put<Board>(this.baseUrl + 'edit', board);
   }
 
   public reorderBoard(board: Board) {

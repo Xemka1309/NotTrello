@@ -1,11 +1,11 @@
-<div class="menu-container" [style.visibility]="menuVisible">
+<div class="menu-container">
   <ng-container  [ngSwitch]="menuState">
     <div *ngSwitchCase="'Menu'">
       <div class="menu-header">
         <div class="menu-title">
           <h3>{{menuState}}</h3>
         </div>
-        <button class="close" (click)="hideMenu(true)">X</button>
+        <button class="close" (click)="close()">X</button>
       </div>
       <ul class="board-menu">
         <li>
@@ -31,7 +31,7 @@
         <div class="menu-title">
           <h3>{{menuState}}</h3>
         </div>
-        <button class="close" (click)="hideMenu(true)">X</button>
+        <button class="close" (click)="close()">X</button>
       </div>
       <div class="info-field">
         Title: {{boardModel.title}}
@@ -46,11 +46,11 @@
         <div class="menu-title">
           <h3>{{menuState}}</h3>
         </div>
-        <button class="close" (click)="hideMenu(true)">X</button>
-      </div>
-      <div class="bg-container" *ngFor="let bg of bgList">
-        <div class="picture-container">
-          <img class="card-img" [src]="bg" alt="Background alt" (click)="setBG(bg)">
+        <button class="close" (click)="close()">X</button>
+        <div class="bgContainer" *ngFor="let bg of bgList">
+          <div class="pictureContainer">
+            <img src=>
+          </div>
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
         <div class="menu-title">
           <h3>{{menuState}}</h3>
         </div>
-        <button class="close" (click)="hideMenu(true)">X</button>
+        <button class="close" (click)="close()">X</button>
       </div>
       <div class="list-container" *ngFor="let mark of markList">
         <div class="mark-container" [style.background-color]="mark.color" (click)="openMarkCreator(false,mark.id)">
@@ -75,4 +75,3 @@
     </div>
   </ng-container>
 </div>
-
