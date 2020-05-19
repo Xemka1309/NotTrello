@@ -1,17 +1,20 @@
-<div class="creator-container" [style.visibility]="visible">
+<div class="creator-container" [style.visibility]="visible" [id]="">
   <div class="header">
     <div class="title">
-      <p>Create mark</p>
+      <p>{{isCreator ? 'New mark' : 'Edit'}}</p>
     </div>
     <button class="close" (click)="hideCreator(true)">X</button>
   </div>
-  <form>
-
+  <form [formGroup]="createMarkForm">
+    <input class="form-control mr-sm-2 name-input" required formControlName="content" name="content" type="text" placeholder="NAME">
+    <p>Pick color:</p>
+    <div class="color-container">
+      <div class="color" *ngFor="let color of colorList1; let index1=index;" [style.background-color]="color" (click)="selectColor(index1)"></div>
+    </div>
+    <div class="color-container">
+      <div class="color" *ngFor="let color of colorList2; let index2=index" [style.background-color]="color" (click)="selectColor(index2+5)"></div>
+    </div>
+    <button type="submit" (click)="createOrUpdateMark()" class="btn btn-outline-success my-2 my-sm-0 submit"
+            [style.color]="buttonColor">{{isCreator ? 'Add' : 'Save'}}</button>
   </form>
-  <div class="color-container">
-    <div class="color" *ngFor="let color of colorList1" [style.background-color]="color"></div>
-  </div>
-  <div class="color-container">
-    <div class="color" *ngFor="let color of colorList2" [style.background-color]="color"></div>
-  </div>
 </div>

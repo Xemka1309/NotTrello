@@ -12,9 +12,12 @@ import {Mark} from "../../../mark/models/mark";
 export class BoardMenuComponent implements OnInit {
   private boardId: string;
   private boardModel: Board;
+  private markList: Mark[] = [];
   @Input() menuVisible:string;
   @Output() isClosed = new EventEmitter<Boolean>();
+  private isCreator: boolean;
   private creatorVisible = 'hidden';
+  private markId: number = 0;
   private menuState = 'Menu';
   private bgList: string[] = [];
 
@@ -27,6 +30,7 @@ export class BoardMenuComponent implements OnInit {
   ngOnInit(): void {
     this.boardService.getBoardById(this.boardId).subscribe(value => {
       this.boardModel = value;
+      this.markList = this.boardModel.marks;
     });
     this.bgList.push('assets/pictures/bg1.jpg');
     this.bgList.push('assets/pictures/bg2.jpg');
@@ -51,6 +55,7 @@ export class BoardMenuComponent implements OnInit {
 
   hideMenu(closed:boolean): void {
     this.isClosed.emit(closed);
+    this.creatorVisible = 'hidden'
   }
 
   setBG(bg): void {
@@ -61,11 +66,28 @@ export class BoardMenuComponent implements OnInit {
     });
   }
 
-  openMarkCreator(): void {
+  openMarkCreator(isCreator, id): void {
+    this.isCreator = isCreator;
+    this.markId = id;
     this.creatorVisible = 'visible';
   }
 
-  creatorIsClosed(closed:any){
+  creatorIsClosed(closed:any) {
     closed==true?this.creatorVisible='hidden':this.creatorVisible='visible';
+  }
+
+  markCreated(mark:any) {
+    this.markList.push(mark);
+  }
+
+  markUpdated(mark:any) {
+    console.log(this.markList);
+    console.log(mark);
+    for(const i in this.markList){
+      if(this.markList[i].id === mark.id){
+        console.log('updated');
+        this.markList[i] = mark;
+      }
+    }
   }
 }
