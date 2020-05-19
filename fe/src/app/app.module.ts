@@ -16,7 +16,6 @@ import {UserModule} from './modules/user/user.module';
 import {RegFormComponent} from './modules/user/components/reg-form/reg-form.component';
 import {LogInFormComponent} from './modules/user/components/log-in-form/log-in-form.component';
 import {BoardModule} from './modules/board/board.module';
-import {MarkModule} from './modules/mark/mark.module';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -70,7 +69,6 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatSnackBarModule,
     BoardModule,
-    MarkModule,
     BrowserAnimationsModule,
     NavBarModule,
     RouterModule.forRoot(appRoutes),
