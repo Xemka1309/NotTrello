@@ -6,7 +6,7 @@ import {SocketEvents} from './socketEvents';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class SocketService {
   constructor(private socket: Socket) {
   }
 

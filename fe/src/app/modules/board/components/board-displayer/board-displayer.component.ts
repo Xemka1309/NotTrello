@@ -5,6 +5,7 @@ import {BoardService} from '../../../../services/board/boardService';
 import {ColumnService} from '../../../../services/column/columnService';
 import {TaskService} from '../../../../services/task/taskService';
 import {Column} from '../../../column/models/column';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-board-displayer',
@@ -15,16 +16,30 @@ export class BoardDisplayerComponent implements OnInit {
   @Input()
   boardId: string;
   boardModel: Board = null;
+  //private soket: Socket = null;
   private pickerStyle = '/assets/icons/move-picker.svg';
 
   constructor(private boardService: BoardService,
               private columnService: ColumnService,
-              private taskService: TaskService) { }
+              private taskService: TaskService,
+              private socket: Socket) { }
 
   ngOnInit(): void {
     console.log(this.boardId);
     this.boardService.getBoardById(this.boardId).subscribe(value => {
       this.boardModel = value;
+      this.listenChanges();
+    });
+  }
+
+  private listenChanges(){
+    this.socket.on("connect", () => {
+      this.socket.connect();
+      this.socket.ioSocket.join(`boardRoom:${this.boardId}`);
+    });
+    this.socket.on("disconnect", () => this.socket.disconnect);
+    this.socket.on("error", (error: string) => {
+      console.log(`ERROR: "${error}"`);
     });
   }
 

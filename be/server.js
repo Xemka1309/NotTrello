@@ -8,6 +8,7 @@ const port = config.serverPort;
 const server    = app.listen(port, () => {
   console.log('We are live on ' + port);
 });
+
 sockets.listen(server);
 
 app.set('jwt-secret', config.secret);

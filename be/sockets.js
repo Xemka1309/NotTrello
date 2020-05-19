@@ -6,16 +6,18 @@ module.exports = {
 
         this.io.on('connection', (socket) => {
             console.log("user connect");
-            let groupId = socket.handshake.query.groupId;
-            socket.join(groupId);
-            socket.emit('connectionAck', 'zdarova ebat');
+            socket.on("connectToBoard", (data) => {
+                data.boardId;
+            })
+            //socket.join(groupId);
+            //socket.emit('connectionAck', 'zdarova ebat');
 
-            socket.on('addColumn', data => {
-                this.io.to(groupId).emit('addColumn', data);
-            })
-            socket.on('getBoard', data => {
-                this.io.to()
-            })
+            //socket.on('addColumn', data => {
+            //    this.io.to(groupId).emit('addColumn', data);
+            //})
+            //socket.on('getBoard', data => {
+            //    this.io.to()
+            //})
         });
 
         return this.io;
