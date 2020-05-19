@@ -23,8 +23,7 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
   private menuStyle = '/assets/icons/menu.svg';
 
   constructor(private dragDropService: DragDropService,
-              private columnService: ColumnService,
-              private modalService: NgbModal) {
+              private columnService: ColumnService) {
   }
 
   ngOnInit(): void {
