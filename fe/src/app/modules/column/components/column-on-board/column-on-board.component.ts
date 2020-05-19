@@ -4,6 +4,7 @@ import {CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem} from '@ang
 import {DragDropService} from '../../../../services/drag-drop/drag-drop.service';
 import { Task } from 'src/app/modules/task/models/task';
 import { ColumnService } from 'src/app/services/column/columnService';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-column-on-board',
@@ -21,7 +22,9 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
 
   private menuStyle = '/assets/icons/menu.svg';
 
-  constructor(private dragDropService: DragDropService, private columnService: ColumnService) {
+  constructor(private dragDropService: DragDropService,
+              private columnService: ColumnService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -41,7 +44,7 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
 
   drop(event: CdkDragDrop<any[]>) {
 
-    if (event.previousContainer === event.container && event.previousIndex === event.currentIndex){
+    if (event.previousContainer === event.container && event.previousIndex === event.currentIndex) {
       return;
     }
     const movedTask = event.previousContainer.data[event.currentIndex] as Task;
@@ -54,5 +57,9 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
     } else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
     }
+  }
+
+  changeTitle($event: any) {
+    console.log($event);
   }
 }

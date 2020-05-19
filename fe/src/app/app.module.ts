@@ -36,6 +36,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 import {BoardMenuComponent } from './modules/board/components/board-menu/board-menu.component';
 
 import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
+import {DirectiveModule} from './directives/directive.module';
 const socketIoConfig: SocketIoConfig = {url: 'http://localhost:8000', options: {} };
 
 
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
+    DirectiveModule,
     PagesModule,
     UserModule,
     TaskModule,
@@ -77,10 +79,12 @@ const appRoutes: Routes = [
     useClass: APIInterceptor,
     multi: true
   },
-  {
-    provide: PERFECT_SCROLLBAR_CONFIG,
-    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-  }
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ],
+  exports: [
   ],
   bootstrap: [AppComponent]
 })

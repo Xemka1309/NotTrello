@@ -1,5 +1,5 @@
 <div class="column-header">
-  <span class="column-header-title">{{columnModel.title}}</span>
+  <span contentEditableModel (contentEditableModelChange)="changeTitle($event)" class="column-header-title">{{columnModel.title}}</span>
   <img [mat-menu-trigger-for]="menu" [src]="menuStyle" class="column-header-options">
 </div>
 

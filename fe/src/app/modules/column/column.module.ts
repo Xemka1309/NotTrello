@@ -13,6 +13,8 @@ import {TaskModule} from '../task/task.module';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import {DirectiveModule} from '../../directives/directive.module';
 @NgModule({
   declarations: [ColumnOnBoardComponent],
   imports: [
@@ -27,9 +29,11 @@ import {MatIconModule} from '@angular/material/icon';
     MatCardModule,
     DragDropModule,
     TaskModule,
+    NgbModalModule,
     PerfectScrollbarModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    DirectiveModule
   ],
   exports: [ColumnOnBoardComponent],
   providers: [],
