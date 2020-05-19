@@ -28,6 +28,11 @@ export class BoardDisplayerComponent implements OnInit {
     console.log(this.boardId);
     this.boardService.getBoardById(this.boardId).subscribe(value => {
       this.boardModel = value;
+      this.boardModel.columns.forEach((col, i) => {
+        col.tasks.forEach(t => {
+          t.column_id = col.id;
+        });
+      });
       this.listenChanges();
     });
   }
@@ -79,4 +84,5 @@ export class BoardDisplayerComponent implements OnInit {
       console.log(response);
     });
   }
+
 }

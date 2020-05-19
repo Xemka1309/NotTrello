@@ -1,6 +1,6 @@
 <div class="column-header">
-  <span class="column-header-title">{{columnModel.title}}</span>
-  <img [src]="menuStyle" class="column-header-options">
+  <span contentEditableModel (contentEditableModelChange)="changeTitle($event)" class="column-header-title">{{columnModel.title}}</span>
+  <img [mat-menu-trigger-for]="menu" [src]="menuStyle" class="column-header-options">
 </div>
 
 <perfect-scrollbar style="max-width: 280px; max-height: 1000px;">
@@ -18,3 +18,33 @@
       <span>Добавить еще одну задачку</span>
     </div>
 </perfect-scrollbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>add</mat-icon>
+    <span>Добавить задачку</span>
+  </button>
+  <button mat-menu-item [mat-menu-trigger-for]="sort">
+    <mat-icon>sort</mat-icon>
+    <span>Сортировать</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>delete</mat-icon>
+    <span>Удалить колонку</span>
+  </button>
+</mat-menu>
+
+<mat-menu #sort="matMenu">
+  <button mat-menu-item>
+    <span>Дата создания (сначала новые)</span>
+  </button>
+  <button mat-menu-item>
+    <span>Дата создания (сначала старые)</span>
+  </button>
+  <button mat-menu-item>
+    <span>Название карточки (по алфовиту)</span>
+  </button>
+  <button mat-menu-item>
+    <span>Приоритет (сначала высший)</span>
+  </button>
+</mat-menu>
