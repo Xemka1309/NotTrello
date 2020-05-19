@@ -13,6 +13,7 @@ import { BoardsListComponent } from './components/bords-list/boards-list-compone
 import { RouterModule } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 import {ColumnModule} from '../column/column.module';
+import {MarkModule} from "../mark/mark.module";
 import { BoardMenuComponent } from './components/board-menu/board-menu.component';
 
 @NgModule({
@@ -29,7 +30,8 @@ import { BoardMenuComponent } from './components/board-menu/board-menu.component
     DragDropModule,
     RouterModule,
     MatIconModule,
-    ColumnModule
+    ColumnModule,
+    MarkModule
   ],
   entryComponents: [BoardsConstructorDialog],
   exports: [

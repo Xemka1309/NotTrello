@@ -1,18 +1,26 @@
-<div
-  *ngIf="boardModel"
-  cdkDropList
-  cdkDropListOrientation="horizontal"
-  [cdkDropListData]="boardModel.columns"
-  class="board-row-container"
-  (cdkDropListDropped)="drop($event)">
-  <div class="column-box-outside" *ngFor="let column of boardModel.columns ; let i = index" cdkDrag>
-    <img [src]="pickerStyle" class="picker" cdkDragHandle>
-    <app-column-on-board class="column-box-inside" [columnModel]="column"></app-column-on-board>
-  </div>
-  <div class="column-add-column" (click)="addColumn()">
-    <span>Добавить колонку</span>
-  </div>
-
+<div class="menu-row-container">
+  <button class="btn btn-outline-success my-2 my-sm-0" (click)="showMenu()">
+    <p>Menu</p>
+  </button>
 </div>
+<app-board-menu [menuVisible]="menuVisible" (isClosed)="isClosed($event)"></app-board-menu>
+<div>
+  <div
+    *ngIf="boardModel"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    [cdkDropListData]="boardModel.columns"
+    class="board-row-container"
+    (cdkDropListDropped)="drop($event)">
+    <div class="column-box-outside" *ngFor="let column of boardModel.columns ; let i = index" cdkDrag>
+      <img [src]="pickerStyle" class="picker" cdkDragHandle>
+      <app-column-on-board class="column-box-inside" [columnModel]="column"></app-column-on-board>
+    </div>
+    <div class="column-add-column" (click)="addColumn()">
+      <span>Добавить колонку</span>
+    </div>
 
-  <button mat-button (click)="addTask(this.boardModel.columns[0])">add new task</button>
+  </div>
+
+  <button mat-button (click)="addColumn()">add new column</button>
+</div>

@@ -1,4 +1,5 @@
 import {Column} from '../../column/models/column';
+import {Mark} from '../../mark/models/mark';
 
 export interface Board {
   id: number;
@@ -7,4 +8,5 @@ export interface Board {
   boardType: string;
   pictureUrl: string;
   columns?: Column[];
+  marks?: Mark[];
 }

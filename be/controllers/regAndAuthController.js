@@ -19,7 +19,6 @@ exports.login = (request, response) => {
         response.status(400).json({message:'please enter both login and password'});
 
     UserService.findOne({login: request.body.login}).then(user => {
-        console.log(user);
         const respond = (token) => {
             return response.status(200).json({
                 message: 'authorized',

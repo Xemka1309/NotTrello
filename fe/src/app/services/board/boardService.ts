@@ -30,7 +30,7 @@ export class BoardService {
     if (!board) {
       return;
     }
-    return this.http.put<Board>(this.baseUrl + 'edit', board);
+    return this.http.put<Board>(this.baseUrl + '/edit', board);
   }
 
   public reorderBoard(board: Board) {
