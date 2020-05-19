@@ -1,8 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {BoardService} from "../../../../services/board/boardService";
-import {BackgroundService} from "../../../../services/board/backgroundsService";
-import {ActivatedRoute} from "@angular/router";
-import {Board} from "../../models/board";
+import {Component, OnInit} from '@angular/core';
+import {BoardService} from '../../../../services/board/boardService';
+import {ActivatedRoute} from '@angular/router';
+import {Board} from '../../../../models/board';
 
 @Component({
   selector: 'app-board-menu',
@@ -27,16 +26,16 @@ export class BoardMenuComponent implements OnInit {
 
   }
 
-  infoClick(): void{
+  infoClick(): void {
     this.menuState = 'Info';
   }
 
-  bgClick(): void{
+  bgClick(): void {
 
     this.menuState = 'Background';
   }
 
-  marksClick(): void{
+  marksClick(): void {
     this.menuState = 'Marks';
   }
 

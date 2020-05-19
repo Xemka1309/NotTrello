@@ -1,10 +1,9 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
-import {Column} from '../../models/column';
+import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {Column} from '../../../../models/column';
 import {CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {DragDropService} from '../../../../services/drag-drop/drag-drop.service';
-import { Task } from 'src/app/modules/task/models/task';
-import { ColumnService } from 'src/app/services/column/columnService';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Task} from 'src/app/models/task';
+import {ColumnService} from 'src/app/services/column/columnService';
 
 @Component({
   selector: 'app-column-on-board',
@@ -16,6 +15,9 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
   @Input()
   @Output()
   columnModel: Column;
+
+  @Output()
+  deleteEvent = new EventEmitter();
 
   @ViewChild(CdkDropList, {static: false})
   el: CdkDropList;
@@ -60,5 +62,9 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
 
   changeTitle($event: any) {
     console.log($event);
+  }
+
+  deleteColumn() {
+    this.deleteEvent.emit(this.columnModel.id);
   }
 }
