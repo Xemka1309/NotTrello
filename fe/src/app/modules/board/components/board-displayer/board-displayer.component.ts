@@ -16,7 +16,6 @@ export class BoardDisplayerComponent implements OnInit {
   @Input()
   boardId: string;
   boardModel: Board = null;
-  //private soket: Socket = null;
   private pickerStyle = '/assets/icons/move-picker.svg';
 
   constructor(private boardService: BoardService,
@@ -39,12 +38,27 @@ export class BoardDisplayerComponent implements OnInit {
 
   private listenChanges(){
     this.socket.on("connect", () => {
-      this.socket.connect();
-      this.socket.ioSocket.join(`boardRoom:${this.boardId}`);
+      this.socket.connect()//.join(`boardRoom:${this.boardId}`);
+      //this.socket.connectjoin
+    });
+    this.socket.on("board changed", (data) => {
+      console.log("board changes accepted");
+      this.boardService.getBoardById(this.boardId).subscribe(value => {
+        this.boardModel = value;
+        this.boardModel.columns.forEach((col, i) => {
+          col.tasks.forEach(t => {
+            t.column_id = col.id;
+          });
+        });
+        //this.listenChanges();
+      });
+    });
+    this.socket.emit("connect to board", {
+      boardId: this.boardId
     });
     this.socket.on("disconnect", () => this.socket.disconnect);
     this.socket.on("error", (error: string) => {
-      console.log(`ERROR: "${error}"`);
+      console.log(error );
     });
   }
 
@@ -68,6 +82,9 @@ export class BoardDisplayerComponent implements OnInit {
     } as Column;
     this.columnService.addColumn(column).subscribe(value => {
       this.boardModel.columns.push(value);
+      this.socket.emit("board refresh", {
+        boardId: this.boardId
+      });
     });
   }
 

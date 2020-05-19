@@ -5,7 +5,7 @@ const ColumnService = require("../services/columnService");
 const MarkService = require("../services/markService");
 const ParticipantRole = require("../models/participantRoleModel");
 const Participant = require("../models/participantModel");
-const io = require('socket.io-client');
+
 
 exports.add = (async function(body){
     const boardType = await BoardType.findOne({
@@ -27,9 +27,9 @@ exports.add = (async function(body){
             role: "ADMINISTRATOR"
         }
     });
-    console.log(body.user_id);
-    console.log(createdBoard.id);
-    console.log(participantRole.id);
+    //console.log(body.user_id);
+    ////console.log(createdBoard.id);
+    //console.log(participantRole.id);
     Participant.create({
         user_id: body.user_id,
         board_id: createdBoard.id,
@@ -39,7 +39,7 @@ exports.add = (async function(body){
 });
 
 exports.edit = (async function (body) {
-    console.log(body);
+    //console.log(body);
     const boardType = await BoardType.findOne({
         attributes: ['id'],
         where: {
@@ -76,9 +76,9 @@ exports.getBoards = (async function (userId) {
 
     const boards = await Board.findAll({
         attributes: ['id', 'title', 'description', 'type_id', 'pictureUrl'],
-        where: {
-            id: participants.map(val => val.board_id)
-        }
+        //where: {
+        //    id: participants.map(val => val.board_id)
+        //}
     });
 
     const types = await BoardType.findAll({
@@ -108,7 +108,7 @@ exports.getBoard = (async function (board_id) {
     boardData.participants = await ParticipantService.getByBoardId(boardData.id);
     boardData.marks = await MarkService.getByBoardId(boardData.id);
     boardData.columns = await ColumnService.get(boardData.id);
-    // const socket = io('http://localhost:8000?groupId=' + boardData.id);
+    
 
     return boardData;
 });
