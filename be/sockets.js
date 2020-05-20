@@ -16,8 +16,8 @@ module.exports = {
             });
             
             socket.on("board refresh", (data) => {
-                socket.emit("board changed", data);
-                socket.emit("board changed", data);
+                this.io.emit("board changed", data);
+                //socket.emit("board changed", data);
                 console.log("bord changed accepted with id:" + data.boardId);
                 if (listenedRoomsIds.includes(data.boardId)){
                     socket.to(`boardRoom:${data.boardId}`).emit("board changed", data);
