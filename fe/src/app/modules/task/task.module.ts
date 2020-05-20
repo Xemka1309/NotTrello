@@ -8,20 +8,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import {TaskSimpleComponent} from './components/task-simple/task-simple.component';
+import {TaskDetailsComponent} from './components/task-details/task-details.component';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
-  declarations: [TaskSimpleComponent],
+  declarations: [TaskSimpleComponent, TaskDetailsComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
     MatSelectModule,
     FormsModule,
     MatButtonModule,
     ReactiveFormsModule,
     MatCardModule
   ],
-  exports: [TaskSimpleComponent],
+  exports: [TaskSimpleComponent, TaskDetailsComponent],
+  entryComponents: [TaskDetailsComponent],
   providers: [],
 })
 export class TaskModule {

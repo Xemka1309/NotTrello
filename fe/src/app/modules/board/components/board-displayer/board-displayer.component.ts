@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import {Board} from '../../models/board';
+import {Board} from '../../../../models/board';
 import {BoardService} from '../../../../services/board/boardService';
 import {ColumnService} from '../../../../services/column/columnService';
 import {TaskService} from '../../../../services/task/taskService';
-import {Column} from '../../../column/models/column';
+import {Column} from '../../../../models/column';
 import { Socket } from 'ngx-socket-io';
 
 @Component({
@@ -17,6 +17,7 @@ export class BoardDisplayerComponent implements OnInit {
   boardId: string;
   boardModel: Board = null;
   private pickerStyle = '/assets/icons/move-picker.svg';
+  menuVisible = 'hidden';
 
   constructor(private boardService: BoardService,
               private columnService: ColumnService,
@@ -36,7 +37,8 @@ export class BoardDisplayerComponent implements OnInit {
     });
   }
 
-  private listenChanges(){
+  private listenChanges() {
+    this.menuVisible = 'hidden';
     this.socket.on("connect", () => {
       this.socket.connect()//.join(`boardRoom:${this.boardId}`);
       //this.socket.connectjoin
@@ -58,12 +60,11 @@ export class BoardDisplayerComponent implements OnInit {
     });
     this.socket.on("disconnect", () => this.socket.disconnect);
     this.socket.on("error", (error: string) => {
-      console.log(error );
+      console.log(error);
     });
   }
 
   drop(event: CdkDragDrop<any>) {
-    //
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -102,4 +103,15 @@ export class BoardDisplayerComponent implements OnInit {
     });
   }
 
+  deleteColumn(event) {
+    console.log(event);
+    Board.deleteColumn(this.boardModel, event as number);
+  }
+  showMenu(): void {
+    this.menuVisible = 'visible';
+  }
+
+  isClosed(closed: any) {
+    closed ? this.menuVisible = 'hidden' : this.menuVisible = 'visible';
+  }
 }
