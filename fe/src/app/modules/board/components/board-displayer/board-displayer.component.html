@@ -7,7 +7,7 @@
   (cdkDropListDropped)="drop($event)">
   <div class="column-box-outside" *ngFor="let column of boardModel.columns ; let i = index" cdkDrag>
     <img [src]="pickerStyle" class="picker" cdkDragHandle>
-    <app-column-on-board (deleteEvent)="deleteColumn($event)" class="column-box-inside" [columnModel]="column"></app-column-on-board>
+    <app-column-on-board (taskMovedEvent)="taskMoved($event)" (deleteEvent)="deleteColumn($event)" class="column-box-inside" [columnModel]="column"></app-column-on-board>
   </div>
   <div class="column-add-column" (click)="addColumn()">
     <span>Добавить колонку</span>

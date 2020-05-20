@@ -20,8 +20,16 @@ exports.add = (async function(body){
 
 exports.edit = (async function (body) {
     return Task.update(
-        body,
-        {where: {id: body.id}})
+      {
+        title:body.title,
+        description: body.description, 
+        due_time: body.due_time,
+        position: body.position,
+        completed: body.completed,
+        column_id: body.column_id
+      }, 
+      { where: { id: body.id } }
+    );
 });
 
 exports.delete = (async function (body) {
@@ -65,7 +73,11 @@ exports.getByColumn = (async function (columnId) {
         attributes: ['id','title','due_time','position','completed','task_priority_id'],
         where: {
             column_id: columnId
-        }
+        },
+        order: [
+            ['position', 'ASC']
+           // ['name', 'DESC],
+        ],
     });
     const priorities = await TaskPriority.findAll({
         attributes: ['id','priority'],
@@ -73,7 +85,7 @@ exports.getByColumn = (async function (columnId) {
     return tasks.map(function(task){
         let taskFields = task.dataValues;
         taskFields.task_priority = priorities.find(element => element.id = task.task_priority_id).priority;
-        delete taskFields.id;
+        //delete taskFields.id;
         delete taskFields.task_priority_id;
         return taskFields;
     })

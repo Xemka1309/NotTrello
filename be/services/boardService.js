@@ -27,9 +27,6 @@ exports.add = (async function(body){
             role: "ADMINISTRATOR"
         }
     });
-    //console.log(body.user_id);
-    ////console.log(createdBoard.id);
-    //console.log(participantRole.id);
     Participant.create({
         user_id: body.user_id,
         board_id: createdBoard.id,
@@ -39,7 +36,6 @@ exports.add = (async function(body){
 });
 
 exports.edit = (async function (body) {
-    //console.log(body);
     const boardType = await BoardType.findOne({
         attributes: ['id'],
         where: {

@@ -28,23 +28,25 @@ export class BoardDisplayerComponent implements OnInit {
     console.log(this.boardId);
     this.boardService.getBoardById(this.boardId).subscribe(value => {
       this.boardModel = value;
+      console.log("board model");
+      console.log(this.boardModel);
       this.boardModel.columns.forEach((col, i) => {
         col.tasks.forEach(t => {
           t.column_id = col.id;
         });
       });
+      console.log(this.boardModel);
       this.listenChanges();
     });
   }
 
   private listenChanges() {
     this.menuVisible = 'hidden';
-    this.socket.on("connect", () => {
-      this.socket.connect()//.join(`boardRoom:${this.boardId}`);
-      //this.socket.connectjoin
+    this.socket.on('connect', () => {
+      this.socket.connect();
     });
-    this.socket.on("board changed", (data) => {
-      console.log("board changes accepted");
+    this.socket.on('board changed', (data) => {
+      console.log('board changes accepted');
       this.boardService.getBoardById(this.boardId).subscribe(value => {
         this.boardModel = value;
         this.boardModel.columns.forEach((col, i) => {
@@ -52,15 +54,20 @@ export class BoardDisplayerComponent implements OnInit {
             t.column_id = col.id;
           });
         });
-        //this.listenChanges();
       });
     });
-    this.socket.emit("connect to board", {
+    this.socket.emit('connect to board', {
       boardId: this.boardId
     });
-    this.socket.on("disconnect", () => this.socket.disconnect);
-    this.socket.on("error", (error: string) => {
+    this.socket.on('disconnect', () => this.socket.disconnect);
+    this.socket.on('error', (error: string) => {
       console.log(error);
+    });
+  }
+
+  private sendBoardChanges(): void {
+    this.socket.emit('board refresh', {
+      boardId: this.boardId
     });
   }
 
@@ -83,9 +90,7 @@ export class BoardDisplayerComponent implements OnInit {
     } as Column;
     this.columnService.addColumn(column).subscribe(value => {
       this.boardModel.columns.push(value);
-      this.socket.emit("board refresh", {
-        boardId: this.boardId
-      });
+      this.sendBoardChanges();
     });
   }
 
@@ -100,12 +105,19 @@ export class BoardDisplayerComponent implements OnInit {
     };
     this.taskService.addTask(body).subscribe(response => {
       console.log(response);
+      this.sendBoardChanges();
     });
   }
 
-  deleteColumn(event) {
+  public taskMoved(event){
+    const taskId = event as number;
+    this.sendBoardChanges();
+  }
+
+  public deleteColumn(event) {
     console.log(event);
     Board.deleteColumn(this.boardModel, event as number);
+    this.sendBoardChanges();
   }
   showMenu(): void {
     this.menuVisible = 'visible';
