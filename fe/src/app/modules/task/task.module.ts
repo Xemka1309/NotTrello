@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import {TaskSimpleComponent} from './components/task-simple/task-simple.component';
 import {TaskDetailsComponent} from './components/task-details/task-details.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {DirectiveModule} from '../../directives/directive.module';
 @NgModule({
   declarations: [TaskSimpleComponent, TaskDetailsComponent],
   imports: [
@@ -22,7 +23,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     FormsModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    DirectiveModule
   ],
   exports: [TaskSimpleComponent, TaskDetailsComponent],
   entryComponents: [TaskDetailsComponent],

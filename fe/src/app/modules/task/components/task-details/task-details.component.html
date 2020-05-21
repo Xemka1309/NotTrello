@@ -1,14 +1,27 @@
 <mat-dialog-content>
   <div class="task-details-container">
-    <div contentEditable="true" class="task-details-header">
+    <div contentEditable="true" class="task-details-header cp-1">
       <div class="custom-inline-block">
         {{data.title}}
       </div>
     </div>
-    <div class="task-details-body">
+    <div class="task-details-body cp-1">
 
       <div class="task-details-content">
-        suka
+        <div class="task-details-sub-header">
+          Описание
+          <div *ngIf="data.description">Изменить</div>
+        </div>
+
+        <div *ngIf="data.description;else descr">
+          <div contentEditable="true" class="custom-inline-block">
+            {{data.description}}
+          </div>
+        </div>
+
+        <div class="task-details-sub-header">
+          Комментарии
+        </div>
       </div>
 
       <div class="task-details-buttons">
@@ -19,5 +32,13 @@
     </div>
   </div>
 </mat-dialog-content>
+
+<ng-template #descr>
+ <div contentEditableModel class="empty-description-div">
+   <div class="custom-inline-block cp-1">
+     Добавить более подробное описание...
+   </div>
+ </div>
+</ng-template>
 
 
