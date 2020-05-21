@@ -1,4 +1,6 @@
 export enum SocketEvents {
-  getBoard = "getBoard",
+  listenBoard = "connect to board",
   connection = "connection",
+  boardUpdatedRemote = "board changed",
+  boardUpdate = "board refresh"
 }

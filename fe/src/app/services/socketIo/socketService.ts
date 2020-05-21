@@ -10,11 +10,11 @@ export class SocketService {
   constructor(private socket: Socket) {
   }
 
-  public listenBoard(id: number): Observable<any> {
+  public startListenBoard(id: string): Observable<any> {
     const data = {
-      id
+      boardId: id
     };
-    return this.socket.emit(SocketEvents.getBoard, data);
+    return this.socket.emit(SocketEvents.listenBoard, data);
   }
 
   public onMessage(): Observable<any> {

@@ -18,6 +18,8 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
 
   @Output()
   deleteEvent = new EventEmitter();
+  @Output()
+  taskMovedEvent = new EventEmitter();
 
   @ViewChild(CdkDropList, {static: false})
   el: CdkDropList;
@@ -48,7 +50,7 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
     if (event.previousContainer === event.container && event.previousIndex === event.currentIndex) {
       return;
     }
-    const movedTask = event.previousContainer.data[event.currentIndex] as Task;
+    const movedTask = event.previousContainer.data[event.previousIndex] as Task;
     console.log(movedTask.column_id);
     movedTask.column_id = this.columnModel.id;
     console.log(movedTask.column_id);
@@ -58,6 +60,7 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
     } else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
     }
+    this.taskMovedEvent.emit(movedTask.id);
   }
 
   changeTitle($event: any) {

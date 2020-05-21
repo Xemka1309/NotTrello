@@ -34,12 +34,15 @@ export class ColumnService {
   }
 
   public updateTask(task: Task) {
+    console.log(ApiUrlBuilder.getUrl(Models.task, Actions.edit));
     return this.http.put<Task>(ApiUrlBuilder.getUrl(Models.task, Actions.edit), task);
   }
 
   public taskMoved(prevPos: number, currentPos: number, task: Task) {
     task.position = currentPos;
-    this.updateTask(task);
+    this.updateTask(task).subscribe(r => {
+      console.log("sender put task");
+    });
   }
 
   public deleteTask(task: Task, id: string) {

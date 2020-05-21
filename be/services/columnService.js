@@ -21,7 +21,11 @@ exports.get = (async function (board_id) {
         attributes: ['id','title','position','board_id'],
         where: {
             board_id: board_id
-        }
+        },
+        order: [
+            ['position', 'ASC']
+           // ['name', 'DESC],
+        ],
     });
     return Promise.all(columns.map(async function(column) {
         const columnWithTasks = column.dataValues;

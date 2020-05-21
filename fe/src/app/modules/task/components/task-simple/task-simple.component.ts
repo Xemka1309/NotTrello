@@ -26,7 +26,7 @@ export class TaskSimpleComponent implements OnInit {
     const dialogRef = this.dialog.open(TaskDetailsComponent, {
       width,
       data: {
-        id: this.taskModel.id,
+        id: this.taskModel.idNum,
         priority_id: this.taskModel.priority_id,
         title: this.taskModel.title,
         description: this.taskModel.description,

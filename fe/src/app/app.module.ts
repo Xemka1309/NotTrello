@@ -38,7 +38,7 @@ import {BoardMenuComponent } from './modules/board/components/board-menu/board-m
 
 import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
 import {DirectiveModule} from './directives/directive.module';
-const socketIoConfig: SocketIoConfig = {url: 'http://localhost:8000', options: {} };
+const socketIoConfig: SocketIoConfig = { url: 'http://localhost:8000', options: { forceNew : true} };
 
 
 const appRoutes: Routes = [
