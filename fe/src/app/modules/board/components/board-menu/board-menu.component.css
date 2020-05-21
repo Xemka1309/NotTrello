@@ -1,7 +1,7 @@
-.menu-container {
-  width: 20%;
+.container {
+  width: 15%;
   height: fit-content;
-  min-height: 60%;
+  min-height: 40%;
   padding: 10px;
   position: absolute;
   right: 0;
@@ -14,7 +14,7 @@
 
 .menu-header {
   width: 100%;
-  height: 50px;
+  height: 25px;
 }
 
 .picture-container {
@@ -41,16 +41,16 @@
 
 .list-container {
   width: 95%;
-  margin-left: 2%;
+  margin-left: 1%;
 }
 
 .mark-container {
   width: 100%;
-  height: 25px;
+  height: 30px;
   margin-bottom: 10px;
-  padding-left: 5px;
   border-radius: 5px;
   color: white;
+  vertical-align: center;
 }
 
 .mark-container:hover {
@@ -70,6 +70,7 @@
 .menu-title {
   width: 80%;
   height: 100%;
+  text-align: center;
   float: left;
 }
 
@@ -77,6 +78,7 @@
   width: 100%;
   text-align: left;
   border-radius: 5px;
+  margin-top: 15px;
 }
 
 .matInput {

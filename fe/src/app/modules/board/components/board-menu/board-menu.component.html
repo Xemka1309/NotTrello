@@ -1,73 +1,71 @@
-<div class="menu-container" [style.visibility]="menuVisible">
+<div class="container" [style.visibility]="menuVisible">
   <ng-container  [ngSwitch]="menuState">
-    <div *ngSwitchCase="'Menu'">
+    <div *ngSwitchCase="'Меню'">
       <div class="menu-header">
-        <div class="menu-title">
-          <h3>{{menuState}}</h3>
+        <div class="menu-title" style="width: 90%">
+          <h4>{{menuState}}</h4>
         </div>
-        <button class="close" (click)="hideMenu(true)">X</button>
+        <button class="close" (click)="hideMenu(true)"><mat-icon>close</mat-icon></button>
       </div>
-      <ul class="board-menu">
-        <li>
-          <button mat-button (click)="infoClick()">
-            Board info
-          </button>
-        </li>
-        <li>
-          <button mat-button (click)="bgClick()">
-            Background
-          </button>
-        </li>
-        <li>
-          <button mat-button (click)="marksClick()">
-            Marks
-          </button>
-        </li>
-      </ul>
-    </div>
-    <div *ngSwitchCase="'Info'">
-      <div class="menu-header">
-        <button class="close" (click)="back()"><</button>
-        <div class="menu-title">
-          <h3>{{menuState}}</h3>
-        </div>
-        <button class="close" (click)="hideMenu(true)">X</button>
-      </div>
-      <div class="info-field">
-        Title: {{boardModel.title}}
-      </div>
-      <div class="info-field">
-        Description: {{boardModel.description}}
+      <hr>
+      <div class="board-menu">
+        <button mat-button (click)="infoClick()">
+          <h6>Инфо доски</h6>
+        </button>
+        <button mat-button (click)="bgClick()">
+          <h6>Сменить фон</h6>
+        </button>
+        <button mat-button (click)="marksClick()">
+          <h6>Метки</h6>
+        </button>
       </div>
     </div>
-    <div *ngSwitchCase="'Background'">
+    <div *ngSwitchCase="'Инфо'">
       <div class="menu-header">
-        <button class="close" (click)="back()"><</button>
+        <button class="close" (click)="back()"><mat-icon>keyboard_arrow_left</mat-icon></button>
         <div class="menu-title">
-          <h3>{{menuState}}</h3>
+          <h4>{{menuState}}</h4>
         </div>
-        <button class="close" (click)="hideMenu(true)">X</button>
+        <button class="close" (click)="hideMenu(true)"><mat-icon>close</mat-icon></button>
       </div>
+      <hr>
+      <div class="info-field">
+        Название: {{boardModel.title}}
+      </div>
+      <div class="info-field">
+        Описание: {{boardModel.description}}
+      </div>
+    </div>
+    <div *ngSwitchCase="'Сменить фон'">
+      <div class="menu-header">
+        <button class="close" (click)="back()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <div class="menu-title">
+          <h4>{{menuState}}</h4>
+        </div>
+        <button class="close" (click)="hideMenu(true)"><mat-icon>close</mat-icon></button>
+      </div>
+      <hr>
       <div class="bg-container" *ngFor="let bg of bgList">
         <div class="picture-container">
           <img class="card-img" [src]="bg" alt="Background alt" (click)="setBG(bg)">
         </div>
       </div>
     </div>
-    <div *ngSwitchCase="'Marks'">
+    <div *ngSwitchCase="'Метки'">
       <div class="menu-header">
-        <button class="close" (click)="back()"><</button>
+        <button class="close" (click)="back()"><mat-icon>keyboard_arrow_left</mat-icon></button>
         <div class="menu-title">
-          <h3>{{menuState}}</h3>
+          <h4>{{menuState}}</h4>
         </div>
-        <button class="close" (click)="hideMenu(true)">X</button>
+        <button class="close" (click)="hideMenu(true)"><mat-icon>close</mat-icon></button>
       </div>
+      <hr>
       <div class="list-container" *ngFor="let mark of markList">
         <div class="mark-container" [style.background-color]="mark.color" (click)="openMarkCreator(false,mark.id)">
           {{mark.content}}
         </div>
       </div>
-      <button class="btn btn-outline-success my-2 my-sm-0" (click)="openMarkCreator(true, 0)">New mark</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" (click)="openMarkCreator(true, 0)">Добавить метку</button>
       <app-mark-creator [isCreator]="isCreator" [visible]="creatorVisible" [markId]="markId"
                                (creatorIsClosed)="creatorIsClosed($event)" (markCreated)="markCreated($event)"
                                (markUpdated)="markUpdated($event)">

@@ -1,6 +1,6 @@
 .creator-container {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: fit-content;
   padding: 10px;
   position: absolute;
   right: 20px;
@@ -42,8 +42,4 @@
 
 .color:hover {
   cursor: pointer;
-}
-
-.submit {
-  margin-top: 20px;
 }

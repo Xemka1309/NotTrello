@@ -18,7 +18,7 @@ export class BoardMenuComponent implements OnInit {
   private isCreator: boolean;
   private creatorVisible = 'hidden';
   private markId: number = 0;
-  private menuState = 'Menu';
+  private menuState = 'Меню';
   private bgList: string[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -38,20 +38,20 @@ export class BoardMenuComponent implements OnInit {
   }
 
   infoClick(): void {
-    this.menuState = 'Info';
+    this.menuState = 'Инфо';
   }
 
   bgClick(): void {
 
-    this.menuState = 'Background';
+    this.menuState = 'Сменить фон';
   }
 
   marksClick(): void {
-    this.menuState = 'Marks';
+    this.menuState = 'Метки';
   }
 
   back(): void {
-    this.menuState = 'Menu';
+    this.menuState = 'Меню';
   }
 
   hideMenu(closed:boolean): void {
@@ -86,7 +86,6 @@ export class BoardMenuComponent implements OnInit {
     console.log(mark);
     for(const i in this.markList){
       if(this.markList[i].id === mark.id){
-        console.log('updated');
         this.markList[i] = mark;
       }
     }
