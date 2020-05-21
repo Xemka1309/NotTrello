@@ -34,11 +34,20 @@ export class MarkService {
     })
   }
 
+  public deleteMark(markId): Observable<any> {
+    if (!markId) {
+      return;
+    }
+    const params = new HttpParams({
+      fromObject: { id: markId }
+    });
+    return this.http.delete(this.deleteMarkUrl, {params, observe:'response'});
+  }
+
   public getMarkById(id: string): Observable<Mark> {
     const params = new HttpParams({
       fromObject: {id}
     });
-    console.log(this.getMarkByIdUrl);
 
     return this.http.get<Mark>(this.getMarkByIdUrl, {params});
   }

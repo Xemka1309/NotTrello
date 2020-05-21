@@ -82,13 +82,21 @@ exports.getByColumn = (async function (columnId) {
     const priorities = await TaskPriority.findAll({
         attributes: ['id','priority'],
     });
-    return tasks.map(function(task){
+    return Promise.all(tasks.map(async function(task){
         let taskFields = task.dataValues;
         taskFields.task_priority = priorities.find(element => element.id = task.task_priority_id).priority;
-        //delete taskFields.id;
         delete taskFields.task_priority_id;
+        taskFields.check_lists = await CheckListService.get(task.id);
+        taskFields.mark_ids = await TaskMark.findAll({
+            attributes: ['mark_id'],
+            where: {
+                task_id: task.id
+            }
+        });
+        taskFields.mark_ids = taskFields.mark_ids.map(x => x.mark_id);
         return taskFields;
     })
+    )
 });
 
 exports.taskToPT = (async function (body) {

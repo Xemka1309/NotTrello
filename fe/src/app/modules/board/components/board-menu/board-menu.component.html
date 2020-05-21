@@ -67,8 +67,10 @@
       </div>
       <button class="btn btn-outline-success my-2 my-sm-0" (click)="openMarkCreator(true, 0)">Добавить метку</button>
       <app-mark-creator [isCreator]="isCreator" [visible]="creatorVisible" [markId]="markId"
-                               (creatorIsClosed)="creatorIsClosed($event)" (markCreated)="markCreated($event)"
-                               (markUpdated)="markUpdated($event)">
+                               (creatorIsClosed)="creatorIsClosed($event)"
+                               (markCreated)="markCreated($event)"
+                               (markUpdated)="markUpdated($event)"
+                               (markDeleted)="markDeleted($event)">
     </app-mark-creator>
     </div>
   </ng-container>

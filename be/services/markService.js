@@ -27,7 +27,7 @@ exports.edit = (async function (body) {
         body,
         {where: {id: body.id}})
 });
-exports.delete = (async function (body) {
-    await Mark.destroy(
-        {where: {id: body.id}})
+exports.delete = (async function (id) {
+    return await Mark.destroy(
+        {where: {id: id}})
 });

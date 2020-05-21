@@ -74,7 +74,7 @@ export class BoardMenuComponent implements OnInit {
   }
 
   creatorIsClosed(closed:any) {
-    closed==true?this.creatorVisible='hidden':this.creatorVisible='visible';
+    closed?this.creatorVisible='hidden':this.creatorVisible='visible';
   }
 
   markCreated(mark:any) {
@@ -82,11 +82,18 @@ export class BoardMenuComponent implements OnInit {
   }
 
   markUpdated(mark:any) {
-    console.log(this.markList);
-    console.log(mark);
     for(const i in this.markList){
       if(this.markList[i].id === mark.id){
         this.markList[i] = mark;
+      }
+    }
+  }
+
+  markDeleted(markId: any) {
+    let index;
+    for (index = 0; index < this.markList.length; ++index) {
+      if(this.markList[index].id === markId){
+        this.markList.splice(index,1);
       }
     }
   }

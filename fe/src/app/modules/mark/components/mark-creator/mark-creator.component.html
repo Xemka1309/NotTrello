@@ -16,5 +16,8 @@
     </div>
     <button type="submit" (click)="createOrUpdateMark()" class="btn btn-outline-success my-2 my-sm-0 submit"
             [style.color]="buttonColor">{{isCreator ? 'Добавить' : 'Сохранить'}}</button>
+    <button *ngIf="!isCreator" type="submit" (click)="deleteMark()" class="btn btn-outline-success my-2 my-sm-0 delete">
+     Удалить
+    </button>
   </form>
 </div>

@@ -43,3 +43,7 @@
 .color:hover {
   cursor: pointer;
 }
+
+.delete{
+  float: right;
+}

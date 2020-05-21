@@ -2,7 +2,7 @@ const CLItem = require("../models/checkListItemModel");
 
 exports.get = (async function(clId){
     return await CLItem.findAll({
-        attributes: ['content','completed'],
+        attributes: ['id','content','completed'],
         where: {
             check_list_id: clId
         }
