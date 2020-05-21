@@ -1,6 +1,6 @@
 <div class="card"  style="width: 100%;">
   <div class="card-header header-large">
-    Boards
+    Доски
     <div ngbDropdown class="d-inline-block">
       <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle></button>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -14,7 +14,7 @@
     <div *ngFor="let item of this.displayedBoards" class="card board" style="width: 30%; height:350px">
       <a [routerLink]="['/board/'+ item.id]" routerLinkActive="router-link-active" class="display-6">
         <div class="img-board">
-          <img class="card-img-top" [src]="item.pictureUrl" alt="Card image cap" />
+          <img class="card-img-top" [src]="item.pictureUrl" alt="Фон доски" />
         </div>
         <div class="card-body">
           <h5 class="card-title">{{item.title}}</h5>

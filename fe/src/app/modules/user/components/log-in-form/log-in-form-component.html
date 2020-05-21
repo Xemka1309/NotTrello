@@ -4,11 +4,11 @@
     <div class="avatar"></div>
     <div class="form-box">
       <form [formGroup]="logInForm" action="" method="">
-        <h3>Sign In in Not Trello</h3>
-        <input required formControlName="login" name="user" type="text" placeholder="username">
-        <input required formControlName="password" type="password" placeholder="password">
-        <button [disabled]="!logInForm.valid" (click)="logIn()" class="btn btn-info btn-block login" type="submit">Login</button>
-        <button (click)="goToRegistration()" class="btn btn-info btn-block login">Go to register</button>
+        <h3>Авторизация в Not Trello</h3>
+        <input required formControlName="login" name="user" type="text" placeholder="имя пользователя">
+        <input required formControlName="password" type="password" placeholder="пароль">
+        <button [disabled]="!logInForm.valid" (click)="logIn()" class="btn btn-info btn-block login" type="submit">Войти</button>
+        <button (click)="goToRegistration()" class="btn btn-info btn-block login">Регистрация</button>
       </form>
     </div>
   </div>

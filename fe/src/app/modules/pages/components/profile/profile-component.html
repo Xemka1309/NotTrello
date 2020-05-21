@@ -1,19 +1,19 @@
 <div class="container">
   <div class="form-box">
     <form [formGroup]="userForm" class="example-form">
-      <h3 class="header">Profile</h3>
-      <label class="mat-form-field-label">Name</label>
-      <input matInput placeholder="name"  formControlName="name">
-      <label class="mat-form-field-label">Surname</label>
-      <input matInput placeholder="surname"  formControlName="surname">
-      <label class="mat-form-field-label">Nickname</label>
-      <input required matInput placeholder="nickname"  formControlName="nickname">
-      <label class="mat-form-field-label">Login</label>
-      <input required readonly matInput placeholder="login"  formControlName="login">
+      <h3 class="header">Профиль</h3>
+      <label class="mat-form-field-label">Имя</label>
+      <input matInput placeholder="имя"  formControlName="name">
+      <label class="mat-form-field-label">Фамилия</label>
+      <input matInput placeholder="фамилия"  formControlName="surname">
+      <label class="mat-form-field-label">Никнейм</label>
+      <input required matInput placeholder="никнейм"  formControlName="nickname">
+      <label class="mat-form-field-label">Логин</label>
+      <input required readonly matInput placeholder="логин"  formControlName="login">
       <label class="mat-form-field-label">Email</label>
-      <input required matInput placeholder="email"  formControlName="email">
+      <input required matInput placeholder="эл. почта"  formControlName="email">
       <button  (click)="submit()" class="btn btn-info btn-block save"
-              type="submit">Save</button>
+              type="submit">Сохранить</button>
     </form>
   </div>
 </div>
