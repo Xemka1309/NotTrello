@@ -35,6 +35,9 @@ export class BoardMenuComponent implements OnInit {
     this.bgList.push('assets/pictures/bg1.jpg');
     this.bgList.push('assets/pictures/bg2.jpg');
     this.bgList.push('assets/pictures/bg3.jpg');
+    this.bgList.push('assets/pictures/bg4.jpg');
+    this.bgList.push('assets/pictures/bg5.jpg');
+    this.bgList.push('assets/pictures/bg6.jpg');
   }
 
   infoClick(): void {
