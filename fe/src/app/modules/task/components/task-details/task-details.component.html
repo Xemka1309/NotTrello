@@ -1,13 +1,13 @@
 <mat-dialog-content>
-  <div class="task-details-container">
-    <div contentEditable="true" class="task-details-header cp-1">
+  <div class="task-details-container card">
+    <div contentEditable="true" class="task-details-header cp-1 card-header">
       <div class="custom-inline-block">
         {{data.title}}
       </div>
     </div>
-    <div class="task-details-body cp-1">
+    <div class="task-details-body cp-1 card-body">
 
-      <div class="task-details-content">
+      <div class="task-details-content ">
         <div class="task-details-sub-header">
           Описание
           <div *ngIf="data.description">Изменить</div>
@@ -27,6 +27,12 @@
       <div class="task-details-buttons">
         <div class="task-details-button">
           <span>Участники</span>
+        </div>
+        <div class="task-details-button">
+          <span>Изменить приоритет</span>
+        </div>
+        <div class="task-details-button">
+          <span>Изменить метку</span>
         </div>
       </div>
     </div>

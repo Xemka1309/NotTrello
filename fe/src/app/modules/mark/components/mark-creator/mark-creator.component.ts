@@ -1,7 +1,7 @@
-import {ActivatedRoute} from "@angular/router";
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
-import {MarkService} from "../../../../services/mark/markService";
+import {ActivatedRoute} from '@angular/router';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {MarkService} from '../../../../services/mark/markService';
 import {Mark} from '../../../../models/mark';
 
 @Component({
@@ -50,8 +50,8 @@ export class MarkCreatorComponent implements OnInit {
   }
 
   selectColor(index) {
-    if(index>5){
-      this.markColor = this.colorList2[index-5];
+    if (index > 5) {
+      this.markColor = this.colorList2[index - 5];
       this.buttonColor = this.markColor;
     } else {
       this.markColor = this.colorList1[index];
@@ -60,7 +60,7 @@ export class MarkCreatorComponent implements OnInit {
   }
 
   createOrUpdateMark(): void {
-    if(this.isCreator){
+    if (this.isCreator) {
       this.createMark();
     } else {
       this.updateMark();

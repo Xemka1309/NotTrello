@@ -9,6 +9,7 @@ export class Board {
   pictureUrl?: string;
   columns?: Column[];
   marks?: Mark[];
+  //participants: Participant[]; // add later
 
   public static deleteColumn(board: Board, columnId: number) {
     const col = board.columns.filter(co => co.id === columnId).pop();

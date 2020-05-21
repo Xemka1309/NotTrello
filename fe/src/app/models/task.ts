@@ -1,3 +1,6 @@
+import { CheckList } from './check-list';
+import { Mark } from './mark';
+
 export class Task {
   idNum: number;
   id:string;
@@ -8,4 +11,6 @@ export class Task {
   dueTime?: string;
   completed?: boolean;
   position?: number;
+  checkLists?: CheckList[];
+  marks?: Mark[];
 }
