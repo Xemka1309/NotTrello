@@ -2,7 +2,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
 import {MarkService} from "../../../../services/mark/markService";
-import {Mark} from "../../models/mark";
+import {Mark} from '../../../../models/mark';
 
 @Component({
   selector: 'app-mark-creator',

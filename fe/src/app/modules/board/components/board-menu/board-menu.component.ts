@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BoardService} from '../../../../services/board/boardService';
 import {ActivatedRoute} from '@angular/router';
 import {Board} from '../../../../models/board';
+import {Mark} from '../../../../models/mark';
 
 @Component({
   selector: 'app-board-menu',
@@ -18,7 +19,8 @@ export class BoardMenuComponent implements OnInit {
   private creatorVisible = 'hidden';
   private markId: number = 0;
   private menuState = 'Menu';
-  private bgList: string[];
+  private bgList: string[] = [];
+
   constructor(private activatedRoute: ActivatedRoute,
               private boardService: BoardService) {
     console.log(this.activatedRoute.snapshot.params);

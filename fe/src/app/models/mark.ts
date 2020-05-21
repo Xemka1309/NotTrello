@@ -3,4 +3,7 @@ export class Mark {
   color?: string;
   content?: string;
   board_id?: number;
+
+  constructor() {
+  }
 }
