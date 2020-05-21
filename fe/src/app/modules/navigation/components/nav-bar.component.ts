@@ -24,5 +24,10 @@ export class NavBarComponent implements OnInit {
   public get isLoggedIn() {
     return this.authService.isAuthenticated();
   }
+
+  public goHome() {
+    this.router.navigate(['/home']);
+  }
+
   ngOnInit(): void { }
 }

@@ -15,6 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {ColumnModule} from '../column/column.module';
 import { BoardMenuComponent } from './components/board-menu/board-menu.component';
 import {MarkModule} from '../mark/mark.module';
+import {NavBarModule} from '../navigation/nav-bar.module';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -33,7 +34,8 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
     MatIconModule,
     NgbDropdownModule,
     ColumnModule,
-    MarkModule
+    MarkModule,
+    NavBarModule
   ],
   entryComponents: [BoardsConstructorDialog],
   exports: [

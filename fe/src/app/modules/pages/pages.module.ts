@@ -11,6 +11,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import {BoardPageComponent} from './components/board/board-page.component';
 import {BoardModule} from '../board/board.module';
 import { ProfileComponent } from './components/profile/profile-component';
+import {NavBarModule} from '../navigation/nav-bar.module';
 @NgModule({
   declarations: [HomeComponent, BoardPageComponent, ProfileComponent],
   imports: [
@@ -23,7 +24,8 @@ import { ProfileComponent } from './components/profile/profile-component';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    BoardModule
+    BoardModule,
+    NavBarModule
   ],
   exports: [HomeComponent, BoardPageComponent, ProfileComponent],
   providers: [],

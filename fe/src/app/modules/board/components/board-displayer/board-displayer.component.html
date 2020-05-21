@@ -1,25 +1,45 @@
-<div class="menu-row-container">
-  <button class="btn btn-outline-success my-2 my-sm-0" (click)="showMenu()">
-    <p>Меню</p>
-  </button>
-</div>
-<app-board-menu [menuVisible]="menuVisible" (isClosed)="isClosed($event)"></app-board-menu>
+<div class="custom-list" [ngStyle]="backgroundImage">
+  <app-nav-bar></app-nav-bar>
+  <div class="menu-row-container">
+    <div class="menu-item-container">
+      <div class="menu-item title">
+        Приветики малышки
+      </div>
 
-<div
-  *ngIf="boardModel"
-  cdkDropList
-  cdkDropListOrientation="horizontal"
-  [cdkDropListData]="boardModel.columns"
-  class="board-row-container"
-  (cdkDropListDropped)="drop($event)">
-  <div class="column-box-outside" *ngFor="let column of boardModel.columns ; let i = index" cdkDrag>
-    <img [src]="pickerStyle" class="picker" cdkDragHandle>
-    <app-column-on-board (taskMovedEvent)="taskMoved($event)" (deleteEvent)="deleteColumn($event)" class="column-box-inside" [columnModel]="column"></app-column-on-board>
+      <div class="menu-item custom-button">
+        {{boardModel.boardType}}
+      </div>
+
+      <div class="menu-item custom-button">
+        Пригласить
+      </div>
+
+    </div>
+    <div class="menu-item-container">
+      <div class="menu-item custom-button" (click)="showMenu()">
+        <div class="inline">
+          Меню
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="column-add-column" (click)="addColumn()">
-    <span>Добавить колонку</span>
-  </div>
+  <app-board-menu [menuVisible]="menuVisible" (isClosed)="isClosed($event)"></app-board-menu>
 
+  <div
+    *ngIf="boardModel"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    [cdkDropListData]="boardModel.columns"
+    class="board-row-container"
+    (cdkDropListDropped)="drop($event)">
+    <div class="column-box-outside" *ngFor="let column of boardModel.columns ; let i = index" cdkDrag>
+      <img [src]="pickerStyle" class="picker" cdkDragHandle>
+      <app-column-on-board (taskMovedEvent)="taskMoved($event)" (deleteEvent)="deleteColumn($event)" class="column-box-inside" [columnModel]="column"></app-column-on-board>
+    </div>
+    <div class="column-add-column" (click)="addColumn()">
+      <span>Добавить колонку</span>
+    </div>
+
+  </div>
 </div>
 
-  <button mat-button (click)="addTask(this.boardModel.columns[0])">add new task</button>

@@ -28,7 +28,7 @@ export class BoardDisplayerComponent implements OnInit {
     console.log(this.boardId);
     this.boardService.getBoardById(this.boardId).subscribe(value => {
       this.boardModel = value;
-      console.log("board model");
+      console.log('board model');
       console.log(this.boardModel);
       this.boardModel.columns.forEach((col, i) => {
         col.tasks.forEach(t => {
@@ -125,5 +125,9 @@ export class BoardDisplayerComponent implements OnInit {
 
   isClosed(closed: any) {
     closed ? this.menuVisible = 'hidden' : this.menuVisible = 'visible';
+  }
+
+  get backgroundImage() {
+    return {'background-image': 'url(' + this.boardModel.pictureUrl + ')'};
   }
 }
