@@ -15,6 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {ColumnModule} from '../column/column.module';
 import { BoardMenuComponent } from './components/board-menu/board-menu.component';
 import {MarkModule} from '../mark/mark.module';
+import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [BoardsConstructorComponent, BoardsConstructorDialog, BoardsListComponent, BoardDisplayerComponent, BoardMenuComponent],
@@ -30,6 +31,7 @@ import {MarkModule} from '../mark/mark.module';
     DragDropModule,
     RouterModule,
     MatIconModule,
+    NgbDropdownModule,
     ColumnModule,
     MarkModule
   ],

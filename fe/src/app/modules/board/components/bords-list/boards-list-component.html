@@ -1,9 +1,17 @@
 <div class="card"  style="width: 100%;">
   <div class="card-header header-large">
     Boards
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle></button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button (click)="displayAll()" ngbDropdownItem>Все</button>
+        <button (click)="displayPrivate()" ngbDropdownItem>Приватные</button>
+        <button (click)="displayPublic()" ngbDropdownItem>Публичные</button>
+      </div>
+    </div>
   </div>
   <div class="card-body">
-    <div *ngFor="let item of this.boards" class="card board" style="width: 30%; height:350px">
+    <div *ngFor="let item of this.displayedBoards" class="card board" style="width: 30%; height:350px">
       <a [routerLink]="['/board/'+ item.id]" routerLinkActive="router-link-active" class="display-6">
         <div class="img-board">
           <img class="card-img-top" [src]="item.pictureUrl" alt="Card image cap" />

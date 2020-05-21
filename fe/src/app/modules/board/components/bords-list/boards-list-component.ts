@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 })
 export class BoardsListComponent implements OnInit {
   public boards: any;
+  public displayedBoards: any;
 
   constructor(private boardService: BoardService, private router: Router) {
   }
@@ -24,14 +25,35 @@ export class BoardsListComponent implements OnInit {
         return {
           title: x.title,
           description: x.description,
-          bordType: x.bordType,
+          boardType: x.boardType,
           id: x.id,
           columns: null
         };
       });
       this.boards = result;
+      this.displayedBoards = this.boards;
     }, error => console.log(error));
-
   }
 
+  public displayAll(): void {
+    this.displayedBoards = this.boards;
+  }
+
+  public displayPrivate(): void {
+    this.displayedBoards = [];
+    this.boards.forEach(board => {
+      if(board.boardType === 'PRIVATE'){
+        this.displayedBoards.push(board);
+      }
+    })
+  }
+
+  public displayPublic(): void {
+    this.displayedBoards = [];
+    this.boards.forEach(board => {
+      if(board.boardType === 'PUBLIC'){
+        this.displayedBoards.push(board);
+      }
+    })
+  }
 }
