@@ -2,7 +2,7 @@ const Mark = require("../models/markModel");
 
 exports.getByBoardId = (async function(boardId){
     return await Mark.findAll({
-        attributes: ['content','color'],
+        attributes: ['id','content','color'],
         where: {
             board_id: boardId
         }

@@ -17,7 +17,7 @@ export class BoardDisplayerComponent implements OnInit {
   boardId: string;
   boardModel: Board = null;
   private pickerStyle = '/assets/icons/move-picker.svg';
-  menuVisible = 'hidden';
+  menuVisible: string = 'hidden';
 
   constructor(private boardService: BoardService,
               private columnService: ColumnService,
