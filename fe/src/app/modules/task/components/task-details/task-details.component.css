@@ -91,10 +91,9 @@
 
 .custom-fixed-container {
   position: absolute;
-  background-color: black;
+  background-color: white;
   z-index: 3;
-  min-width: 200px;
-  min-height: 100px;
+  min-height: fit-content;
   top: inherit;
   left: inherit;
 }

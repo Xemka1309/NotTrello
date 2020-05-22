@@ -27,7 +27,8 @@ exports.edit = function (request, response){
 exports.delete = function (request, response){
     TaskService.delete(request.query.id)
         .then(function() {
-            response.sendStatus(200);
+            response.status(200);
+            response.send({message: 'ok'})
         })
         .catch(err =>  {
             console.log(err);
@@ -78,7 +79,8 @@ exports.taskToPT = function(request, response){
 exports.deleteTaskToPT = function (request, response){
     TaskService.deleteTaskToPT(request.body)
         .then(function() {
-            response.sendStatus(200);
+            response.status(200);
+            response.send({message: 'ok'})
         })
         .catch(err =>  {
             console.log(err);
@@ -101,9 +103,10 @@ exports.taskToMark = function(request, response){
 };
 
 exports.deleteTaskToMark = function (request, response){
-    TaskService.deleteTaskToMark(request.body)
+    TaskService.deleteTaskToMark(request.query.taskId, request.query.markId)
         .then(function() {
-            response.sendStatus(200);
+            response.status(200);
+            response.send({message: 'ok'})
         })
         .catch(err =>  {
             console.log(err);

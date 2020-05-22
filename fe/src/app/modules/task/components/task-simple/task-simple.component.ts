@@ -42,17 +42,15 @@ export class TaskSimpleComponent implements OnInit {
   openDetails() {
     const calcWidth = window.innerWidth / 2;
     const width = calcWidth.toString() + 'px';
-    const rightPos = ((window.innerWidth + calcWidth) / 2 ).toString() + 'px';
+    const rightPos = ((window.innerWidth + calcWidth) / 2 );
+    const popoverWidth = (Math.floor(rightPos / 5)).toString() + 'px';
     const dialogRef = this.dialog.open(TaskDetailsComponent, {
       width,
       data: {
-        id: this.taskModel.idNum,
-        priority_id: this.taskModel.priority_id,
-        title: this.taskModel.title,
-        description: this.taskModel.description,
-        dueTime: this.taskModel.dueTime,
-        completed: this.taskModel.completed,
-        pos: rightPos
+        width: popoverWidth,
+        leftPos: (rightPos + 5).toString() + 'px',
+        task: this.taskModel,
+        marks: this.marks
       }
     });
 
@@ -63,4 +61,11 @@ export class TaskSimpleComponent implements OnInit {
     });
 
   }
+}
+
+export interface DialogModel {
+  width?: string;
+  leftPos?: string;
+  task?: Task;
+  marks?: Mark[];
 }

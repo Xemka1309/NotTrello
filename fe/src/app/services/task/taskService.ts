@@ -9,10 +9,15 @@ import { Observable } from 'rxjs';
 })
 export class TaskService {
   private baseUrl = '/api/task';
+  private getTaskUrl = `${this.baseUrl}/get`;
   private addTaskUrl = `${this.baseUrl}/add`;
   private editTaskUrl = `${this.baseUrl}/edit`;
   private deleteTaskUrl = `${this.baseUrl}/delete`;
   private addMarkToTaskUrl = `${this.baseUrl}/tomark/add`;
+  private deleteMarkToTaskUrl = `${this.baseUrl}/tomark/delete`;
+
+  private checkListUrl = '/api/checklist';
+  private addCheckListToTaskUrl = `${this.baseUrl}/add`;
 
   constructor(private http: HttpClient) { }
 
@@ -42,4 +47,20 @@ export class TaskService {
     };
     return this.http.post<TaskMark>(this.addMarkToTaskUrl, markTask);
   }
+
+  public deleteMarkToTask(markId: string, taskId: string): Observable<any> {
+    const params = new HttpParams({
+      fromObject: { markId: markId, taskId: taskId }
+    });
+    return this.http.delete(this.deleteMarkToTaskUrl, {params, observe: 'response'});
+  }
+
+  public setTaskPriority(taskId: string, priorityId: string): Observable<any>{
+    const taskToUpdate = {id: taskId, task_priority_id: priorityId};
+    return this.http.put(this.editTaskUrl, taskToUpdate,{observe: 'response'})
+  }
+
+  /*public addChecklistToTask(): Observable<any> {
+
+  }*/
 }

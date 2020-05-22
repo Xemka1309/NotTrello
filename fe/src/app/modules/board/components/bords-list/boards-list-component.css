@@ -27,3 +27,7 @@ h4 {
   overflow: hidden;
 }
 
+.col-md-auto {
+  float:right;
+}
+
