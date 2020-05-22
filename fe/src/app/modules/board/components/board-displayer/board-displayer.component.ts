@@ -51,7 +51,7 @@ export class BoardDisplayerComponent implements OnInit {
   ngOnInit(): void {
     this.boardService.getBoardById(this.boardId).subscribe(value => {
       this.boardModel = value;
-      console.log("Board model loaded");
+      console.log('Board model loaded');
       console.log(this.boardModel);
       this.boardModel.columns.forEach((col, i) => {
         col.tasks.forEach(t => {
@@ -139,12 +139,11 @@ export class BoardDisplayerComponent implements OnInit {
 
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container
-      && event.previousIndex === event.currentIndex)
-    {
+      && event.previousIndex === event.currentIndex) {
       return;
     }
-    let first  = event.previousContainer.data[event.previousIndex] as Column;
-    let second = event.previousContainer.data[event.currentIndex] as Column;
+    const first  = event.previousContainer.data[event.previousIndex] as Column;
+    const second = event.previousContainer.data[event.currentIndex] as Column;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -215,7 +214,7 @@ export class BoardDisplayerComponent implements OnInit {
     this.menuVisible = 'visible';
   }
 
-  picChanged(e){
+  picChanged(e) {
     if (!this.boardModel) {
       return;
     }

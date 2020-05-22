@@ -50,14 +50,14 @@ export class TaskService {
 
   public deleteMarkToTask(markId: string, taskId: string): Observable<any> {
     const params = new HttpParams({
-      fromObject: { markId: markId, taskId: taskId }
+      fromObject: { markId, taskId }
     });
     return this.http.delete(this.deleteMarkToTaskUrl, {params, observe: 'response'});
   }
 
-  public setTaskPriority(taskId: string, priorityId: string): Observable<any>{
+  public setTaskPriority(taskId: string, priorityId: string): Observable<any> {
     const taskToUpdate = {id: taskId, task_priority_id: priorityId};
-    return this.http.put(this.editTaskUrl, taskToUpdate,{observe: 'response'})
+    return this.http.put(this.editTaskUrl, taskToUpdate, {observe: 'response'});
   }
 
   /*public addChecklistToTask(): Observable<any> {

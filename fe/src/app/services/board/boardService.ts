@@ -61,7 +61,7 @@ export class BoardService {
     return this.http.get<Board>(this.getBoardByIdUrl, {params});
   }
 
-  public getConcretePartic(board_id:string): Observable<any>{
+  public getConcretePartic(board_id: string): Observable<any>{
     const params = new HttpParams({
       fromObject: {id: board_id},
     });
