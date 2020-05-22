@@ -75,3 +75,18 @@ exports.getTypes = function(request, response){
             response.send(err.message)
         });
 };
+
+exports.getParticIdAndUserRole = function(request, response){
+    BoardService.getParticIdAndUserRole(request.decoded.id, request.query.id)
+        .then(result => {
+            response.status(200);
+            response.send(result);
+        })
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message)
+        });
+};
+
+

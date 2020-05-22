@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/modules/user/models/user';
+import {Participant} from '../../models/participant';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class UserService {
   private regUrl = `${this.baseUrl}/add`;
   private editUrl = `${this.baseUrl}/edit`;
   private logInUrl = `${this.baseUrl}/login`;
+  private getUserByIdUrl = `${this.baseUrl}/get`;
   constructor(private http: HttpClient) {}
 
   public registerUser(user: User): Observable<any> {
@@ -41,7 +43,16 @@ export class UserService {
     }
 
   }
+
   public getCurrentUser(): Observable<User> {
     return this.http.get<User>(this.baseUrl);
+  }
+
+  public getUserById(id: string): Observable<User> {
+    const params = new HttpParams({
+      fromObject: {id}
+    });
+
+    return this.http.get<User>(this.getUserByIdUrl, {params});
   }
 }

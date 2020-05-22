@@ -108,3 +108,25 @@ exports.getBoard = (async function (board_id) {
 
     return boardData;
 });
+
+exports.getParticIdAndUserRole = (async function (user_id,board_id) {
+    const participant = await Participant.findOne({
+        attributes: ['id','role_id'],
+        where: {
+            board_id: board_id,
+            user_id: user_id
+        }
+    });
+    const userRole = ParticipantRole.findOne({
+        attributes: ['role'],
+        where: {
+            id:participant.role_id
+        }
+    });
+    let data = {};
+    data.participant_id = participant.id;
+    data.user_role = userRole.role;
+    return data;
+});
+
+

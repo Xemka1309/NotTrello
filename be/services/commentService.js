@@ -2,7 +2,7 @@ const Comment = require("../models/commentModel");
 
 exports.get = (async function(id){
     return await Comment.findAll({
-        attributes: ['content','create_time','participant_id','task_id'],
+        attributes: ['content','create_time','user_id','task_id'],
         where: {
             id: id
         }
@@ -11,7 +11,7 @@ exports.get = (async function(id){
 
 exports.getByTaskId = (async function(taskId){
     return await Comment.findAll({
-        attributes: ['content','create_time','participant_id'],
+        attributes: ['content','create_time','user_id'],
         where: {
             task_id: taskId
         }

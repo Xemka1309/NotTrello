@@ -17,6 +17,7 @@ import {RegFormComponent} from './modules/user/components/reg-form/reg-form.comp
 import {LogInFormComponent} from './modules/user/components/log-in-form/log-in-form.component';
 import {BoardModule} from './modules/board/board.module';
 import {MarkModule} from './modules/mark/mark.module';
+import {CommentsDisplayerComponent} from './modules/task/components/comments-displayer/comments-displayer.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LogInFormComponent, canActivate: [CanActivateNotLoginPagesService]},
   {path: 'profile', component: ProfileComponent, canActivate: [CanActivateLoginPagesService]},
   {path: 'board/join/:str', component: BoardJoinComponent, canActivate: [CanActivateLoginPagesService]},
+  { path: 'comments', component: CommentsDisplayerComponent},
   {path: 'board/menu/:id', component: BoardMenuComponent, canActivate: [CanActivateLoginPagesService]},
   {path: '**', component: HomeComponent}
 ];

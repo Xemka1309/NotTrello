@@ -9,10 +9,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import {TaskSimpleComponent} from './components/task-simple/task-simple.component';
 import {TaskDetailsComponent} from './components/task-details/task-details.component';
+import { CommentsDisplayerComponent} from './components/comments-displayer/comments-displayer.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DirectiveModule} from '../../directives/directive.module';
 @NgModule({
-  declarations: [TaskSimpleComponent, TaskDetailsComponent],
+  declarations: [TaskSimpleComponent, TaskDetailsComponent, CommentsDisplayerComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -26,7 +27,7 @@ import {DirectiveModule} from '../../directives/directive.module';
     MatCardModule,
     DirectiveModule
   ],
-  exports: [TaskSimpleComponent, TaskDetailsComponent],
+  exports: [TaskSimpleComponent, TaskDetailsComponent, CommentsDisplayerComponent],
   entryComponents: [TaskDetailsComponent],
   providers: [],
 })

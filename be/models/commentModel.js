@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
 const Task = require("./taskModel");
-const Participant = require("./participantModel");
+const User = require("./userModel");
 const Comment = seq.define("comment", {
     id: {
         type: Sequelize.INTEGER,
@@ -21,6 +21,6 @@ const Comment = seq.define("comment", {
     }
 });
 Task.hasMany(Comment, {foreignKey: 'task_id'});
-Participant.hasMany(Comment, {foreignKey: 'participant_id'});
+User.hasMany(Comment, {foreignKey: 'user_id'});
 
 module.exports = Comment;
