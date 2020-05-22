@@ -58,4 +58,9 @@ export class BoardService {
 
     return this.http.get<Board>(this.getBoardByIdUrl, {params});
   }
+
+  // send min role id admin - 1  senior - 2  dev - 3
+  public isActionAllowed(minRoleId: number, userId: number, ){
+
+  }
 }

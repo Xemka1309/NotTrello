@@ -9,5 +9,6 @@ boardRouter.get("/get/particIdAndUserRole", boardController.getParticIdAndUserRo
 boardRouter.post("/add", boardController.add);
 boardRouter.put("/edit", boardController.edit);
 boardRouter.delete("/delete", boardController.delete);
+boardRouter.get("/allowed", boardController.isActionAllowed);
 
 module.exports = boardRouter;
