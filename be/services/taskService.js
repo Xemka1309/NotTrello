@@ -19,21 +19,14 @@ exports.add = (async function(body){
 });
 
 exports.edit = (async function (body) {
-    return Task.update(
-      {
-        title:body.title,
-        description: body.description, 
-        due_time: body.due_time,
-        position: body.position,
-        completed: body.completed,
-        column_id: body.column_id
-      }, 
+    return await Task.update(
+      body,
       { where: { id: body.id } }
     );
 });
 
 exports.delete = (async function (body) {
-    return Task.destroy(
+    return await Task.destroy(
         {where: {id: body.id}})
 });
 
@@ -103,16 +96,16 @@ exports.taskToPT = (async function (body) {
     return await TaskToParticipant.create(body);
 });
 
-exports.deleteTaskToPT = (async function (body) {
-    return TaskToParticipant.destroy(
-        {where: {task_id: body.task_id, participant_id: body.participant_id}})
+exports.deleteTaskToPT = (async function (taskId, participantId) {
+    return await TaskToParticipant.destroy(
+        {where: {task_id: taskID, participant_id: participantId}})
 });
 
 exports.taskToMark = (async function (body) {
     return await TaskMark.create(body);
 });
 
-exports.deleteTaskToMark = (async function (body) {
-    return TaskMark.destroy(
-        {where: {task_id: body.task_id, mark_id: body.mark_id}})
+exports.deleteTaskToMark = (async function (taskId, markId) {
+    return await TaskMark.destroy(
+        {where: {task_id: taskId, mark_id: markId}})
 });

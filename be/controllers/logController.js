@@ -15,7 +15,8 @@ exports.add = function (request, response) {
 exports.delete = function (request, response){
     LogService.delete(request.query.id)
         .then(function(){
-            response.sendStatus(200);
+            response.status(200);
+            response.send({message: 'ok'})
         })
         .catch(err =>  {
             console.log(err);
