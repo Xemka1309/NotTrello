@@ -19,37 +19,40 @@ import {BoardModule} from './modules/board/board.module';
 import {MarkModule} from './modules/mark/mark.module';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import {PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 
 import {APIInterceptor} from './interceptors/APIInterceptor';
 import {CanActivateLoginPagesService} from './services/security/can-activate-login-pages.service';
 import {CanActivateNotLoginPagesService} from './services/security/can-activate-not-login-pages.service';
 import {NavBarModule} from './modules/navigation/nav-bar.module';
 import {BoardPageComponent} from './modules/pages/components/board/board-page.component';
-import { ProfileComponent } from './modules/pages/components/profile/profile-component';
+import {ProfileComponent} from './modules/pages/components/profile/profile-component';
 import {TaskModule} from './modules/task/task.module';
 import {ColumnModule} from './modules/column/column.module';
+import {BoardMenuComponent} from './modules/board/components/board-menu/board-menu.component';
+
+import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
+import {DirectiveModule} from './directives/directive.module';
+import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {BoardJoinComponent} from './modules/board/components/board-join/board-join.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollY: true
 };
-import {BoardMenuComponent } from './modules/board/components/board-menu/board-menu.component';
-
-import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
-import {DirectiveModule} from './directives/directive.module';
-const socketIoConfig: SocketIoConfig = { url: 'http://localhost:8000', options: { forceNew : true} };
+const socketIoConfig: SocketIoConfig = {url: 'http://localhost:8000', options: {forceNew: true}};
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [CanActivateLoginPagesService]},
-  { path: 'board/:id', component: BoardPageComponent, canActivate: [CanActivateLoginPagesService]},
-  { path: 'reg', component: RegFormComponent, canActivate: [CanActivateNotLoginPagesService]},
-  { path: 'login', component: LogInFormComponent, canActivate: [CanActivateNotLoginPagesService]},
-  { path: 'profile', component: ProfileComponent, canActivate: [CanActivateLoginPagesService]},
-  { path: 'board/menu/:id', component: BoardMenuComponent, canActivate: [CanActivateLoginPagesService]},
-  { path: '**', component: HomeComponent}
+  {path: '', component: HomeComponent, canActivate: [CanActivateLoginPagesService]},
+  {path: 'board/:id', component: BoardPageComponent, canActivate: [CanActivateLoginPagesService]},
+  {path: 'reg', component: RegFormComponent, canActivate: [CanActivateNotLoginPagesService]},
+  {path: 'login', component: LogInFormComponent, canActivate: [CanActivateNotLoginPagesService]},
+  {path: 'profile', component: ProfileComponent, canActivate: [CanActivateLoginPagesService]},
+  {path: 'board/join/:str', component: BoardJoinComponent, canActivate: [CanActivateLoginPagesService]},
+  {path: 'board/menu/:id', component: BoardMenuComponent, canActivate: [CanActivateLoginPagesService]},
+  {path: '**', component: HomeComponent}
 ];
+
 @NgModule({
   declarations: [
     AppComponent
@@ -72,6 +75,7 @@ const appRoutes: Routes = [
     MarkModule,
     BoardModule,
     BrowserAnimationsModule,
+    NgbPopoverModule,
     NavBarModule,
     RouterModule.forRoot(appRoutes),
     SocketIoModule.forRoot(socketIoConfig),
@@ -86,8 +90,8 @@ const appRoutes: Routes = [
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     }
   ],
-  exports: [
-  ],
+  exports: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

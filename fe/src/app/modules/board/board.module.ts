@@ -16,10 +16,18 @@ import {ColumnModule} from '../column/column.module';
 import { BoardMenuComponent } from './components/board-menu/board-menu.component';
 import {MarkModule} from '../mark/mark.module';
 import {NavBarModule} from '../navigation/nav-bar.module';
-import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {BoardJoinComponent} from './components/board-join/board-join.component';
 
 @NgModule({
-  declarations: [BoardsConstructorComponent, BoardsConstructorDialog, BoardsListComponent, BoardDisplayerComponent, BoardMenuComponent],
+  declarations: [
+    BoardsConstructorComponent,
+    BoardsConstructorDialog,
+    BoardsListComponent,
+    BoardDisplayerComponent,
+    BoardMenuComponent,
+    BoardJoinComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -35,14 +43,16 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
     NgbDropdownModule,
     ColumnModule,
     MarkModule,
-    NavBarModule
+    NavBarModule,
+    NgbPopoverModule
   ],
   entryComponents: [BoardsConstructorDialog],
   exports: [
     BoardsConstructorComponent,
     BoardDisplayerComponent,
     BoardsListComponent,
-    BoardMenuComponent
+    BoardMenuComponent,
+    BoardJoinComponent
   ],
   providers: [],
 })

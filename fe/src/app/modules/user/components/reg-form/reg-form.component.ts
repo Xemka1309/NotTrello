@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { User } from '../../models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import {Router} from '@angular/router';
+import {SnackBarService} from '../../../../services/snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-reg-form',
@@ -13,7 +14,8 @@ export class RegFormComponent implements OnInit {
   public regForm: FormGroup;
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private snack: SnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +49,8 @@ export class RegFormComponent implements OnInit {
     this.userService.registerUser(user).subscribe((result) => {
       console.log(result);
       if (result.status === 200) {
-        alert(`Registration ok, user login:${user.login} `);
+        this.snack.openSnackBar(`Регистрация прошла успешна! Логин: ${user.login} `);
+        this.router.navigate(['/login']);
       }
     }, error => console.log(error));
   }

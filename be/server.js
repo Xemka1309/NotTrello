@@ -16,7 +16,6 @@ app.set('jwt-secret', config.secret);
 const jsonParser = bodyParser.json();
 
 const DBInitInsert = require("./dbInitInserts");
-const homeRouter = require("./routes/homeRoute");
 const userRouter = require("./routes/userRoute");
 const boardRouter = require("./routes/boardRoute");
 const participantRouter = require("./routes/participantRoute");
@@ -28,6 +27,7 @@ const markRouter = require("./routes/markRoute");
 const commentRouter = require("./routes/commentRoute");
 const logRouter = require("./routes/logRoute");
 const regAndAuthRouter = require("./routes/regAndAuthRoute");
+const boardJoinRouter = require("./routes/boardJoinRoute");
 
 const security = require('./services/auth');
 const errorThrower = require("./errorResponseGenerator");
@@ -35,10 +35,10 @@ const errorThrower = require("./errorResponseGenerator");
 app.use("/api/user", jsonParser, regAndAuthRouter);
 app.use("/", security.auth);
 app.use("/api/user", jsonParser, userRouter);
-app.use("/api", homeRouter);
 app.use("/api/board", jsonParser, boardRouter);
 app.use("/api/partic", jsonParser, participantRouter);
 app.use("/api/column", jsonParser, columnRouter);
+app.use("/api/join", jsonParser, boardJoinRouter);
 app.use("/api/task", jsonParser, taskRouter);
 app.use("/api/checklist", jsonParser, checkListRouter);
 app.use("/api/clitem", jsonParser, clItemRouter);

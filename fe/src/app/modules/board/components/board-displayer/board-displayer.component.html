@@ -3,14 +3,14 @@
   <div class="menu-row-container">
     <div class="menu-item-container">
       <div class="menu-item title">
-        Приветики малышки
+        {{boardModel.title}}
       </div>
 
       <div class="menu-item custom-button">
         {{boardModel.boardType}}
       </div>
 
-      <div class="menu-item custom-button">
+      <div class="menu-item custom-button" placement="bottom" [ngbPopover]="generateAccessRef">
         Пригласить
       </div>
 

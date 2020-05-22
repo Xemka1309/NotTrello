@@ -40,7 +40,7 @@ exports.edit = function (request, response){
 };
 
 // Body contains id
-exports.delete = function (request, response){
+exports.delete = function (request, response) {
     ParticipantService.delete(request.query.id)
         .then(function() {
             response.sendStatus(200);

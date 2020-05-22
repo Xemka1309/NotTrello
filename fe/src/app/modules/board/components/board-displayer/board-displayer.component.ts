@@ -6,6 +6,7 @@ import {ColumnService} from '../../../../services/column/columnService';
 import {TaskService} from '../../../../services/task/taskService';
 import {Column} from '../../../../models/column';
 import { Socket } from 'ngx-socket-io';
+import {Md5} from 'ts-md5';
 
 @Component({
   selector: 'app-board-displayer',
@@ -17,7 +18,8 @@ export class BoardDisplayerComponent implements OnInit {
   boardId: string;
   boardModel: Board = null;
   private pickerStyle = '/assets/icons/move-picker.svg';
-  menuVisible: string = 'hidden';
+  menuVisible = 'hidden';
+  private md5 = new Md5();
 
   constructor(private boardService: BoardService,
               private columnService: ColumnService,
@@ -109,7 +111,7 @@ export class BoardDisplayerComponent implements OnInit {
     });
   }
 
-  public taskMoved(event){
+  public taskMoved(event) {
     const taskId = event as number;
     this.sendBoardChanges();
   }
@@ -129,5 +131,11 @@ export class BoardDisplayerComponent implements OnInit {
 
   get backgroundImage() {
     return {'background-image': 'url(' + this.boardModel.pictureUrl + ')'};
+  }
+
+  get generateAccessRef() {
+    const md5 = new Md5();
+    const str = md5.appendStr(this.boardModel.id.toString()).end();
+    return 'Ссылка для приглашения вами других челов: http://localhost:4200/board/join/' + str;
   }
 }

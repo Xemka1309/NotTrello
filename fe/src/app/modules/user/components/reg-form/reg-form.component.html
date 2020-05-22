@@ -6,12 +6,12 @@
     <div class="form-box">
       <form [formGroup]="regForm" class="example-form">
         <h3>Регистрация в Not Trello</h3>
-        <input matInput placeholder="name" formControlName="имя">
-        <input matInput placeholder="family" formControlName="фамилия">
-        <input required matInput placeholder="login" formControlName="логин">
-        <input required matInput placeholder="password" formControlName="пароль">
-        <input required matInput placeholder="nickname" formControlName="никнейм">
-        <input required matInput placeholder="email" formControlName="email">
+        <input matInput placeholder="имя" formControlName="name">
+        <input matInput placeholder="фамилия" formControlName="family">
+        <input required matInput placeholder="логин" formControlName="login">
+        <input required matInput placeholder="пароль" formControlName="password">
+        <input required matInput placeholder="никнейм" formControlName="nickname">
+        <input required matInput placeholder="емейл" formControlName="email">
         <button [disabled]="!regForm.valid" (click)="submit()" class="btn btn-info btn-block login"
           type="submit">Зарегистрироваться</button>
         <button (click)="goToLogIn()" class="btn btn-info btn-block login">Вход в систему</button>
