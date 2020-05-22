@@ -29,11 +29,23 @@
         <button class="close" (click)="hideMenu(true)"><mat-icon>close</mat-icon></button>
       </div>
       <hr>
-      <div class="info-field">
-        Название: {{boardModel.title}}
-      </div>
-      <div class="info-field">
-        Описание: {{boardModel.description}}
+      <form [formGroup]="updateBoardForm">
+        <label class="input-label">Название
+          <input class="form-control mr-sm-2 name-input" required formControlName="title" name="title" type="text" [value]="boardModel.title">
+        </label>
+        <label class="input-label">Описание
+          <input class="form-control mr-sm-2 name-input" formControlName="desc" name="desc" type="text" [value]="boardModel.description">
+        </label>
+        <div mat-footer-row="">
+          <button type="submit" (click)="updateBoard()" class="btn btn-outline-success my-2 my-sm-0" style="margin-top: 15px;">Сохранить</button>
+        </div>
+      </form>
+      <p><strong>Участники</strong></p>
+      <div mat-row *ngFor="let user of userList">
+        <div mat-row><h5>
+          <img class="icon" [src]="user.icon">
+          {{user.nickname}}</h5></div>
+        <div mat-row>{{user.name}} {{user.family}}</div>
       </div>
     </div>
     <div *ngSwitchCase="'Сменить фон'">

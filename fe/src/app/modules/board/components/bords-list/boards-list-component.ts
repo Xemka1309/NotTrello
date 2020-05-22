@@ -51,6 +51,7 @@ export class BoardsListComponent implements OnInit {
   public displayPublic(): void {
     this.displayedBoards = [];
     this.boards.forEach(board => {
+      console.log(board);
       if(board.boardType === 'PUBLIC'){
         this.displayedBoards.push(board);
       }

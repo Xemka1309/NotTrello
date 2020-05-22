@@ -3,6 +3,9 @@ import {BoardService} from '../../../../services/board/boardService';
 import {ActivatedRoute} from '@angular/router';
 import {Board} from '../../../../models/board';
 import {Mark} from '../../../../models/mark';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Participant} from '../../../../models/participant';
+import {UserService} from '../../../../services/user/user.service';
 
 @Component({
   selector: 'app-board-menu',
@@ -13,17 +16,23 @@ export class BoardMenuComponent implements OnInit {
   private boardId: string;
   private boardModel: Board;
   private markList: Mark[] = [];
-  @Input() menuVisible:string;
-  @Output() isClosed = new EventEmitter<Boolean>();
-  @Output() picChanged = new EventEmitter<Boolean>();
+  private particList: Participant[] = [];
+  private userList = [];
+  @Input() menuVisible: string;
+  @Output() isClosed = new EventEmitter<boolean>();
+  @Output() picChanged = new EventEmitter<boolean>();
   private isCreator: boolean;
   private creatorVisible = 'hidden';
-  private markId: number = 0;
+  private markId = 0;
   private menuState = 'Меню';
   private bgList: string[] = [];
+  public updateBoardForm: FormGroup;
+  private iconSrc = {};
 
   constructor(private activatedRoute: ActivatedRoute,
-              private boardService: BoardService) {
+              private boardService: BoardService,
+              private userService: UserService) {
+    console.log(this.activatedRoute.snapshot.params);
     this.boardId = this.activatedRoute.snapshot.params.id;
   }
 
@@ -31,6 +40,24 @@ export class BoardMenuComponent implements OnInit {
     this.boardService.getBoardById(this.boardId).subscribe(value => {
       this.boardModel = value;
       this.markList = this.boardModel.marks;
+      this.particList = this.boardModel.participants;
+      this.particList.forEach(partic => {
+        if(partic.role === 'ADMINISTRATOR'){
+          this.iconSrc = '/assets/icons/admin.svg';
+        } else if(partic.role === 'SENIOR'){
+          this.iconSrc = '/assets/icons/senior.svg';
+        } else if(partic.role === 'DEVELOPER'){
+          this.iconSrc = '/assets/icons/developer.svg';
+        }
+        const iconObject = {icon: this.iconSrc};
+        this.userService.getUserById(partic.user_id.toString()).subscribe(result => {
+          this.userList.push(Object.assign({},result,iconObject))
+        })
+      });
+    });
+    this.updateBoardForm = new FormGroup({
+      title: new FormControl(),
+      desc: new FormControl
     });
     this.bgList.push('assets/pictures/bg1.jpg');
     this.bgList.push('assets/pictures/bg2.jpg');
@@ -45,7 +72,6 @@ export class BoardMenuComponent implements OnInit {
   }
 
   bgClick(): void {
-
     this.menuState = 'Сменить фон';
   }
 
@@ -102,5 +128,13 @@ export class BoardMenuComponent implements OnInit {
         this.markList.splice(index,1);
       }
     }
+  }
+
+  updateBoard() {
+    this.boardModel.title = this.updateBoardForm.controls.title.value;
+    this.boardModel.description = this.updateBoardForm.controls.desc.value;
+    this.boardService.updateBoard(this.boardModel).subscribe(result => {
+      console.log(result);
+    });
   }
 }

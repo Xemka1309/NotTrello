@@ -83,7 +83,7 @@ exports.getBoards = (async function (userId) {
     });
     return boards.map(function(board){
         let boardData = board.dataValues;
-        boardData.boardType = types.find(element => element.id = board.type_id).type;
+        boardData.boardType = types.find(element => element.id === boardData.type_id).type;
         delete boardData.type_id;
         return boardData;
     })
@@ -100,7 +100,7 @@ exports.getBoard = (async function (board_id) {
         attributes: ['id','type'],
     });
     let boardData = board.dataValues;
-    boardData.boardType = types.find(element => element.id = board.type_id).type;
+    boardData.boardType = types.find(element => element.id === board.type_id).type;
     delete boardData.type_id;
     boardData.participants = await ParticipantService.getByBoardId(boardData.id);
     boardData.marks = await MarkService.getByBoardId(boardData.id);
