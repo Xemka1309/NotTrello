@@ -10,6 +10,7 @@ import {Mark} from '../../models/mark';
 export class MarkService {
   private baseUrl = '/api/mark';
   private getMarkByIdUrl = `${this.baseUrl}/get`;
+  private getMarksByBoardIdUrl = `${this.baseUrl}/getByBoardId`;
   private createMarkUrl = `${this.baseUrl}/add`;
   private updateMarkUrl = `${this.baseUrl}/edit`;
   private deleteMarkUrl = `${this.baseUrl}/delete`;
@@ -50,5 +51,13 @@ export class MarkService {
     });
 
     return this.http.get<Mark>(this.getMarkByIdUrl, {params});
+  }
+
+  public getMarksByBoardId(id: string): Observable<Mark[]> {
+    const params = new HttpParams({
+      fromObject: {id}
+    });
+
+    return this.http.get<Mark[]>(this.getMarksByBoardIdUrl, {params});
   }
 }
