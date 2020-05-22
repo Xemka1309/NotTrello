@@ -12,8 +12,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class CommentsDisplayerComponent implements OnInit {
   public commentForm: FormGroup;
-  //@Input()
-  task_id: number = 1;
+  @Input()
+  task_id: string;
   commentsList: Comment[] = [];
   commentsWithUsers = [];
   currentUser: User = new User();
@@ -26,7 +26,7 @@ export class CommentsDisplayerComponent implements OnInit {
     this.commentForm = new FormGroup({
       content: new FormControl()
     });
-    this.commentService.getCommentsByTaskId(this.task_id.toString()).subscribe(result => {
+    this.commentService.getCommentsByTaskId(this.task_id).subscribe(result => {
       this.commentsList = result;
       this.commentsList.forEach(comment => {
         const date: Date = new Date(comment.create_time);
@@ -46,12 +46,14 @@ export class CommentsDisplayerComponent implements OnInit {
     comment.content = this.commentForm.controls.content.value;
     const today = new Date();
     comment.create_time = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    comment.task_id = this.task_id;
+    comment.task_id = Number.parseInt(this.task_id);
     comment.user_id = this.currentUser.id;
     this.commentService.createComment(comment).subscribe(result => {
       console.log(result);
       if (result.status === 200) {
-        const commentWithUser = Object.assign({},comment,this.currentUser);
+        const date: Date = new Date(comment.create_time);
+        const dateStrObject = {dateStr: date.toLocaleDateString('ru-RU',this.options)};
+        const commentWithUser = Object.assign({},comment,this.currentUser, dateStrObject);
         console.log(commentWithUser);
         this.commentsWithUsers.push(commentWithUser);
       }

@@ -4,6 +4,7 @@
 }
 
 .comment-form {
+  width: 85%;
   padding: 10px;
   border: 1px solid silver;
   border-radius: 10px;
@@ -22,21 +23,24 @@
 
 .container-fluid {
   padding: 5px;
+  display: inline-block;
 }
 
 .content {
-  width: fit-content;
+  width: 100%;
   height: fit-content;
   padding: 5px;
-  display: flex;
 }
 
 .comments {
-  padding: 20px;
+  padding-top: 20px;
+  display: inline-block;
 }
 
 .border {
-  width: 100%;
+  width: 85%;
   border: 1px solid silver;
   border-radius: 7px;
+  display: inline-block;
+  padding: 5px;
 }

@@ -11,6 +11,7 @@ export class TaskService {
   private baseUrl = '/api/task';
   private getTaskUrl = `${this.baseUrl}/get`;
   private addTaskUrl = `${this.baseUrl}/add`;
+  private addTaskArrayUrl = `${this.baseUrl}/addArray`;
   private editTaskUrl = `${this.baseUrl}/edit`;
   private deleteTaskUrl = `${this.baseUrl}/delete`;
   private addMarkToTaskUrl = `${this.baseUrl}/tomark/add`;
@@ -60,7 +61,7 @@ export class TaskService {
     return this.http.put(this.editTaskUrl, taskToUpdate, {observe: 'response'});
   }
 
-  /*public addChecklistToTask(): Observable<any> {
-
-  }*/
+  public addTaskArray(tasks: Task[]): Observable<any>{
+    return this.http.post<Task[]>(this.addTaskArrayUrl, tasks,{observe: 'response'})
+  }
 }

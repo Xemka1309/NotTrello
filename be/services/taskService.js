@@ -19,6 +19,21 @@ exports.add = (async function(body){
     return await Task.create(body);
 });
 
+exports.addArray = (async function(body){
+    body = body.map(async task => {
+        const priority = await TaskPriority.findOne({
+            attributes: ['id'],
+            where: {
+                priority: task.priority
+            }
+        });
+        task.task_priority_id = priority.id;
+        delete task.priority;
+        return task;
+    });
+    return await Task.bulkCreate(body, {returning: true});
+});
+
 exports.edit = (async function (body) {
     return await Task.update(
       body,

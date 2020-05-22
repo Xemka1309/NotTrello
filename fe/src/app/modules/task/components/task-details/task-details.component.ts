@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Task} from '../../../../models/task';
 import {DialogModel} from '../task-simple/task-simple.component';
+import {TaskService} from '../../../../services/task/taskService';
 import {Mark} from '../../../../models/mark';
 
 @Component({
@@ -17,11 +18,19 @@ export class TaskDetailsComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TaskDetailsComponent>,
+    private taskService: TaskService,
     @Inject(MAT_DIALOG_DATA) public data: DialogModel) {}
 
   ngOnInit(): void {
     this.dialogRef.disableClose = true;
     this.newTaskModel = this.data.task;
+
+    const tasks: Task[] = [];
+    tasks.push({title:'test'});
+    tasks.push(new Task());
+    this.taskService.addTaskArray(tasks).subscribe(result => {
+      console.log(result);
+    });
 
     this.dialogRef.beforeClosed().subscribe(result => {
       this.closeThis();
