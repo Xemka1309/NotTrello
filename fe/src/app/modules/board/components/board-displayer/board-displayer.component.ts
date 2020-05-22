@@ -72,16 +72,27 @@ export class BoardDisplayerComponent implements OnInit {
     });
   }
 
-  private rePosition(){
-    let ind = 1;
-    for (const col of this.boardModel.columns) {
+  private rePosition() {
+    let ind = 0;
+    for (let col of this.boardModel.columns) {
       col.position = ind++;
+      let j = 0;
+      for (let task of col.tasks) {
+        task.position = j++;
+      }
     }
+
     this.boardModel.columns.forEach(element => {
       this.columnService.updateColumn(element).subscribe(r => {
         let a = r;
-      })
+      });
+      element.tasks.forEach(t => {
+        this.taskService.updateTask(t).subscribe(t => {
+          let a = '';
+        });
+      });
     });
+
   }
 
   private createDic() {
@@ -163,6 +174,7 @@ export class BoardDisplayerComponent implements OnInit {
       this.boardModel.columns.push(value);
       this.sendBoardChanges();
     });
+    this.rePosition();
   }
 
   // tslint:disable-next-line:variable-name
@@ -178,13 +190,14 @@ export class BoardDisplayerComponent implements OnInit {
       console.log(response);
       this.taskService.addMarkToTask(this.boardModel.marks[0].id.toString(), this.boardModel.columns[0].tasks[0].id).subscribe(r => {
         let a = 2;
-      })
+      });
+      this.rePosition();
       this.sendBoardChanges();
     });
   }
 
   public taskMoved(event) {
-    const taskId = event as number;
+    this.rePosition();
     this.sendBoardChanges();
   }
 
@@ -194,6 +207,7 @@ export class BoardDisplayerComponent implements OnInit {
       this.snack.openLongSnackBar('Удалили столбец...');
     });
     this.boardModel.columns.splice(this.boardModel.columns.findIndex(c => c.id == event as number), 1);
+    this.rePosition();
     this.sendBoardChanges();
   }
 
