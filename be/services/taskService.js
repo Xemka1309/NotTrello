@@ -93,7 +93,7 @@ exports.getByColumn = (async function (columnId) {
                 task_id: task.id
             }
         });
-        taskFields.mark_ids = taskFields.mark_ids.map(x => x.mark_id);
+        taskFields.marks_ids = taskFields.mark_ids.map(x => x.mark_id);
         return taskFields;
     })
     )

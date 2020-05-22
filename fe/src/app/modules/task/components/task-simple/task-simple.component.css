@@ -34,6 +34,20 @@
   width: inherit;
 }
 
+.mark-item{
+  display: inline-block;
+  border-width: 0.1em;
+  border-style: solid;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.mark-text{
+  color:white;
+}
+
 .priority-text{
   padding-top: 10px;
   font-size: 15px;

@@ -5,6 +5,7 @@ import {DragDropService} from '../../../../services/drag-drop/drag-drop.service'
 import {Task} from 'src/app/models/task';
 import {ColumnService} from 'src/app/services/column/columnService';
 import {TaskService} from '../../../../services/task/taskService';
+import { Mark } from 'src/app/models/mark';
 
 @Component({
   selector: 'app-column-on-board',
@@ -16,6 +17,10 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
   @Input()
   @Output()
   columnModel: Column;
+
+  @Input()
+  boardMarks: Mark[];
+
 
   @Output()
   deleteEvent = new EventEmitter();
@@ -55,9 +60,7 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
       return;
     }
     const movedTask = event.previousContainer.data[event.previousIndex] as Task;
-    console.log(movedTask.column_id);
     movedTask.column_id = this.columnModel.id;
-    console.log(movedTask.column_id);
     this.columnService.taskMoved(event.previousIndex, event.currentIndex, movedTask);
     if (event.previousContainer === event.container) {
       moveItemInArray(this.columnModel.tasks, event.previousIndex, event.currentIndex);

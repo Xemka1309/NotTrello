@@ -41,7 +41,6 @@ export class ColumnService {
   public taskMoved(prevPos: number, currentPos: number, task: Task) {
     task.position = currentPos;
     this.updateTask(task).subscribe(r => {
-      console.log("sender put task");
     });
   }
 

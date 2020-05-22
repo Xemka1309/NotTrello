@@ -11,6 +11,17 @@ import {Md5} from 'ts-md5';
 import {ParticipantService} from '../../../../services/participant/participant.service';
 import {Router} from '@angular/router';
 import {SnackBarService} from '../../../../services/snack-bar/snack-bar.service';
+import { Mark } from 'src/app/models/mark';
+
+
+export interface ColAssign {
+  colId: number;
+  containerId: number;
+}
+export interface ItemAssign {
+  index: number;
+  position: number;
+}
 
 @Component({
   selector: 'app-board-displayer',
@@ -22,6 +33,8 @@ export class BoardDisplayerComponent implements OnInit {
   boardId: string;
   boardModel: Board = null;
   participantRole: String = '';
+  private posDictionary: ItemAssign[];
+  private colDictionary: ColAssign[];
   private pickerStyle = '/assets/icons/move-picker.svg';
   menuVisible = 'hidden';
   private md5 = new Md5();
@@ -45,6 +58,7 @@ export class BoardDisplayerComponent implements OnInit {
           t.column_id = col.id;
         });
       });
+      this.rePosition();
       this.boardService.getConcretePartic(this.boardId).subscribe(
         result => {
           this.participantRole = result.user_role;
@@ -56,6 +70,29 @@ export class BoardDisplayerComponent implements OnInit {
         });
       this.listenChanges();
     });
+  }
+
+  private rePosition(){
+    let ind = 1;
+    for (const col of this.boardModel.columns) {
+      col.position = ind++;
+    }
+    this.boardModel.columns.forEach(element => {
+      this.columnService.updateColumn(element).subscribe(r => {
+        let a = r;
+      })
+    });
+  }
+
+  private createDic() {
+    let i = 0;
+    for (const col of this.boardModel.columns) {
+      this.colDictionary.push({
+        colId: col.id,
+        containerId: i
+      });
+    }
+    i = 0;
   }
 
   private listenChanges() {
@@ -90,6 +127,13 @@ export class BoardDisplayerComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any>) {
+    if (event.previousContainer === event.container
+      && event.previousIndex === event.currentIndex)
+    {
+      return;
+    }
+    let first  = event.previousContainer.data[event.previousIndex] as Column;
+    let second = event.previousContainer.data[event.currentIndex] as Column;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -98,6 +142,15 @@ export class BoardDisplayerComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+    const buff = first.position;
+    first.position = second.position;
+    second.position = buff;
+    this.columnService.updateColumn(first).subscribe(r => {
+      this.columnService.updateColumn(second).subscribe(r => {
+        this.sendBoardChanges();
+      });
+    });
+    this.rePosition();
   }
 
   addColumn() {

@@ -10,7 +10,7 @@
   [cdkDropListConnectedTo]="columnsConnectedTo"
   [cdkDropListData]="columnModel.tasks">
   <div class="task-box" *ngFor="let task of columnModel.tasks ; let i = index" cdkDrag>
-    <app-task-simple class="w-100" [taskModel]="task"></app-task-simple>
+    <app-task-simple class="w-100" [marks]="this.boardMarks" [taskModel]="task"></app-task-simple>
   </div>
 </div>
 <div class="column-add-task" (click)="createTask()">

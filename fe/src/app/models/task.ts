@@ -14,4 +14,5 @@ export class Task {
   checkLists?: CheckList[];
   marks?: Mark[];
   pos?: string;
+  marks_ids?: number[];
 }

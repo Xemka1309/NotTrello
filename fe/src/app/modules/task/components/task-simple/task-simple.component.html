@@ -26,6 +26,12 @@
       Хуй знает какая
   </p>
   </span>
+
+  <div *ngFor="let item of this.taskModel.marks" class="mark-container">
+    <div [style.background-color]="item.color" class="mark-item">
+      <span class="mark-text">{{item.content}}</span>
+    </div>
+  </div>
   <img [src]="penStyle" class="button-task-details" (click)="openDetails()">
 </div>
 

@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {TaskDetailsComponent} from '../task-details/task-details.component';
 import {Socket} from 'ngx-socket-io';
 import {TaskService} from '../../../../services/task/taskService';
+import { Mark } from 'src/app/models/mark';
 
 @Component({
   selector: 'app-task-simple',
@@ -14,6 +15,9 @@ export class TaskSimpleComponent implements OnInit {
   @Input()
   @Output()
   taskModel: Task;
+
+  @Input()
+  marks: Mark[];
   private penStyle = '/assets/icons/pen.svg';
   private priority1 = '/assets/icons/priority1.svg';
   private priority2 = '/assets/icons/priority2.svg';
@@ -26,6 +30,13 @@ export class TaskSimpleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.taskModel.marks = [];
+    this.marks.forEach(mark => {
+      if (this.taskModel.marks_ids.findIndex(m => m === mark.id) !== -1) {
+        this.taskModel.marks.push(mark);
+      }
+    });
+
   }
 
   openDetails() {
