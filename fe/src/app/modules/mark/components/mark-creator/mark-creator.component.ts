@@ -15,10 +15,10 @@ export class MarkCreatorComponent implements OnInit {
   @Input() isCreator: boolean;
   @Input() visible: string;
   @Input() markId: number;
-  @Output() creatorIsClosed = new EventEmitter<Boolean>();
+  @Output() creatorIsClosed = new EventEmitter<boolean>();
   @Output() markCreated = new EventEmitter<Mark>();
   @Output() markUpdated = new EventEmitter<Mark>();
-  @Output() markDeleted = new EventEmitter<Number>();
+  @Output() markDeleted = new EventEmitter<number>();
   private colorList1: string[] = [];
   private colorList2: string[] = [];
   private buttonColor = '#008000';
@@ -100,7 +100,7 @@ export class MarkCreatorComponent implements OnInit {
 
   deleteMark(): void {
     this.markService.deleteMark(this.markId).subscribe(result => {
-      console.log(result)
+      console.log(result);
       if (result.status === 200) {
         console.log(this.markId);
         this.markDeleted.emit(this.markId);

@@ -29,9 +29,9 @@ export class MarkService {
     if (!mark) {
       return;
     }
-    return this.http.put<Mark>(this.updateMarkUrl, mark,{
+    return this.http.put<Mark>(this.updateMarkUrl, mark, {
       observe: 'response'
-    })
+    });
   }
 
   public deleteMark(markId): Observable<any> {
@@ -41,7 +41,7 @@ export class MarkService {
     const params = new HttpParams({
       fromObject: { id: markId }
     });
-    return this.http.delete(this.deleteMarkUrl, {params, observe:'response'});
+    return this.http.delete(this.deleteMarkUrl, {params, observe: 'response'});
   }
 
   public getMarkById(id: string): Observable<Mark> {
