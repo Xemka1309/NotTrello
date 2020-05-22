@@ -9,6 +9,10 @@
         <button (click)="displayPublic()" ngbDropdownItem>Публичные</button>
       </div>
     </div>
+    <div class="col-md-auto">
+      <app-boards-constructor>
+      </app-boards-constructor>
+    </div>
   </div>
   <div class="card-body">
     <div *ngFor="let item of this.displayedBoards" class="card board" style="width: 30%; height:350px">
