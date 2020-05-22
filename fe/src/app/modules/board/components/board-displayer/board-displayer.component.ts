@@ -123,7 +123,9 @@ export class BoardDisplayerComponent implements OnInit {
     };
     this.taskService.addTask(body).subscribe(response => {
       console.log(response);
-      this.taskService.addMarkToTask(this.boardModel.marks[0].id.toString(), this.boardModel.columns[0].tasks[0].id)
+      this.taskService.addMarkToTask(this.boardModel.marks[0].id.toString(), this.boardModel.columns[0].tasks[0].id).subscribe(r => {
+        let a = 2;
+      })
       this.sendBoardChanges();
     });
   }
