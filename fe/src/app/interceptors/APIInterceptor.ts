@@ -29,7 +29,7 @@ export class APIInterceptor implements HttpInterceptor {
         'x-access-token': token
       } : null)
     });
-    return next.handle(authReq).pipe(tap(evt => console.log(evt), error => {
+    return next.handle(authReq).pipe(tap(evt => evt.type, error => {
       console.log(error);
       if (error instanceof HttpErrorResponse && 403 === error.status) {
         this.storage.clearToken();

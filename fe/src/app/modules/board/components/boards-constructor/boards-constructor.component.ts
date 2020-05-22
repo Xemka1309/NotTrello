@@ -9,6 +9,7 @@ export interface BoardsConstructorDialogData {
   description: string;
   bordType: string;
   bordTypes: string[];
+  pictureUrl: string;
 }
 
 @Component({
@@ -34,7 +35,12 @@ export class BoardsConstructorComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(BoardsConstructorDialog, {
       width: '600px',
-      data: { bordTypes: this.bordTypes, title: this.title, description: this.description, bordType: this.bordType, pictureUrl: this.pictureUrl }
+      data: {
+        bordTypes: this.bordTypes,
+        title: this.title,
+        description: this.description,
+        bordType: this.bordType,
+        pictureUrl: this.pictureUrl }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -48,6 +54,7 @@ export class BoardsConstructorComponent implements OnInit {
       } as Board;
       this.bordService.createBoard(board).subscribe(response => {
         console.log('response');
+        window.location.reload();
         console.log(response);
       });
 
@@ -75,7 +82,8 @@ export class BoardsConstructorDialog implements OnInit {
     this.form = new FormGroup({
       title: new FormControl(),
       description: new FormControl(),
-      bordType: new FormControl()
+      bordType: new FormControl(),
+      pictureUrl: new FormControl()
     });
     this.bordService.getBoardTypes().subscribe((result) => {
       this.bordTypes = result;
