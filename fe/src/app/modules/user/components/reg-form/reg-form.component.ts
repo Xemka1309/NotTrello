@@ -49,7 +49,7 @@ export class RegFormComponent implements OnInit {
     this.userService.registerUser(user).subscribe((result) => {
       console.log(result);
       if (result.status === 200) {
-        this.snack.openSnackBar(`Регистрация прошла успешна! Логин: ${user.login} `);
+        this.snack.openSnackBar(`Регистрация прошла успешно! Логин: ${user.login} `);
         this.router.navigate(['/login']);
       }
     }, error => console.log(error));

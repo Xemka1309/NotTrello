@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/modules/user/models/user';
 import {FormControl, FormGroup} from "@angular/forms";
+import {SnackBarService} from '../../../../services/snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class ProfileComponent implements OnInit {
   user: User;
   public userForm: FormGroup;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private snack: SnackBarService,) { }
 
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe(result => {
@@ -43,7 +45,7 @@ export class ProfileComponent implements OnInit {
     this.userService.editUser(this.user).subscribe((result) => {
       console.log(result);
       if (result.status === 200) {
-        alert(`Profile data successfully updated`);
+        this.snack.openLongSnackBar('Данные профиля обновлены!');
       }
     }, error => console.log(error));
   }
