@@ -24,7 +24,6 @@ export class BoardMenuComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private boardService: BoardService) {
-    console.log(this.activatedRoute.snapshot.params);
     this.boardId = this.activatedRoute.snapshot.params.id;
   }
 

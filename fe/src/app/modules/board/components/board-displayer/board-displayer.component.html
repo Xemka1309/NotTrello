@@ -1,6 +1,6 @@
 <div class="custom-list" [ngStyle]="backgroundImage">
   <app-nav-bar></app-nav-bar>
-  <div class="menu-row-container">
+  <div *ngIf="boardModel" class="menu-row-container">
     <div class="menu-item-container">
       <div class="menu-item title">
         {{boardModel.title}}
@@ -15,7 +15,7 @@
       </div>
 
     </div>
-    <div class="menu-item-container">
+    <div *ngIf="boardModel" class="menu-item-container">
       <div class="menu-item custom-button" (click)="showMenu()">
         <div class="inline">
           Меню
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <app-board-menu [menuVisible]="menuVisible" (picChanged) = "picChanged($event)" (isClosed)="isClosed($event)"></app-board-menu>
+  <app-board-menu *ngIf="boardModel" [menuVisible]="menuVisible" (picChanged) = "picChanged($event)" (isClosed)="isClosed($event)"></app-board-menu>
 
   <div
     *ngIf="boardModel"

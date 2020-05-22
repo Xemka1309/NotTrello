@@ -3,6 +3,7 @@ const seq = require("../dbConnection");
 
 const Task = require("./taskModel");
 const Mark = require("./markModel");
+
 const TaskMark = seq.define("task_mark", {
     id: {
         type: Sequelize.INTEGER,

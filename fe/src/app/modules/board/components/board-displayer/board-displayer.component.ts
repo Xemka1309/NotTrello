@@ -36,10 +36,9 @@ export class BoardDisplayerComponent implements OnInit {
               private socket: Socket) { }
 
   ngOnInit(): void {
-    console.log(this.boardId);
     this.boardService.getBoardById(this.boardId).subscribe(value => {
       this.boardModel = value;
-      console.log('board model');
+      console.log("Board model loaded");
       console.log(this.boardModel);
       this.boardModel.columns.forEach((col, i) => {
         col.tasks.forEach(t => {
@@ -50,12 +49,11 @@ export class BoardDisplayerComponent implements OnInit {
         result => {
           this.participantRole = result.user_role;
         }, error => {
-          if(this.boardModel.boardType === 'PRIVATE') {
+          if (this.boardModel.boardType === 'PRIVATE') {
             this.router.navigate(['/home']);
             this.snack.openLongSnackBar('Туда низя...');
           }
         });
-      console.log(this.boardModel);
       this.listenChanges();
     });
   }
@@ -121,10 +119,11 @@ export class BoardDisplayerComponent implements OnInit {
       title: 'Новая задачка',
       priority: 'HIGH',
       due_time: 14123123,
-      position: column.tasks.length
+      position: column.tasks.length,
     };
     this.taskService.addTask(body).subscribe(response => {
       console.log(response);
+      this.taskService.addMarkToTask(this.boardModel.marks[0].id.toString(), this.boardModel.columns[0].tasks[0].id)
       this.sendBoardChanges();
     });
   }
@@ -135,8 +134,11 @@ export class BoardDisplayerComponent implements OnInit {
   }
 
   public deleteColumn(event) {
-    console.log(event);
-    Board.deleteColumn(this.boardModel, event as number);
+    const colId = (event as number).toString();
+    this.columnService.deleteColumn(colId).subscribe(r => {
+      this.snack.openLongSnackBar('Удалили столбец...');
+    });
+    this.boardModel.columns.splice(this.boardModel.columns.findIndex(c => c.id == event as number), 1);
     this.sendBoardChanges();
   }
 
@@ -145,19 +147,28 @@ export class BoardDisplayerComponent implements OnInit {
   }
 
   picChanged(e){
+    if (!this.boardModel) {
+      return;
+    }
     this.boardService.getBoardById(this.boardModel.id.toString()).subscribe(r => {
       this.boardModel = r;
-    })
+    });
   }
   isClosed(closed: any) {
     closed ? this.menuVisible = 'hidden' : this.menuVisible = 'visible';
   }
 
   get backgroundImage() {
+    if (!this.boardModel) {
+      return;
+    }
     return {'background-image': 'url(' + this.boardModel.pictureUrl + ')'};
   }
 
   get generateAccessRef() {
+    if (!this.boardModel) {
+      return;
+    }
     const md5 = new Md5();
     const str = md5.appendStr(this.boardModel.id.toString()).end();
     return 'Ссылка для приглашения вами других челов: http://localhost:4200/board/join/' + str;

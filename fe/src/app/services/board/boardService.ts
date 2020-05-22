@@ -21,6 +21,7 @@ export class BoardService {
   }
 
   public createBoard(board: Board): Observable<any> {
+    board.pictureUrl = 'assets/pictures/bg1.jpg';
     if (board) {
       return this.http.post<Board>(this.createBordUrl, board, {
         observe: 'response'

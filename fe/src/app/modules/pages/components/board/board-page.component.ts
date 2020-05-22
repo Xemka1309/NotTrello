@@ -9,8 +9,6 @@ import {ActivatedRoute} from '@angular/router';
 export class BoardPageComponent implements OnInit {
   private boardId: string;
   constructor(private activatedRoute: ActivatedRoute) {
-    console.log(this.activatedRoute.snapshot.params);
-
     this.boardId = this.activatedRoute.snapshot.params.id;
   }
   ngOnInit(): void { }

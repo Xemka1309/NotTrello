@@ -28,9 +28,10 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    ColumnService.delete(request.query.id)
+    ColumnService.delete({id: request.query.id})
         .then(result => {
-            response.sendStatus(200);
+            response.status(200);
+            response.send({message:"ok"});
         })
         .catch(err =>  {
             console.log(err);

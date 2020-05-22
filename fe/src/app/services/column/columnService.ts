@@ -58,8 +58,8 @@ export class ColumnService {
     }
     return this.http.put<Column>(ApiUrlBuilder.getUrl(Models.column, Actions.edit), column);
   }
-  public deleteColumn(column: Column, id: string) {
-    if (!column || !id) {
+  public deleteColumn(id: string) {
+    if (!id) {
       return;
     }
     const params = new HttpParams({
