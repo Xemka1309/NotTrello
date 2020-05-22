@@ -13,7 +13,7 @@
           <div *ngIf="data.description">Изменить</div>
         </div>
 
-        <div *ngIf="data.description;else descr">
+        <div class="custom-inline-block">
           <div contentEditable="true" class="custom-inline-block">
             {{data.description}}
           </div>
@@ -38,13 +38,5 @@
     </div>
   </div>
 </mat-dialog-content>
-
-<ng-template #descr>
- <div contentEditableModel class="empty-description-div">
-   <div class="custom-inline-block cp-1">
-     Добавить более подробное описание...
-   </div>
- </div>
-</ng-template>
 
 

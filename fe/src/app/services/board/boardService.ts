@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Board} from '../../models/board';
 import {ColumnService} from '../column/columnService';
+import {Participant} from '../../models/participant';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class BoardService {
   private getBoardsUrl = `${this.baseUrl}/get/boards`;
   private createBordUrl = `${this.baseUrl}/add`;
   private getBoardByIdUrl = `${this.baseUrl}/get/board`;
+  private getParticIdAndUserRoleUrl = `${this.baseUrl}/get/particIdAndUserRole`;
 
   constructor(private http: HttpClient, private columnService: ColumnService) {
   }
@@ -54,13 +56,15 @@ export class BoardService {
     const params = new HttpParams({
       fromObject: {id}
     });
-    console.log(this.getBoardByIdUrl);
 
     return this.http.get<Board>(this.getBoardByIdUrl, {params});
   }
 
-  // send min role id admin - 1  senior - 2  dev - 3
-  public isActionAllowed(minRoleId: number, userId: number, ){
+  public getConcretePartic(board_id:string): Observable<any>{
+    const params = new HttpParams({
+      fromObject: {id: board_id},
+    });
 
+    return this.http.get<any>(this.getParticIdAndUserRoleUrl, {params});
   }
 }
