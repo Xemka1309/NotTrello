@@ -5,8 +5,12 @@ import {BoardService} from '../../../../services/board/boardService';
 import {ColumnService} from '../../../../services/column/columnService';
 import {TaskService} from '../../../../services/task/taskService';
 import {Column} from '../../../../models/column';
+import {UserService} from '../../../../services/user/user.service';
 import { Socket } from 'ngx-socket-io';
 import {Md5} from 'ts-md5';
+import {ParticipantService} from '../../../../services/participant/participant.service';
+import {Router} from '@angular/router';
+import {SnackBarService} from '../../../../services/snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-board-displayer',
@@ -17,6 +21,7 @@ export class BoardDisplayerComponent implements OnInit {
   @Input()
   boardId: string;
   boardModel: Board = null;
+  participantRole: String = '';
   private pickerStyle = '/assets/icons/move-picker.svg';
   menuVisible = 'hidden';
   private md5 = new Md5();
@@ -24,6 +29,10 @@ export class BoardDisplayerComponent implements OnInit {
   constructor(private boardService: BoardService,
               private columnService: ColumnService,
               private taskService: TaskService,
+              private userService: UserService,
+              private particService: ParticipantService,
+              private snack: SnackBarService,
+              private router: Router,
               private socket: Socket) { }
 
   ngOnInit(): void {
@@ -36,6 +45,15 @@ export class BoardDisplayerComponent implements OnInit {
         col.tasks.forEach(t => {
           t.column_id = col.id;
         });
+      });
+      this.boardService.getConcretePartic(this.boardId).subscribe(
+        result => {
+          this.participantRole = result.user_role;
+        }, error => {
+        if(this.boardModel.boardType === 'PRIVATE') {
+          this.router.navigate(['/home']);
+          this.snack.openLongSnackBar('Туда низя...');
+        }
       });
       console.log(this.boardModel);
       this.listenChanges();

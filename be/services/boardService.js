@@ -117,7 +117,7 @@ exports.getParticIdAndUserRole = (async function (user_id,board_id) {
             user_id: user_id
         }
     });
-    const userRole = ParticipantRole.findOne({
+    const userRole = await ParticipantRole.findOne({
         attributes: ['role'],
         where: {
             id:participant.role_id

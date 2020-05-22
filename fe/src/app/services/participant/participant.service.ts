@@ -10,6 +10,7 @@ import {Participant} from '../../models/participant';
 export class ParticipantService {
   private baseUrl = '/api/partic';
   private getParticByIdUrl = `${this.baseUrl}/get`;
+  private getParticsByUserIdUrl = `${this.baseUrl}/get`;
   private createParticUrl = `${this.baseUrl}/add`;
   private updateParticUrl = `${this.baseUrl}/edit`;
   private deleteParticUrl = `${this.baseUrl}/delete`;
@@ -50,5 +51,13 @@ export class ParticipantService {
     });
 
     return this.http.get<Participant>(this.getParticByIdUrl, {params});
+  }
+
+  public getParticsByUserId(id: string): Observable<Participant[]> {
+    const params = new HttpParams({
+      fromObject: {id}
+    });
+
+    return this.http.get<Participant[]>(this.getParticByIdUrl, {params});
   }
 }
