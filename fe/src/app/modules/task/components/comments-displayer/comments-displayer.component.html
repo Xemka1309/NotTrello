@@ -5,13 +5,13 @@
       <button (click)="createComment()" class="btn btn-info btn-block submit" type="submit">Сохранить</button>
     </form>
   </div>
-  <div class="container-fluid" *ngFor="let comment of commentsWithUsers">
+  <div class="container-fluid comments" *ngFor="let comment of commentsWithUsers">
     <div mat-header-row>
-      <span>{{comment.name}}</span>
+      <span><strong>{{comment.name}}</strong></span>
       <span> - </span>
-      <span>{{comment.create_time}}</span>
+      <span>{{comment.dateStr}}</span>
     </div>
-    <div mat-row>
+    <div class="content">
       <p>{{comment.content}}</p>
     </div>
   </div>

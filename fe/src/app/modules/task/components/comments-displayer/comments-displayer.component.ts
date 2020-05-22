@@ -17,6 +17,7 @@ export class CommentsDisplayerComponent implements OnInit {
   commentsList: Comment[] = [];
   commentsWithUsers = [];
   currentUser: User = new User();
+  options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric' };
 
   constructor (private commentService: CommentService,
                private userService: UserService) { }
@@ -28,8 +29,10 @@ export class CommentsDisplayerComponent implements OnInit {
     this.commentService.getCommentsByTaskId(this.task_id.toString()).subscribe(result => {
       this.commentsList = result;
       this.commentsList.forEach(comment => {
+        const date: Date = new Date(comment.create_time);
+        const dateStrObject = {dateStr: date.toLocaleDateString('ru-RU',this.options)};
         this.userService.getUserById(comment.user_id.toString()).subscribe(result => {
-          this.commentsWithUsers.push(Object.assign({},comment,result));
+          this.commentsWithUsers.push(Object.assign({},comment,result,dateStrObject));
         })
       });
     });

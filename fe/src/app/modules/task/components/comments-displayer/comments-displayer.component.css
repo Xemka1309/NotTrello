@@ -19,3 +19,24 @@
 .comment-input:focus {
   outline: none;
 }
+
+.container-fluid {
+  padding: 5px;
+}
+
+.content {
+  width: fit-content;
+  height: fit-content;
+  padding: 5px;
+  border: 1px solid silver;
+  border-radius: 7px;
+  display: flex;
+}
+
+.content p {
+  margin: auto;
+}
+
+.comments {
+  padding: 20px;
+}
