@@ -50,11 +50,11 @@ export class BoardDisplayerComponent implements OnInit {
         result => {
           this.participantRole = result.user_role;
         }, error => {
-        if(this.boardModel.boardType === 'PRIVATE') {
-          this.router.navigate(['/home']);
-          this.snack.openLongSnackBar('Туда низя...');
-        }
-      });
+          if(this.boardModel.boardType === 'PRIVATE') {
+            this.router.navigate(['/home']);
+            this.snack.openLongSnackBar('Туда низя...');
+          }
+        });
       console.log(this.boardModel);
       this.listenChanges();
     });
