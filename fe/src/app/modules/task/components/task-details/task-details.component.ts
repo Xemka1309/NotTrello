@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Task} from '../../../../models/task';
 import {DialogModel} from '../task-simple/task-simple.component';
+import {Mark} from '../../../../models/mark';
 
 @Component({
   selector: 'app-task-details',
@@ -32,6 +33,28 @@ export class TaskDetailsComponent implements OnInit {
 
   changeMark(event) {
     console.log(event);
+    const mark = event as Mark;
+    if (!this.newTaskModel.marks) {
+      this.newTaskModel.marks = [];
+    }
+
+    if (!this.newTaskModel.marks_ids) {
+      this.newTaskModel.marks_ids = [];
+    }
+
+    if (this.newTaskModel.marks.includes(mark)) {
+      const i = this.newTaskModel.marks.indexOf(mark);
+      this.newTaskModel.marks.splice(i, 1);
+    } else {
+      this.newTaskModel.marks.push(mark);
+    }
+
+    if (this.newTaskModel.marks_ids.includes(mark.id)) {
+      const i = this.newTaskModel.marks_ids.indexOf(mark.id);
+      this.newTaskModel.marks_ids.splice(i, 1);
+    } else {
+      this.newTaskModel.marks_ids.push(mark.id);
+    }
   }
 
   changeMarkPicker() {
