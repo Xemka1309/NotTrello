@@ -27,7 +27,7 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
   @ViewChild(CdkDropList, {static: false})
   el: CdkDropList;
 
-  private menuStyle = '/assets/icons/menu.svg';
+  public menuStyle = '/assets/icons/menu.svg';
 
   constructor(private dragDropService: DragDropService,
               private columnService: ColumnService,
