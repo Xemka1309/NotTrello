@@ -2,8 +2,8 @@ import { CheckList } from './check-list';
 import { Mark } from './mark';
 
 export class Task {
-  idNum: number;
-  id:string;
+  idNum?: number;
+  id?: string;
   column_id?: number;
   priority_id?: number;
   title?: string;
@@ -13,4 +13,5 @@ export class Task {
   position?: number;
   checkLists?: CheckList[];
   marks?: Mark[];
+  pos?: string;
 }

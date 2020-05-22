@@ -68,7 +68,11 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   changeTitle($event: any) {
-    console.log($event);
+    this.columnModel.title = $event as string;
+    this.columnService.updateColumn(this.columnModel).subscribe(r => {
+      this.taskMovedEvent.emit(0);
+    });
+
   }
 
   deleteColumn() {

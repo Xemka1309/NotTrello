@@ -56,7 +56,7 @@ export class ColumnService {
     if (!column) {
       return;
     }
-    return this.http.put<Column>(ApiUrlBuilder.getUrl(Models.task, Actions.edit), column);
+    return this.http.put<Column>(ApiUrlBuilder.getUrl(Models.column, Actions.edit), column);
   }
   public deleteColumn(column: Column, id: string) {
     if (!column || !id) {

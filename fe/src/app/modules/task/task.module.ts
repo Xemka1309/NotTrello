@@ -12,6 +12,7 @@ import {TaskDetailsComponent} from './components/task-details/task-details.compo
 import { CommentsDisplayerComponent} from './components/comments-displayer/comments-displayer.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DirectiveModule} from '../../directives/directive.module';
+import {MarkModule} from '../mark/mark.module';
 @NgModule({
   declarations: [TaskSimpleComponent, TaskDetailsComponent, CommentsDisplayerComponent],
   imports: [
@@ -25,7 +26,8 @@ import {DirectiveModule} from '../../directives/directive.module';
     MatButtonModule,
     ReactiveFormsModule,
     MatCardModule,
-    DirectiveModule
+    DirectiveModule,
+    MarkModule
   ],
   exports: [TaskSimpleComponent, TaskDetailsComponent, CommentsDisplayerComponent],
   entryComponents: [TaskDetailsComponent],

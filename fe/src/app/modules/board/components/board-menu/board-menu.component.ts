@@ -18,6 +18,7 @@ export class BoardMenuComponent implements OnInit {
   private particList: Participant[] = [];
   @Input() menuVisible:string;
   @Output() isClosed = new EventEmitter<Boolean>();
+  @Output() picChanged = new EventEmitter<Boolean>();
   private isCreator: boolean;
   private creatorVisible = 'hidden';
   private markId: number = 0;
@@ -76,6 +77,9 @@ export class BoardMenuComponent implements OnInit {
     console.log(this.boardModel);
     this.boardService.updateBoard(this.boardModel).subscribe( value => {
       console.log(value);
+      this.boardModel.pictureUrl = bg;
+      this.picChanged.emit(true);
+      //window.location.reload();
     });
   }
 

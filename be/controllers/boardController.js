@@ -89,4 +89,16 @@ exports.getParticIdAndUserRole = function(request, response){
         });
 };
 
+exports.isActionAllowed = function (request, response) {
+  BoardService.getParticIdAndUserRole(request.decoded.id, request.query.id)
+    .then((result) => {
+      response.status(200);
+      response.send({allowed: request.query.permissionLvl >= result.user_role.id});
+    })
+    .catch((err) => {
+      console.log(err);
+      response.status(406);
+      response.send(err.message);
+    });
+};
 

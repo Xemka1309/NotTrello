@@ -8,9 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MarkCreatorComponent } from './components/mark-creator/mark-creator.component';
+import {MarkPickerComponent} from './components/mark-picker/mark-picker.component';
 
 @NgModule({
-  declarations: [MarkCreatorComponent],
+  declarations: [MarkCreatorComponent, MarkPickerComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -24,7 +25,8 @@ import { MarkCreatorComponent } from './components/mark-creator/mark-creator.com
   ],
   entryComponents: [],
   exports: [
-    MarkCreatorComponent
+    MarkCreatorComponent,
+    MarkPickerComponent
   ],
   providers: [],
 })

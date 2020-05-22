@@ -47,6 +47,7 @@ exports.edit = (async function (body) {
             title: body.title,
             description: body.description,
             type_id: boardType.id,
+            pictureUrl: body.pictureUrl
         },
         {where: {id: body.id}})
 });
@@ -72,9 +73,9 @@ exports.getBoards = (async function (userId) {
 
     const boards = await Board.findAll({
         attributes: ['id', 'title', 'description', 'type_id', 'pictureUrl'],
-        //where: {
-        //    id: participants.map(val => val.board_id)
-        //}
+        where: {
+           id: participants.map(val => val.board_id)
+        }
     });
 
     const types = await BoardType.findAll({

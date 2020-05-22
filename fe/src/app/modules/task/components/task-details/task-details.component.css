@@ -88,3 +88,18 @@
   width: 100%;
   font-size: 0.75em;
 }
+
+.custom-fixed-container {
+  position: fixed;
+  background-color: white;
+  min-width: 200px;
+  min-height: 100px;
+  top: 200px;
+}
+
+.custom-fixed-container-inside {
+  display: block;
+  width: 100%;
+  height: fit-content;
+  overflow-y: auto;
+}
