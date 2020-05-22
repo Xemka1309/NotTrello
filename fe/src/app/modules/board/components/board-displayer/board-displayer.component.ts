@@ -12,6 +12,7 @@ import {ParticipantService} from '../../../../services/participant/participant.s
 import {Router} from '@angular/router';
 import {SnackBarService} from '../../../../services/snack-bar/snack-bar.service';
 import { Mark } from 'src/app/models/mark';
+import { GitService } from 'src/app/services/githubflow/gitHubService';
 
 
 export interface ColAssign {
@@ -46,7 +47,8 @@ export class BoardDisplayerComponent implements OnInit {
               private particService: ParticipantService,
               private snack: SnackBarService,
               private router: Router,
-              private socket: Socket) { }
+              private socket: Socket,
+              private git: GitService) { }
 
   ngOnInit(): void {
     this.boardService.getBoardById(this.boardId).subscribe(value => {
@@ -131,6 +133,9 @@ export class BoardDisplayerComponent implements OnInit {
     });
   }
 
+  public gitGo(){
+    this.git.GetRepoBranches();
+  }
   private sendBoardChanges(): void {
     this.socket.emit('board refresh', {
       boardId: this.boardId
