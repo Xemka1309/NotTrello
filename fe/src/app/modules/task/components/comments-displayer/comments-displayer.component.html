@@ -6,13 +6,15 @@
     </form>
   </div>
   <div class="container-fluid comments" *ngFor="let comment of commentsWithUsers">
-    <div mat-header-row>
-      <span><strong>{{comment.name}}</strong></span>
-      <span> - </span>
-      <span>{{comment.dateStr}}</span>
-    </div>
-    <div class="content">
-      <p>{{comment.content}}</p>
+    <div class="border">
+      <div mat-header-row>
+        <span><strong>{{comment.name}}</strong></span>
+        <span> - </span>
+        <span>{{comment.dateStr}}</span>
+      </div>
+      <div class="content">
+        <p>{{comment.content}}</p>
+      </div>
     </div>
   </div>
 </div>

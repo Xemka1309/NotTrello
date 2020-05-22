@@ -28,15 +28,15 @@
   width: fit-content;
   height: fit-content;
   padding: 5px;
-  border: 1px solid silver;
-  border-radius: 7px;
   display: flex;
-}
-
-.content p {
-  margin: auto;
 }
 
 .comments {
   padding: 20px;
+}
+
+.border {
+  width: 100%;
+  border: 1px solid silver;
+  border-radius: 7px;
 }
