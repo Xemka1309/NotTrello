@@ -9,7 +9,7 @@ exports.getByBoardId = (async function(boardId){
     });
 });
 
-exports.get= (async function(id){
+exports.get = (async function(id){
     return await Mark.findAll({
         attributes: ['content','color'],
         where: {
