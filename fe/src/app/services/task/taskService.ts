@@ -16,6 +16,9 @@ export class TaskService {
   private addMarkToTaskUrl = `${this.baseUrl}/tomark/add`;
   private deleteMarkToTaskUrl = `${this.baseUrl}/tomark/delete`;
 
+  private checkListUrl = '/api/checklist';
+  private addCheckListToTaskUrl = `${this.baseUrl}/add`;
+
   constructor(private http: HttpClient) { }
 
   public addTask(task: any) {
@@ -45,7 +48,7 @@ export class TaskService {
     return this.http.post<TaskMark>(this.addMarkToTaskUrl, markTask);
   }
 
-  public deleteMarkFromTask(markId: string, taskId: string): Observable<any> {
+  public deleteMarkToTask(markId: string, taskId: string): Observable<any> {
     const params = new HttpParams({
       fromObject: { markId: markId, taskId: taskId }
     });

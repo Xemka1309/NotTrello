@@ -2,6 +2,7 @@ const Task = require("../models/taskModel");
 const TaskPriority = require("../models/taskPriorityModel");
 const TaskToParticipant = require("../models/participantTaskModel");
 const TaskMark = require("../models/taskMarkModel");
+const Mark = require("../models/markModel");
 const CheckListService = require("./checkListService");
 const CommentService = require("./commentService");
 const LogService = require("./logService");
@@ -49,6 +50,7 @@ exports.getById = (async function (id) {
             task_id: task.id
         }
     });
+    taskReturnData.mark_ids = taskReturnData.mark_ids.map(x => x.mark_id);
     taskReturnData.participant_ids = await TaskToParticipant.findAll({
         attributes: ['participant_id'],
         where: {
@@ -80,13 +82,23 @@ exports.getByColumn = (async function (columnId) {
         taskFields.task_priority = priorities.find(element => element.id = task.task_priority_id).priority;
         delete taskFields.task_priority_id;
         taskFields.check_lists = await CheckListService.get(task.id);
-        taskFields.mark_ids = await TaskMark.findAll({
+        let marks = [];
+        const mark_ids = await TaskMark.findAll({
             attributes: ['mark_id'],
             where: {
                 task_id: task.id
             }
         });
-        taskFields.marks_ids = taskFields.mark_ids.map(x => x.mark_id);
+        taskFields.marks_ids = mark_ids.map(x => x.mark_id);
+        mark_ids.forEach(async mark => {
+            marks.push(await Mark.findOne({
+                attributes: ['id','content','color'],
+                where: {
+                    id: mark.mark_id
+                }
+            }));
+        });
+        taskFields.marks = marks;
         return taskFields;
     })
     )

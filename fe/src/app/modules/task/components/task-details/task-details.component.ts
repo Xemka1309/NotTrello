@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Task} from '../../../../models/task';
+import {TaskService} from '../../../../services/task/taskService';
 
 @Component({
   selector: 'app-task-details',
@@ -16,6 +17,7 @@ export class TaskDetailsComponent implements OnInit{
 
   constructor(
     public dialogRef: MatDialogRef<TaskDetailsComponent>,
+    private taskService: TaskService,
     @Inject(MAT_DIALOG_DATA) public data: Task) {}
 
   ngOnInit(): void {
@@ -23,12 +25,16 @@ export class TaskDetailsComponent implements OnInit{
     this.taskTitle = this.data.title;
     this.taskDescription = this.data.description;
 
+    //this.taskService.addMarkToTask('32','6').subscribe();
+
     this.dialogRef.beforeClosed().subscribe(result => {
       this.closeThis();
     });
     this.dialogRef.backdropClick().subscribe(result => {
       this.closeThis();
     });
+
+
   }
 
   changeMark(event) {
