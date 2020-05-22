@@ -1,31 +1,26 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Task} from '../../../../models/task';
-import {TaskService} from '../../../../services/task/taskService';
+import {DialogModel} from '../task-simple/task-simple.component';
 
 @Component({
   selector: 'app-task-details',
   templateUrl: 'task-details.component.html',
   styleUrls: ['./task-details.component.css']
 })
-export class TaskDetailsComponent implements OnInit{
+export class TaskDetailsComponent implements OnInit {
   private popoverActive = false;
   private popoverState = 'nothing';
   private readonly markPicker = 'markPicker';
-  private taskTitle;
-  private taskDescription;
+  private newTaskModel: Task;
 
   constructor(
     public dialogRef: MatDialogRef<TaskDetailsComponent>,
-    private taskService: TaskService,
-    @Inject(MAT_DIALOG_DATA) public data: Task) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogModel) {}
 
   ngOnInit(): void {
     this.dialogRef.disableClose = true;
-    this.taskTitle = this.data.title;
-    this.taskDescription = this.data.description;
-
-    //this.taskService.addMarkToTask('32','6').subscribe();
+    this.newTaskModel = this.data.task;
 
     this.dialogRef.beforeClosed().subscribe(result => {
       this.closeThis();
@@ -33,8 +28,6 @@ export class TaskDetailsComponent implements OnInit{
     this.dialogRef.backdropClick().subscribe(result => {
       this.closeThis();
     });
-
-
   }
 
   changeMark(event) {
@@ -55,24 +48,14 @@ export class TaskDetailsComponent implements OnInit{
   }
 
   private closeThis() {
-    const task = new Task();
-    task.title = this.taskTitle;
-    task.description = this.taskDescription;
-    task.pos = this.data.pos;
-    task.marks = this.data.marks;
-    task.id = this.data.id;
-    task.column_id = this.data.column_id;
-    task.completed = this.data.completed;
-    task.priority_id = this.data.priority_id;
-    task.idNum = this.data.idNum;
-    this.dialogRef.close(task);
+    this.dialogRef.close(this.newTaskModel);
   }
 
   changeTitle(event) {
-    this.taskTitle = event;
+    this.newTaskModel.title = event;
   }
 
   changeDescription(event) {
-    this.taskDescription = event;
+    this.newTaskModel.description = event;
   }
 }

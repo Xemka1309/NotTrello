@@ -13,6 +13,6 @@ export class Task {
   position?: number;
   checkLists?: CheckList[];
   marks?: Mark[];
-  pos?: string;
+  pos?: number;
   marks_ids?: number[];
 }

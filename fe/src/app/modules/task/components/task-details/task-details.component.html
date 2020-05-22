@@ -1,13 +1,13 @@
 <mat-dialog-content>
-  <div *ngIf="popoverActive"class="custom-fixed-container" [style.left]="data.pos" [style.width]="">
+  <div *ngIf="popoverActive" class="custom-fixed-container" [style.left]="data.leftPos" [style.width]="data.width">
     <div class="custom-fixed-container-inside" [ngSwitch]="popoverState">
-      <app-mark-picker *ngSwitchCase="markPicker" (clickMark)="changeMark($event)" [marks]="data.marks" [selectedMarks]="[]"></app-mark-picker>
+      <app-mark-picker *ngSwitchCase="markPicker" (clickMark)="changeMark($event)" [marks]="data.marks" [selectedMarks]="newTaskModel.marks"></app-mark-picker>
     </div>
   </div>
   <div class="task-details-container card">
     <div contentEditable="true" class="task-details-header cp-1 card-header" contentEditableModel (contentEditableModelChange)="changeTitle($event)">
       <div class="custom-inline-block">
-        {{taskTitle}}
+        {{newTaskModel.title}}
       </div>
     </div>
     <div class="task-details-body cp-1 card-body">
@@ -19,12 +19,15 @@
 
         <div class="custom-inline-block">
           <div contentEditable="true" class="custom-inline-block" contentEditableModel (contentEditableModelChange)="changeDescription($event)">
-            {{taskDescription}}
+            {{newTaskModel.description}}
           </div>
         </div>
 
         <div class="task-details-sub-header">
           Комментарии
+        </div>
+        <div class="custom-inline-block">
+          VOVA SUDA SVOE GOVNO
         </div>
       </div>
 

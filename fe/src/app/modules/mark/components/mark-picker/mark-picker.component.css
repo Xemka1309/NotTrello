@@ -10,10 +10,36 @@
 
 .mark-list-item {
   display: flex;
-  min-width: 100px;
-  width: 100%;
+  width: 95%;
   margin-top: 10px;
   padding: 5px;
   height: fit-content;
-  min-height: 40px;
+  min-height: 30px;
+}
+
+.mark-header {
+  display: flex;
+  border-bottom: 1px silver solid;
+  width: 100%;
+  font-size: 1.5em;
+}
+
+.mark-popup-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+span {
+  text-align: center;
+  width: 100%;
+}
+
+.mark-selected {
+  position: absolute;
+  right: calc(100% - 1.5em);
+  color: white;
+  width: 1.25em;
+  height: 1.25em;
 }

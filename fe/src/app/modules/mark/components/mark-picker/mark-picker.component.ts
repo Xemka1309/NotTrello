@@ -16,6 +16,7 @@ export class MarkPickerComponent {
   selectedMarks: Mark[];
   @Output()
   clickMark = new EventEmitter();
+  markSelected = 'assets/icons/check-mark.svg';
 
   constructor() {
   }
