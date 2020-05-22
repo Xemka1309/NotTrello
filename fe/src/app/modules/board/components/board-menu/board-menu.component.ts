@@ -18,12 +18,12 @@ export class BoardMenuComponent implements OnInit {
   private markList: Mark[] = [];
   private particList: Participant[] = [];
   private userList = [];
-  @Input() menuVisible:string;
-  @Output() isClosed = new EventEmitter<Boolean>();
-  @Output() picChanged = new EventEmitter<Boolean>();
+  @Input() menuVisible: string;
+  @Output() isClosed = new EventEmitter<boolean>();
+  @Output() picChanged = new EventEmitter<boolean>();
   private isCreator: boolean;
   private creatorVisible = 'hidden';
-  private markId: number = 0;
+  private markId = 0;
   private menuState = 'Меню';
   private bgList: string[] = [];
   public updateBoardForm: FormGroup;
@@ -72,7 +72,6 @@ export class BoardMenuComponent implements OnInit {
   }
 
   bgClick(): void {
-
     this.menuState = 'Сменить фон';
   }
 
