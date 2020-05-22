@@ -1,0 +1,5 @@
+<div class="mark-list">
+  <div class="mark-list-item" [style.background-color] *ngFor="let color of marks; let i = index;" (click)="clickOnMark(i)">
+    {{color.content}}
+  </div>
+</div>

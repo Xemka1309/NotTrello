@@ -1,8 +1,8 @@
 <mat-dialog-content>
   <div class="task-details-container card">
-    <div contentEditable="true" class="task-details-header cp-1 card-header">
+    <div contentEditable="true" class="task-details-header cp-1 card-header" contentEditableModel (contentEditableModelChange)="changeTitle($event)">
       <div class="custom-inline-block">
-        {{data.title}}
+        {{taskTitle}}
       </div>
     </div>
     <div class="task-details-body cp-1 card-body">
@@ -14,8 +14,8 @@
         </div>
 
         <div class="custom-inline-block">
-          <div contentEditable="true" class="custom-inline-block">
-            {{data.description}}
+          <div contentEditable="true" class="custom-inline-block" contentEditableModel (contentEditableModelChange)="changeDescription($event)">
+            {{taskDescription}}
           </div>
         </div>
 
@@ -31,12 +31,20 @@
         <div class="task-details-button">
           <span>Изменить приоритет</span>
         </div>
-        <div class="task-details-button">
-          <span>Изменить метку</span>
+        <div class="task-details-button" (click)="changeMarkPicker()">
+          <span>Изменить метки</span>
         </div>
       </div>
     </div>
   </div>
 </mat-dialog-content>
+
+
+<div *ngIf="popoverActive" class="custom-fixed-container" [style.left]="data.pos">
+  <div class="custom-fixed-container-inside" [ngSwitch]="popoverState">
+    <app-mark-picker *ngSwitchCase="markPicker" (clickMark)="changeMark($event)" [marks]="data.marks" [selectedMarks]="[]"></app-mark-picker>
+  </div>
+</div>
+
 
 
