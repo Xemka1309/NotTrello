@@ -29,6 +29,17 @@
         <button class="close" (click)="hideMenu(true)"><mat-icon>close</mat-icon></button>
       </div>
       <hr>
+      <form [formGroup]="updateBoardForm">
+        <input class="form-control mr-sm-2 name-input" required formControlName="title" name="title" type="text" placeholder="Название" [value]="boardModel.title">
+        <input class="form-control mr-sm-2 name-input" formControlName="desc" name="desc" type="text" placeholder="Описание" [value]="boardModel.description">
+        <p><strong>Участники</strong></p>
+        <div  *ngFor="let user of usersList">
+          <div mat-row><mat-icon>rowing</mat-icon> {{user.nickname}}</div>
+          <div mat-row>{{user.name}} {{user.family}}</div>
+          <div mat-row>{{user.role}}</div>
+        </div>
+        <button type="submit" (click)="updateBoard()" class="btn btn-outline-success my-2 my-sm-0 submit">Сохранить</button>
+      </form>
       <div class="info-field">
         Название: {{boardModel.title}}
       </div>

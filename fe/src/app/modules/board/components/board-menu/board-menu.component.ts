@@ -3,6 +3,8 @@ import {BoardService} from '../../../../services/board/boardService';
 import {ActivatedRoute} from '@angular/router';
 import {Board} from '../../../../models/board';
 import {Mark} from '../../../../models/mark';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Participant} from '../../../../models/participant';
 
 @Component({
   selector: 'app-board-menu',
@@ -13,6 +15,7 @@ export class BoardMenuComponent implements OnInit {
   private boardId: string;
   private boardModel: Board;
   private markList: Mark[] = [];
+  private particList: Participant[] = [];
   @Input() menuVisible:string;
   @Output() isClosed = new EventEmitter<Boolean>();
   private isCreator: boolean;
@@ -20,6 +23,7 @@ export class BoardMenuComponent implements OnInit {
   private markId: number = 0;
   private menuState = 'Меню';
   private bgList: string[] = [];
+  public updateBoardForm: FormGroup;
 
   constructor(private activatedRoute: ActivatedRoute,
               private boardService: BoardService) {
@@ -31,6 +35,11 @@ export class BoardMenuComponent implements OnInit {
     this.boardService.getBoardById(this.boardId).subscribe(value => {
       this.boardModel = value;
       this.markList = this.boardModel.marks;
+      this.particList = this.boardModel.participants;
+    });
+    this.updateBoardForm = new FormGroup({
+      name: new FormControl(),
+      desc: new FormControl
     });
     this.bgList.push('assets/pictures/bg1.jpg');
     this.bgList.push('assets/pictures/bg2.jpg');
@@ -99,5 +108,13 @@ export class BoardMenuComponent implements OnInit {
         this.markList.splice(index,1);
       }
     }
+  }
+
+  updateBoard() {
+    this.boardModel.title = this.updateBoardForm.controls.title.value;
+    this.boardModel.description = this.updateBoardForm.controls.desc.value;
+    this.boardService.updateBoard(this.boardModel).subscribe(result => {
+      console.log(result);
+    });
   }
 }
