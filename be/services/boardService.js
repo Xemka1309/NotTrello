@@ -47,6 +47,7 @@ exports.edit = (async function (body) {
             title: body.title,
             description: body.description,
             type_id: boardType.id,
+            pictureUrl: body.pictureUrl
         },
         {where: {id: body.id}})
 });

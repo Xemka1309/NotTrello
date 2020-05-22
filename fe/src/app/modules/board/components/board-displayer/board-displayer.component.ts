@@ -144,6 +144,11 @@ export class BoardDisplayerComponent implements OnInit {
     this.menuVisible = 'visible';
   }
 
+  picChanged(e){
+    this.boardService.getBoardById(this.boardModel.id.toString()).subscribe(r => {
+      this.boardModel = r;
+    })
+  }
   isClosed(closed: any) {
     closed ? this.menuVisible = 'hidden' : this.menuVisible = 'visible';
   }
