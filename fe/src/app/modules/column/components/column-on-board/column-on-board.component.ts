@@ -4,6 +4,7 @@ import {CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem} from '@ang
 import {DragDropService} from '../../../../services/drag-drop/drag-drop.service';
 import {Task} from 'src/app/models/task';
 import {ColumnService} from 'src/app/services/column/columnService';
+import {TaskService} from '../../../../services/task/taskService';
 
 @Component({
   selector: 'app-column-on-board',
@@ -20,6 +21,8 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
   deleteEvent = new EventEmitter();
   @Output()
   taskMovedEvent = new EventEmitter();
+  @Output()
+  addTaskEvent = new EventEmitter();
 
   @ViewChild(CdkDropList, {static: false})
   el: CdkDropList;
@@ -27,7 +30,8 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
   private menuStyle = '/assets/icons/menu.svg';
 
   constructor(private dragDropService: DragDropService,
-              private columnService: ColumnService) {
+              private columnService: ColumnService,
+              private taskService: TaskService) {
   }
 
   ngOnInit(): void {
@@ -69,5 +73,9 @@ export class ColumnOnBoardComponent implements OnInit, OnDestroy, AfterViewInit 
 
   deleteColumn() {
     this.deleteEvent.emit(this.columnModel.id);
+  }
+
+  createTask() {
+    this.addTaskEvent.emit(this.columnModel);
   }
 }

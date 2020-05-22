@@ -13,18 +13,14 @@
     <app-task-simple class="w-100" [taskModel]="task"></app-task-simple>
   </div>
 </div>
-<div class="column-add-task">
+<div class="column-add-task" (click)="createTask()">
   <span>Добавить еще одну задачку</span>
 </div>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item (click)="createTask()">
     <mat-icon>add</mat-icon>
     <span>Добавить задачку</span>
-  </button>
-  <button mat-menu-item [mat-menu-trigger-for]="sort">
-    <mat-icon>sort</mat-icon>
-    <span>Сортировать</span>
   </button>
   <button mat-menu-item (click)="deleteColumn()">
     <mat-icon>delete</mat-icon>
@@ -32,17 +28,3 @@
   </button>
 </mat-menu>
 
-<mat-menu #sort="matMenu">
-  <button mat-menu-item>
-    <span>Дата создания (сначала новые)</span>
-  </button>
-  <button mat-menu-item>
-    <span>Дата создания (сначала старые)</span>
-  </button>
-  <button mat-menu-item>
-    <span>Название карточки (по алфовиту)</span>
-  </button>
-  <button mat-menu-item>
-    <span>Приоритет (сначала высший)</span>
-  </button>
-</mat-menu>

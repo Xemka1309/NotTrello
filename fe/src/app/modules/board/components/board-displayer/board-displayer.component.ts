@@ -100,7 +100,7 @@ export class BoardDisplayerComponent implements OnInit {
   addTask(column: Column) {
     const body = {
       column_id: column.id,
-      title: 'testTaskTitle',
+      title: 'Новая задачка',
       priority: 'HIGH',
       due_time: 14123123,
       position: column.tasks.length
@@ -121,6 +121,7 @@ export class BoardDisplayerComponent implements OnInit {
     Board.deleteColumn(this.boardModel, event as number);
     this.sendBoardChanges();
   }
+
   showMenu(): void {
     this.menuVisible = 'visible';
   }
