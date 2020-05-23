@@ -42,22 +42,22 @@ export class BoardMenuComponent implements OnInit {
       this.markList = this.boardModel.marks;
       this.particList = this.boardModel.participants;
       this.particList.forEach(partic => {
-        if(partic.role === 'ADMINISTRATOR'){
+        if (partic.role === 'ADMINISTRATOR') {
           this.iconSrc = '/assets/icons/admin.svg';
-        } else if(partic.role === 'SENIOR'){
+        } else if (partic.role === 'SENIOR') {
           this.iconSrc = '/assets/icons/senior.svg';
-        } else if(partic.role === 'DEVELOPER'){
+        } else if (partic.role === 'DEVELOPER') {
           this.iconSrc = '/assets/icons/developer.svg';
         }
         const iconObject = {icon: this.iconSrc};
         this.userService.getUserById(partic.user_id.toString()).subscribe(result => {
-          this.userList.push(Object.assign({},result,iconObject))
-        })
+          this.userList.push(Object.assign({}, result, iconObject));
+        });
       });
     });
     this.updateBoardForm = new FormGroup({
       title: new FormControl(),
-      desc: new FormControl
+      desc: new FormControl()
     });
     this.bgList.push('assets/pictures/bg1.jpg');
     this.bgList.push('assets/pictures/bg2.jpg');
@@ -83,9 +83,9 @@ export class BoardMenuComponent implements OnInit {
     this.menuState = 'Меню';
   }
 
-  hideMenu(closed:boolean): void {
+  hideMenu(closed: boolean): void {
     this.isClosed.emit(closed);
-    this.creatorVisible = 'hidden'
+    this.creatorVisible = 'hidden';
   }
 
   setBG(bg): void {
@@ -95,7 +95,6 @@ export class BoardMenuComponent implements OnInit {
       console.log(value);
       this.boardModel.pictureUrl = bg;
       this.picChanged.emit(true);
-      //window.location.reload();
     });
   }
 
@@ -105,17 +104,17 @@ export class BoardMenuComponent implements OnInit {
     this.creatorVisible = 'visible';
   }
 
-  creatorIsClosed(closed:any) {
-    closed?this.creatorVisible='hidden':this.creatorVisible='visible';
+  creatorIsClosed(closed: any) {
+    closed ? this.creatorVisible = 'hidden' : this.creatorVisible = 'visible';
   }
 
-  markCreated(mark:any) {
+  markCreated(mark: any) {
     this.markList.push(mark);
   }
 
-  markUpdated(mark:any) {
-    for(const i in this.markList){
-      if(this.markList[i].id === mark.id){
+  markUpdated(mark: any) {
+    for (const i in this.markList) {
+      if (this.markList[i].id === mark.id) {
         this.markList[i] = mark;
       }
     }
@@ -124,8 +123,8 @@ export class BoardMenuComponent implements OnInit {
   markDeleted(markId: any) {
     let index;
     for (index = 0; index < this.markList.length; ++index) {
-      if(this.markList[index].id === markId){
-        this.markList.splice(index,1);
+      if (this.markList[index].id === markId) {
+        this.markList.splice(index, 1);
       }
     }
   }

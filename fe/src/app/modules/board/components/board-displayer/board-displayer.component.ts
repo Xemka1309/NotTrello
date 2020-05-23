@@ -144,7 +144,7 @@ export class BoardDisplayerComponent implements OnInit {
     });
   }
 
-  public gitGo(){
+  public gitGo() {
     this.git.GetRepoBranches();
   }
   private sendBoardChanges(): void {
@@ -236,6 +236,7 @@ export class BoardDisplayerComponent implements OnInit {
   }
   isClosed(closed: any) {
     closed ? this.menuVisible = 'hidden' : this.menuVisible = 'visible';
+    this.sendBoardChanges();
   }
 
   get backgroundImage() {
@@ -254,16 +255,10 @@ export class BoardDisplayerComponent implements OnInit {
     return 'Ссылка для приглашения вами других челов: http://localhost:4200/board/join/' + str;
   }
   public showChat() {
-    if (this.chatHidden) {
-      this.chatHidden = false;
-    }
-    else {
-      this.chatHidden = true;
-      //this.resetChatState.emit(true);
-    }
+    this.chatHidden = !this.chatHidden;
 
   }
-  public sendMessage(event){
+  public sendMessage(event) {
     this.socket.emit('chatMessageb', {
       message: event as string,
       sender: this.userLogin,

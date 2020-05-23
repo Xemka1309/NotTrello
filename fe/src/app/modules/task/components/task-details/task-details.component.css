@@ -57,6 +57,12 @@
   display: inline-block;
   width: 100%;
   font-size: inherit;
+  cursor: pointer;
+}
+
+.mh-3 {
+  min-height: 3em;
+  font-size: 0.8em;
 }
 
 .task-details-sub-header {
@@ -119,7 +125,7 @@
 }
 
 .priority-text{
-  padding-top: 10px;
+  padding-top: 3px;
   font-size: 15px;
   font-family: 'PT Mono', monospace;
 }

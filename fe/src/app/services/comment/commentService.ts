@@ -30,9 +30,9 @@ export class CommentService {
     if (!comment) {
       return;
     }
-    return this.http.put<Comment>(this.updateCommentUrl, comment,{
+    return this.http.put<Comment>(this.updateCommentUrl, comment, {
       observe: 'response'
-    })
+    });
   }
 
   public deleteComment(commentId): Observable<any> {
@@ -40,9 +40,9 @@ export class CommentService {
       return;
     }
     const params = new HttpParams({
-      fromObject: { id: commentId }
+      fromObject: {id: commentId}
     });
-    return this.http.delete(this.deleteCommentUrl, {params, observe:'response'});
+    return this.http.delete(this.deleteCommentUrl, {params, observe: 'response'});
   }
 
   public getCommentById(id: string): Observable<Comment> {

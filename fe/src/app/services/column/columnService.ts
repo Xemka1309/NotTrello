@@ -3,16 +3,16 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Actions, ApiUrlBuilder, Models} from '../urlBuilder';
 import {Column} from 'src/app/models/column';
-import { Task } from 'src/app/models/task';
+import {Task} from 'src/app/models/task';
 
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class ColumnService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public addColumn(column: Column): Observable<any> {
     if (!column) {
@@ -46,7 +46,7 @@ export class ColumnService {
 
   public deleteTask(task: Task, id: string) {
     const params = new HttpParams({
-      fromObject: { id }
+      fromObject: {id}
     });
     return this.http.delete(ApiUrlBuilder.getUrl(Models.task, Actions.delete), {params});
   }
@@ -57,14 +57,15 @@ export class ColumnService {
     }
     return this.http.put<Column>(ApiUrlBuilder.getUrl(Models.column, Actions.edit), column);
   }
+
   public deleteColumn(id: string) {
     if (!id) {
       return;
     }
     const params = new HttpParams({
-      fromObject: { id }
+      fromObject: {id}
     });
-    return this.http.delete(ApiUrlBuilder.getUrl(Models.column, Actions.delete), { params });
+    return this.http.delete(ApiUrlBuilder.getUrl(Models.column, Actions.delete), {params});
   }
 
   public reorderColumn(column: Column) {

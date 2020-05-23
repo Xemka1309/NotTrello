@@ -13,12 +13,12 @@
     </div>
     <div class="task-details-body cp-1 card-body">
       <div class="task-details-content ">
-        <div class="task-details-sub-header">
+        <h4 class="task-details-sub-header">
           Описание
-        </div>
+        </h4>
 
         <div class="custom-inline-block">
-          <div contentEditable="true" class="custom-inline-block" contentEditableModel (contentEditableModelChange)="changeDescription($event)">
+          <div contentEditable="true" class="custom-inline-block mh-3" contentEditableModel (contentEditableModelChange)="changeDescription($event)">
             {{newTaskModel.description}}
           </div>
         </div>
@@ -59,16 +59,16 @@
           </p>
         </span>
 
-        <div class="task-details-sub-header">
+        <h4 class="task-details-sub-header mt-1">
           Чек-листы
-        </div>
+        </h4>
         <div class="custom-inline-block">
           <app-check-list [checkLists]="newTaskModel.check_lists" (state)="changeCheckList($event)"></app-check-list>
         </div>
 
-        <div class="task-details-sub-header">
+        <h4 class="task-details-sub-header">
           Комментарии
-        </div>
+        </h4>
         <div class="custom-inline-block">
           <app-comments-displayer [task_id]="newTaskModel.id"></app-comments-displayer>
         </div>
