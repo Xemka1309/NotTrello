@@ -18,10 +18,6 @@ const Task = seq.define("task", {
         type: Sequelize.TEXT,
         default: null
     },
-    due_time: {
-        type: Sequelize.DATE,
-        allowNull: false
-    },
     position: {
         type: Sequelize.INTEGER,
         allowNull: false

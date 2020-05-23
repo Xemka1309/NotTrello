@@ -5,7 +5,6 @@ const TaskMark = require("../models/taskMarkModel");
 const Mark = require("../models/markModel");
 const CheckListService = require("./checkListService");
 const CommentService = require("./commentService");
-const LogService = require("./logService");
 
 exports.add = (async function(body){
     const priority = await TaskPriority.findOne({
@@ -20,14 +19,9 @@ exports.add = (async function(body){
 });
 
 exports.addArray = (async function(body){
-    body = body.map(async task => {
-        const priority = await TaskPriority.findOne({
-            attributes: ['id'],
-            where: {
-                priority: task.priority
-            }
-        });
-        task.task_priority_id = priority.id;
+    body = body.map(task => {
+        task.task_priority_id = task.priority_id;
+        delete task.priority_id;
         delete task.priority;
         return task;
     });
@@ -48,7 +42,7 @@ exports.delete = (async function (body) {
 
 exports.getById = (async function (id) {
     const task = await Task.findOne({
-        attributes: ['id','title','description','due_time','position','completed','task_priority_id','column_id'],
+        attributes: ['id','title','description','position','completed','task_priority_id','column_id'],
         where: {
             id: id
         }
@@ -74,13 +68,12 @@ exports.getById = (async function (id) {
     });
     taskReturnData.checkLists = await CheckListService.get(task.id);
     taskReturnData.comments = await CommentService.getByTaskId(task.id);
-    taskReturnData.logs = await LogService.getByTaskId(task.id);
     return taskReturnData;
 });
 
 exports.getByColumn = (async function (columnId) {
     const tasks = await Task.findAll({
-        attributes: ['id','title','due_time','position','completed','task_priority_id'],
+        attributes: ['id','title','position','completed','task_priority_id'],
         where: {
             column_id: columnId
         },

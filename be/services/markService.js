@@ -20,8 +20,13 @@ exports.get = (async function(id){
 
 
 exports.add = (async function(body){
-    return Mark.create(body);
+    return await Mark.create(body);
 });
+
+exports.addArray = (async function(body){
+    return await Mark.bulkCreate(body, {returning: true});
+});
+
 exports.edit = (async function (body) {
     return await Mark.update(
         body,
