@@ -4,6 +4,16 @@
   <div class="form-box">
     <form [formGroup]="userForm" class="example-form">
       <h3 class="header">Профиль</h3>
+
+      <div class="text-center">
+        <img class="rounded" style="width:200px;" [src]="avatar_stock" alt="avatar_stock" class="img-thumbnail">
+      </div>
+      <div class="text-center">
+        <span class="rounded" style="padding:30px;">Изменить аватарку профиля</span>
+      </div>
+      <div class="text-center">
+        <button class="rounded" mat-button>Выбрать файл</button>
+      </div>
       <label class="mat-form-field-label">Имя</label>
       <input matInput placeholder="имя"  formControlName="name">
       <label class="mat-form-field-label">Фамилия</label>
@@ -14,7 +24,7 @@
       <input required readonly matInput placeholder="логин"  formControlName="login">
       <label class="mat-form-field-label">Email</label>
       <input required matInput placeholder="эл. почта"  formControlName="email">
-      <button  (click)="submit()" class="btn btn-info btn-block save"
+      <button [disabled]="!isValid()"  (click)="submit()" class="btn btn-info btn-block save"
               type="submit">Сохранить</button>
     </form>
   </div>

@@ -28,6 +28,10 @@ module.exports = {
                     socket.to(`boardRoom:${data.boardId}`).emit("board changed", data);
                 } 
             });
+
+            socket.on("chatMessageb", (data) => {
+               this.io.to(data.boardId).emit("chatMessage", data);
+            });
             
         });
 

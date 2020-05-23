@@ -18,6 +18,7 @@ import {MarkModule} from '../mark/mark.module';
 import {NavBarModule} from '../navigation/nav-bar.module';
 import {NgbDropdownModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {BoardJoinComponent} from './components/board-join/board-join.component';
+import { BoardChatComponent } from './components/board-chat/board-chat.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {BoardJoinComponent} from './components/board-join/board-join.component';
     BoardsListComponent,
     BoardDisplayerComponent,
     BoardMenuComponent,
-    BoardJoinComponent
+    BoardJoinComponent,
+    BoardChatComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +54,8 @@ import {BoardJoinComponent} from './components/board-join/board-join.component';
     BoardDisplayerComponent,
     BoardsListComponent,
     BoardMenuComponent,
-    BoardJoinComponent
+    BoardJoinComponent,
+    BoardChatComponent
   ],
   providers: [],
 })

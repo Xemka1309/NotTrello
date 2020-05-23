@@ -15,7 +15,7 @@ const Task = seq.define("task", {
         allowNull: false
     },
     description: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
         default: null
     },
     position: {

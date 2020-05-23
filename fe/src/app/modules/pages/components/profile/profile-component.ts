@@ -10,6 +10,7 @@ import {SnackBarService} from '../../../../services/snack-bar/snack-bar.service'
   styleUrls: ['./profile-component.css']
 })
 export class ProfileComponent implements OnInit {
+  public avatar_stock = '/assets/icons/avatar.svg';
   user: User;
   public userForm: FormGroup;
   constructor(private userService: UserService,
@@ -34,6 +35,16 @@ export class ProfileComponent implements OnInit {
       login: new FormControl(),
     });
    }
+
+  public isValid(){
+    if (!this.userForm.controls.name.value || (this.userForm.controls.name.value as string).length < 4){
+      return false;
+    }
+    if (!this.userForm.controls.email.value || (this.userForm.controls.email.value as string).length < 4) {
+      return false;
+    }
+    return true;
+  }
 
   public submit() {
     let user = this.user;

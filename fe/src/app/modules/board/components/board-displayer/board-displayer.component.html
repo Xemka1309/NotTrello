@@ -15,6 +15,15 @@
       </div>
 
     </div>
+
+    <div *ngIf="boardModel" class="menu-item-container">
+      <div class="menu-item custom-button" (click)="showChat()">
+        <div class="inline">
+          Открыть чатик
+        </div>
+      </div>
+    </div>
+
     <div *ngIf="boardModel" class="menu-item-container">
       <div class="menu-item custom-button" (click)="showMenu()">
         <div class="inline">
@@ -23,6 +32,8 @@
       </div>
     </div>
   </div>
+
+  <app-board-chat [messages] = "messages" (messageSended)="sendMessage($event)" [hideKHuyam]="chatHidden"></app-board-chat>
   <app-board-menu *ngIf="boardModel" [menuVisible]="menuVisible" (picChanged) = "picChanged($event)" (isClosed)="isClosed($event)"></app-board-menu>
 
   <div
@@ -34,12 +45,15 @@
     (cdkDropListDropped)="drop($event)">
     <div class="column-box-outside" *ngFor="let column of boardModel.columns ; let i = index" cdkDrag>
       <img [src]="pickerStyle" class="picker" cdkDragHandle>
+
       <app-column-on-board (addTaskEvent)="addTask($event)" (taskMovedEvent)="taskMoved($event)" (deleteEvent)="deleteColumn($event)" class="column-box-inside" [boardMarks]="this.boardModel.marks" [columnModel]="column"></app-column-on-board>
+
     </div>
     <div class="column-add-column" (click)="addColumn()">
       <span>Добавить колонку</span>
     </div>
 
   </div>
+
 </div>
 

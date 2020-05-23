@@ -31,8 +31,9 @@ export class TaskDetailsComponent implements OnInit {
     this.newTaskModel = this.data.task;
 
     const tasks: Mark[] = [];
-    tasks.push({content:'test1',color:'#000000','board_id':9});
-    tasks.push({content:'test2',color:'#000000','board_id':9});
+    tasks.push({content: 'test1', color: '#000000',board_id: 9});
+    tasks.push({content: 'test2', color: '#000000',board_id: 9});
+
     this.markService.addMarkArray(tasks).subscribe(result => {
       console.log(result);
     });

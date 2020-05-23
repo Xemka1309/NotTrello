@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {Board} from '../../../../models/board';
 import {BoardService} from '../../../../services/board/boardService';
@@ -13,6 +13,8 @@ import {Router} from '@angular/router';
 import {SnackBarService} from '../../../../services/snack-bar/snack-bar.service';
 import { Mark } from 'src/app/models/mark';
 import { GitService } from 'src/app/services/githubflow/gitHubService';
+import { Message } from 'src/app/models/message';
+
 
 
 export interface ColAssign {
@@ -34,11 +36,18 @@ export class BoardDisplayerComponent implements OnInit {
   boardId: string;
   boardModel: Board = null;
   participantRole: String = '';
+  participants: any[];
   private posDictionary: ItemAssign[];
   private colDictionary: ColAssign[];
   private pickerStyle = '/assets/icons/move-picker.svg';
   menuVisible = 'hidden';
+  chatHidden = true;
+  private userLogin = 'anonimus';
   private md5 = new Md5();
+  public messages : Message[] = [];
+
+  @Output()
+  resetChatState = new EventEmitter<boolean>();
 
   constructor(private boardService: BoardService,
               private columnService: ColumnService,
@@ -61,6 +70,9 @@ export class BoardDisplayerComponent implements OnInit {
         });
       });
       this.rePosition();
+      this.userService.getCurrentUser().subscribe(u => {
+        this.userLogin = u.login;
+      });
       this.boardService.getConcretePartic(this.boardId).subscribe(
         result => {
           this.participantRole = result.user_role;
@@ -73,6 +85,7 @@ export class BoardDisplayerComponent implements OnInit {
       this.listenChanges();
     });
   }
+
 
   private rePosition() {
     let ind = 0;
@@ -97,22 +110,20 @@ export class BoardDisplayerComponent implements OnInit {
 
   }
 
-  private createDic() {
-    let i = 0;
-    for (const col of this.boardModel.columns) {
-      this.colDictionary.push({
-        colId: col.id,
-        containerId: i
-      });
-    }
-    i = 0;
-  }
-
   private listenChanges() {
     this.menuVisible = 'hidden';
     this.socket.on('connect', () => {
       this.socket.connect();
     });
+
+    this.socket.on('chatMessage', (message) => {
+      this.messages.push({
+        content : message.message,
+        senderLogin : message.sender
+      });
+      console.log(this.messages);
+    });
+
     this.socket.on('board changed', (data) => {
       console.log('board changes accepted');
       this.boardService.getBoardById(this.boardId).subscribe(value => {
@@ -242,5 +253,22 @@ export class BoardDisplayerComponent implements OnInit {
     const md5 = new Md5();
     const str = md5.appendStr(this.boardModel.id.toString()).end();
     return 'Ссылка для приглашения вами других челов: http://localhost:4200/board/join/' + str;
+  }
+  public showChat() {
+    if (this.chatHidden) {
+      this.chatHidden = false;
+    }
+    else {
+      this.chatHidden = true;
+      //this.resetChatState.emit(true);
+    }
+
+  }
+  public sendMessage(event){
+    this.socket.emit('chatMessageb', {
+      message: event as string,
+      sender: this.userLogin,
+      boardId: this.boardId
+    });
   }
 }
