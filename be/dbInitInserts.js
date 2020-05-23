@@ -6,4 +6,5 @@ exports.init = async function () {
     await InitRoles.init();
     await InitBoardTypes.init();
     await InitTaskPriorities.init();
+    console.log()
 };

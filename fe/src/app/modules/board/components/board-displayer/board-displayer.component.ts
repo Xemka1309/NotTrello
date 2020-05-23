@@ -186,8 +186,7 @@ export class BoardDisplayerComponent implements OnInit {
     const body = {
       column_id: column.id,
       title: 'Новая задачка',
-      priority: 'HIGH',
-      due_time: 14123123,
+      priority_id: '3',
       position: column.tasks.length,
     };
     this.taskService.addTask(body).subscribe(response => {

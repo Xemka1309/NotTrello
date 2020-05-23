@@ -7,24 +7,10 @@ const CheckListService = require("./checkListService");
 const CommentService = require("./commentService");
 
 exports.add = (async function(body){
-    const priority = await TaskPriority.findOne({
-        attributes: ['id'],
-        where: {
-            priority: body.priority
-        }
-    });
-    body.task_priority_id = priority.id;
-    delete body.priority;
     return await Task.create(body);
 });
 
 exports.addArray = (async function(body){
-    body = body.map(task => {
-        task.task_priority_id = task.priority_id;
-        delete task.priority_id;
-        delete task.priority;
-        return task;
-    });
     return await Task.bulkCreate(body, {returning: true});
 });
 

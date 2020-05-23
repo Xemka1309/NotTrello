@@ -18,7 +18,7 @@ const sequelize = new Sequelize(conf.name, conf.login, conf.password, {
   },
 });
 
-sequelize.sync({force:true})
+sequelize.sync()
     .then(() => console.log("db successfully synchronized"))
     .catch(err => console.log(err));
 
