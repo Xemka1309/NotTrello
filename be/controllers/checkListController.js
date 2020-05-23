@@ -14,6 +14,18 @@ exports.add = function (request, response) {
         });
 };
 
+exports.addArray = function (request, response) {
+    CheckListService.addArray(request.body)
+        .then(result => {
+            response.status(200);
+            response.send(result);})
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message);
+        });
+};
+
 // id, title and board_id
 exports.edit = function (request, response){
     CheckListService.edit(request.body)

@@ -3,7 +3,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Task} from '../../../../models/task';
 import {DialogModel} from '../task-simple/task-simple.component';
 import {Mark} from '../../../../models/mark';
-import {MarkService} from '../../../../services/mark/markService';
 
 @Component({
   selector: 'app-task-details',
@@ -24,7 +23,6 @@ export class TaskDetailsComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TaskDetailsComponent>,
-    private markService: MarkService,
     @Inject(MAT_DIALOG_DATA) public data: DialogModel) {}
 
   ngOnInit(): void {
