@@ -28,8 +28,8 @@ const Task = seq.define("task", {
         defaultValue: 0
     }
 });
-TaskPriority.hasMany(Task, {foreignKey: 'task_priority_id'});
-Task.belongsTo(TaskPriority, {foreignKey: 'task_priority_id'});
+TaskPriority.hasMany(Task, {foreignKey: 'priority_id'});
+Task.belongsTo(TaskPriority, {foreignKey: 'priority_id'});
 Column.hasMany(Task, {foreignKey: 'column_id'});
 
 module.exports = Task;
