@@ -26,8 +26,8 @@ export class TaskDetailsComponent implements OnInit {
     this.newTaskModel = this.data.task;
 
     const tasks: Task[] = [];
-    tasks.push({title:'test'});
-    tasks.push(new Task());
+    tasks.push({title:'test1',priority_id: 1,completed:false,position:1,column_id:10});
+    tasks.push({title:'test2',priority_id: 1,completed:false,position:1,column_id:10});
     this.taskService.addTaskArray(tasks).subscribe(result => {
       console.log(result);
     });
