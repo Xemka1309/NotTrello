@@ -14,8 +14,19 @@ exports.add = function (request, response) {
 };
 
 exports.addArray = function (request, response) {
-    request.body.user_id = request.decoded.id;
     MarkService.addArray(request.body)
+        .then(result => {
+            response.status(200);
+            response.send(result);})
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message);
+        });
+};
+
+exports.addTaskMarkArray = function (request, response) {
+    MarkService.addTaskMarkArray(request.body)
         .then(result => {
             response.status(200);
             response.send(result);})

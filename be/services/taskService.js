@@ -7,24 +7,10 @@ const CheckListService = require("./checkListService");
 const CommentService = require("./commentService");
 
 exports.add = (async function(body){
-    const priority = await TaskPriority.findOne({
-        attributes: ['id'],
-        where: {
-            priority: body.priority
-        }
-    });
-    body.task_priority_id = priority.id;
-    delete body.priority;
     return await Task.create(body);
 });
 
 exports.addArray = (async function(body){
-    body = body.map(task => {
-        task.task_priority_id = task.priority_id;
-        delete task.priority_id;
-        delete task.priority;
-        return task;
-    });
     return await Task.bulkCreate(body, {returning: true});
 });
 
@@ -42,7 +28,7 @@ exports.delete = (async function (body) {
 
 exports.getById = (async function (id) {
     const task = await Task.findOne({
-        attributes: ['id','title','description','position','completed','task_priority_id','column_id'],
+        attributes: ['id','title','description','position','completed','priority_id','column_id'],
         where: {
             id: id
         }
@@ -51,7 +37,7 @@ exports.getById = (async function (id) {
     const priorities = await TaskPriority.findAll({
         attributes: ['id','priority'],
     });
-    taskReturnData.task_priority = priorities.find(element => element.id = task.task_priority_id).priority;
+    taskReturnData.task_priority = priorities.find(element => element.id = task.priority_id).priority;
     delete taskReturnData.task_priority_id;
     taskReturnData.mark_ids = await TaskMark.findAll({
         attributes: ['mark_id'],
@@ -73,7 +59,7 @@ exports.getById = (async function (id) {
 
 exports.getByColumn = (async function (columnId) {
     const tasks = await Task.findAll({
-        attributes: ['id','title','position','completed','task_priority_id'],
+        attributes: ['id','title','position','completed','priority_id'],
         where: {
             column_id: columnId
         },
@@ -82,13 +68,8 @@ exports.getByColumn = (async function (columnId) {
            // ['name', 'DESC],
         ],
     });
-    const priorities = await TaskPriority.findAll({
-        attributes: ['id','priority'],
-    });
     return Promise.all(tasks.map(async function(task){
         let taskFields = task.dataValues;
-        taskFields.task_priority = priorities.find(element => element.id = task.task_priority_id).priority;
-        delete taskFields.task_priority_id;
         taskFields.check_lists = await CheckListService.get(task.id);
         let marks = [];
         const mark_ids = await TaskMark.findAll({

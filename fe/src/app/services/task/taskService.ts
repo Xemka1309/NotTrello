@@ -3,6 +3,7 @@ import { HttpClient, HttpParams} from '@angular/common/http';
 import {Task} from '../../models/task';
 import { TaskMark } from 'src/app/models/task-mark';
 import { Observable } from 'rxjs';
+import {CheckList} from '../../models/check-list';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class TaskService {
   private deleteMarkToTaskUrl = `${this.baseUrl}/tomark/delete`;
 
   private checkListUrl = '/api/checklist';
-  private addCheckListToTaskUrl = `${this.baseUrl}/add`;
+  private addCheckListArrayUrl = `${this.checkListUrl}/addArray`;
 
   constructor(private http: HttpClient) { }
 
@@ -63,5 +64,9 @@ export class TaskService {
 
   public addTaskArray(tasks: Task[]): Observable<any>{
     return this.http.post<Task[]>(this.addTaskArrayUrl, tasks,{observe: 'response'})
+  }
+
+  public addCheckListArray(checkLists: CheckList[]): Observable<any>{
+    return this.http.post<CheckList[]>(this.addCheckListArrayUrl, checkLists,{observe: 'response'})
   }
 }

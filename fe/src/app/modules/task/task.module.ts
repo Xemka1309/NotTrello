@@ -13,6 +13,7 @@ import { CommentsDisplayerComponent} from './components/comments-displayer/comme
 import {MatDialogModule} from '@angular/material/dialog';
 import {DirectiveModule} from '../../directives/directive.module';
 import {MarkModule} from '../mark/mark.module';
+import {PriorityModule} from '../priority/priority.module';
 @NgModule({
   declarations: [TaskSimpleComponent, TaskDetailsComponent, CommentsDisplayerComponent],
   imports: [
@@ -27,7 +28,8 @@ import {MarkModule} from '../mark/mark.module';
     ReactiveFormsModule,
     MatCardModule,
     DirectiveModule,
-    MarkModule
+    MarkModule,
+    PriorityModule
   ],
   exports: [TaskSimpleComponent, TaskDetailsComponent, CommentsDisplayerComponent],
   entryComponents: [TaskDetailsComponent],

@@ -1,0 +1,28 @@
+<div class="priority-popup-wrapper">
+  <div class="priority-header">
+    <span>Приоритет</span>
+  </div>
+
+  <div class="priority-list">
+    <div class="priority-list-item p1" (click)="select(1)">
+      <img [src]="priority1" class="priority">
+      Горит
+    </div>
+    <div class="priority-list-item p2" (click)="select(2)">
+      <img [src]="priority2" class="priority">
+      Срочная
+    </div>
+    <div class="priority-list-item p3" (click)="select(3)">
+      <img [src]="priority3" class="priority">
+      Нужная
+    </div>
+    <div class="priority-list-item p4" (click)="select(4)">
+      <img [src]="priority4" class="priority">
+      Желательная
+    </div>
+    <div class="priority-list-item p5" (click)="select(5)">
+      <img [src]="priority5" class="priority">
+      Опциональная
+    </div>
+  </div>
+</div>

@@ -1,19 +1,19 @@
-.mark-list {
+.priority-list {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   min-width: 100px;
   flex-basis: fit-content;
 }
 
-.mark-list-item {
+.priority-list-item {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   width: 95%;
-  margin: 5px;
+  margin: 0 5px;
   padding: 5px;
   color: white;
   cursor: pointer;
@@ -22,28 +22,53 @@
   min-height: 30px;
 }
 
-.mark-header {
+.priority-list-item:hover {
+  background-color: #aaaaaa;
+}
+
+.priority-header {
   display: flex;
   border-bottom: 1px silver solid;
   width: 100%;
   font-size: 1.5em;
 }
 
-.mark-popup-wrapper {
+.priority-popup-wrapper {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 }
 
+.p1 {
+  color: crimson;
+}
+
+.p2 {
+  color:darkred;
+}
+
+.p3 {
+  color: orange;
+}
+
+.p4 {
+  color: yellow;
+}
+
+.p5 {
+  color: yellowgreen;
+}
+
+.priority {
+  display: inline-block;
+  padding: 0.25em 0.5em 0.25em 0.25em;
+  cursor: pointer;
+  height: 1.75em;
+  width: 1.75em;
+}
+
 span {
   text-align: center;
   width: 100%;
-}
-
-.mark-selected {
-  position: absolute;
-  right: 5%;
-  width: 1.25em;
-  height: 1.25em;
 }

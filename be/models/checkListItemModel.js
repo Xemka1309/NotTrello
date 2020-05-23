@@ -20,9 +20,7 @@ const CheckListItem = seq.define("check_list_item", {
     }
 });
 CheckList.hasMany(CheckListItem, {
-    foreignKey: 'check_list_id',
-    onDelete: 'CASCADE'
+    foreignKey: 'check_list_id'
 });
-CheckListItem.belongsTo(CheckList);
 
 module.exports = CheckListItem;

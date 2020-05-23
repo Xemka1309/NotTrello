@@ -2,6 +2,7 @@
   <div *ngIf="popoverActive" class="custom-fixed-container" [style.left]="data.leftPos" [style.width]="data.width">
     <div class="custom-fixed-container-inside" [ngSwitch]="popoverState">
       <app-mark-picker *ngSwitchCase="markPicker" (clickMark)="changeMark($event)" [marks]="data.marks" [selectedMarks]="newTaskModel.marks"></app-mark-picker>
+      <app-priority-picker *ngSwitchCase="priorityPicker" [selectedPriority]="newTaskModel.priority_id" (changePriority)="changePriority($event)"></app-priority-picker>
     </div>
   </div>
   <div class="task-details-container card">
@@ -11,7 +12,6 @@
       </div>
     </div>
     <div class="task-details-body cp-1 card-body">
-
       <div class="task-details-content ">
         <div class="task-details-sub-header">
           Описание
@@ -71,10 +71,10 @@
         <div class="task-details-button">
           <span>Участники</span>
         </div>
-        <div class="task-details-button">
+        <div class="task-details-button" (click)="changeState(priorityPicker)">
           <span>Изменить приоритет</span>
         </div>
-        <div class="task-details-button" (click)="changeMarkPicker()">
+        <div class="task-details-button" (click)="changeState(markPicker)">
           <span>Изменить метки</span>
         </div>
       </div>

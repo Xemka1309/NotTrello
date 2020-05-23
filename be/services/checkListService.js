@@ -1,4 +1,5 @@
 const CheckList = require("../models/checkListModel");
+const CheckListItem = require("../models/checkListItemModel");
 const CLItemService = require("./checkListItemService");
 
 exports.get = (async function(taskId){
@@ -17,8 +18,43 @@ exports.get = (async function(taskId){
 });
 
 exports.add = (async function(body){
-    return CheckList.create(body);
+    return await CheckList.create(body);
 });
+
+exports.addArray = (async function(body){
+    return body.forEach(async checkList => {
+        if(!checkList.id || !await CheckList.findAll({
+            attributes: ['id'],
+            where: {
+                id: checkList.id
+            }
+        })
+        ) {
+            checkList = await CheckList.create(checkList);
+        } else {
+            await CheckList.update(
+                checkList,
+                {where: {id: checkList.id}});
+        }
+        checkList.items.forEach(async clItem => {
+            clItem.check_list_id = checkList.id;
+            if(!clItem.id || !await CheckListItem.findAll({
+                attributes: ['id'],
+                where: {
+                    id: clItem.id
+                }
+            }))
+            {
+                await CheckListItem.create(clItem);
+            } else {
+                await CheckListItem.update(
+                    clItem,
+                    {where: {id: clItem.id}});
+            }
+        });
+    })
+});
+
 exports.edit = (async function (body) {
     return await CheckList.update(
         body,

@@ -1,7 +1,4 @@
-import {ActivatedRoute} from '@angular/router';
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {MarkService} from '../../../../services/mark/markService';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Mark} from '../../../../models/mark';
 
 @Component({
