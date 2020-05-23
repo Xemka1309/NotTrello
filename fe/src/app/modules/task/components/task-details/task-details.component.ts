@@ -14,12 +14,13 @@ export class TaskDetailsComponent implements OnInit {
   private popoverActive = false;
   private popoverState = 'nothing';
   private readonly markPicker = 'markPicker';
+  private readonly priorityPicker = 'priorityPicker';
+  private newTaskModel: Task;
   private priority1 = '/assets/icons/priority1.svg';
   private priority2 = '/assets/icons/priority2.svg';
   private priority3 = '/assets/icons/priority3.svg';
   private priority4 = '/assets/icons/priority4.svg';
   private priority5 = '/assets/icons/priority5.svg';
-  public newTaskModel: Task;
 
   constructor(
     public dialogRef: MatDialogRef<TaskDetailsComponent>,
@@ -29,13 +30,6 @@ export class TaskDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.dialogRef.disableClose = true;
     this.newTaskModel = this.data.task;
-
-    const tasks: Mark[] = [];
-    tasks.push({content:'test1',color:'#000000','board_id':9});
-    tasks.push({content:'test2',color:'#000000','board_id':9});
-    this.markService.addMarkArray(tasks).subscribe(result => {
-      console.log(result);
-    });
 
     this.dialogRef.beforeClosed().subscribe(result => {
       this.closeThis();
@@ -71,13 +65,13 @@ export class TaskDetailsComponent implements OnInit {
     }
   }
 
-  changeMarkPicker() {
-    if (this.popoverActive && this.popoverState === this.markPicker) {
+  changeState(state: string) {
+    if (this.popoverActive && this.popoverState === state) {
       this.popoverActive = false;
       return;
     }
-    if (this.popoverState !== this.markPicker) {
-      this.popoverState = this.markPicker;
+    if (this.popoverState !== state) {
+      this.popoverState = state;
       this.popoverActive = true;
       return;
     }
@@ -94,5 +88,9 @@ export class TaskDetailsComponent implements OnInit {
 
   changeDescription(event) {
     this.newTaskModel.description = event;
+  }
+
+  changePriority(event) {
+    this.newTaskModel.priority_id = event;
   }
 }
