@@ -2,8 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Task} from '../../../../models/task';
 import {DialogModel} from '../task-simple/task-simple.component';
-import {TaskService} from '../../../../services/task/taskService';
 import {Mark} from '../../../../models/mark';
+import {MarkService} from '../../../../services/mark/markService';
 
 @Component({
   selector: 'app-task-details',
@@ -18,17 +18,17 @@ export class TaskDetailsComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TaskDetailsComponent>,
-    private taskService: TaskService,
+    private markService: MarkService,
     @Inject(MAT_DIALOG_DATA) public data: DialogModel) {}
 
   ngOnInit(): void {
     this.dialogRef.disableClose = true;
     this.newTaskModel = this.data.task;
 
-    const tasks: Task[] = [];
-    tasks.push({title:'test1',priority_id: 1,completed:false,position:1,column_id:10});
-    tasks.push({title:'test2',priority_id: 1,completed:false,position:1,column_id:10});
-    this.taskService.addTaskArray(tasks).subscribe(result => {
+    const tasks: Mark[] = [];
+    tasks.push({content:'test1',color:'#000000','board_id':9});
+    tasks.push({content:'test2',color:'#000000','board_id':9});
+    this.markService.addMarkArray(tasks).subscribe(result => {
       console.log(result);
     });
 

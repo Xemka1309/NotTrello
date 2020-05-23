@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Mark} from '../../models/mark';
+import {Task} from '../../models/task';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class MarkService {
   private getMarkByIdUrl = `${this.baseUrl}/get`;
   private getMarksByBoardIdUrl = `${this.baseUrl}/getByBoardId`;
   private createMarkUrl = `${this.baseUrl}/add`;
+  private addMarkArrayUrl = `${this.baseUrl}/addArray`;
   private updateMarkUrl = `${this.baseUrl}/edit`;
   private deleteMarkUrl = `${this.baseUrl}/delete`;
 
@@ -59,5 +61,9 @@ export class MarkService {
     });
 
     return this.http.get<Mark[]>(this.getMarksByBoardIdUrl, {params});
+  }
+
+  public addMarkArray(marks: Mark[]): Observable<any>{
+    return this.http.post<Mark[]>(this.addMarkArrayUrl, marks,{observe: 'response'})
   }
 }
