@@ -23,6 +23,42 @@
           </div>
         </div>
 
+        <h4 class="task-details-sub-header">Метки задачи</h4>
+        <div *ngFor="let item of newTaskModel.marks" class="mark-container">
+          <div [style.background-color]="item.color" class="mark-item">
+            <span class="mark-text">{{item.content}}</span>
+          </div>
+        </div>
+
+
+        <h4 class="task-details-sub-header">Приоритет задачи</h4>
+        <span class="priority-text" [ngSwitch]="newTaskModel.priority_id">
+          <p class="priority-text p1" *ngSwitchCase="1">
+            Горит
+            <img [src]="priority1" class="priority">
+          </p>
+          <p class="priority-text p2" *ngSwitchCase="2">
+            Срочная
+            <img [src]="priority2" class="priority">
+          </p>
+          <p class="priority-text p3" *ngSwitchCase="3">
+            Нужная
+            <img [src]="priority3" class="priority">
+          </p>
+          <p class="priority-text p4" *ngSwitchCase="4">
+            Желательная
+            <img [src]="priority4" class="priority">
+          </p>
+          <p class="priority-text p5" *ngSwitchCase="5">
+            <img [src]="priority5" class="priority">
+            Опциональная
+          </p>
+          <p class="priority-text p5" *ngSwitchDefault>
+            <img [src]="priority5" class="priority">
+            Хуй знает какая
+          </p>
+        </span>
+
         <div class="task-details-sub-header">
           Комментарии
         </div>

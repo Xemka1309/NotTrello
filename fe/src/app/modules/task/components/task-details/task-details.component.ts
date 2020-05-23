@@ -14,7 +14,12 @@ export class TaskDetailsComponent implements OnInit {
   private popoverActive = false;
   private popoverState = 'nothing';
   private readonly markPicker = 'markPicker';
-  private newTaskModel: Task;
+  private priority1 = '/assets/icons/priority1.svg';
+  private priority2 = '/assets/icons/priority2.svg';
+  private priority3 = '/assets/icons/priority3.svg';
+  private priority4 = '/assets/icons/priority4.svg';
+  private priority5 = '/assets/icons/priority5.svg';
+  public newTaskModel: Task;
 
   constructor(
     public dialogRef: MatDialogRef<TaskDetailsComponent>,

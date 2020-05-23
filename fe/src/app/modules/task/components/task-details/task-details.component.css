@@ -104,3 +104,55 @@
   height: fit-content;
   overflow-y: auto;
 }
+
+.mark-item{
+  display: inline-block;
+  border-width: 0.1em;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+.mark-text{
+  color:white;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.priority-text{
+  padding-top: 10px;
+  font-size: 15px;
+  font-family: 'PT Mono', monospace;
+}
+
+
+
+.p1{
+  color: crimson;
+}
+
+.p2{
+  color:darkred;
+}
+
+.p3{
+  color: orange;
+}
+
+.p4{
+  color: yellow;
+}
+
+.p5{
+  color: yellowgreen;
+}
+
+.priority {
+  top: 0;
+  right: 0;
+  display: inline-block;
+  padding: 0.25em;
+  padding-right: 0.5em;
+  cursor: pointer;
+  height: 1.75em;
+  width: 1.75em;
+}

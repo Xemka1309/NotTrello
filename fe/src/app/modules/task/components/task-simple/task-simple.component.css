@@ -47,15 +47,17 @@
   padding: 5px;
 }
 
+.task-header{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 .priority-text{
   padding-top: 10px;
   font-size: 15px;
   font-family: 'PT Mono', monospace;
 }
 
-.task-header{
-  font-family: 'Roboto Condensed', sans-serif;
-}
+
 
 .p1{
   color: crimson;
