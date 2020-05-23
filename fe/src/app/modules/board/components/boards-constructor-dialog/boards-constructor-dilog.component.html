@@ -3,12 +3,12 @@
     <h1 mat-dialog-title>New Board</h1>
     <div mat-dialog-content>
       <mat-form-field>
-        <mat-label>Title</mat-label>
+        <mat-label>Название</mat-label>
         <input  required matInput [(ngModel)]="data.title">
       </mat-form-field>
       <br />
       <mat-form-field>
-        <mat-label>Description</mat-label>
+        <mat-label>Описание</mat-label>
         <input matInput [(ngModel)]="data.description">
       </mat-form-field>
       <br/>
@@ -18,7 +18,7 @@
       </mat-form-field>
       <br />
       <mat-form-field>
-        <mat-label>Board Type</mat-label>
+        <mat-label>Тип доски</mat-label>
           <mat-select [(ngModel)]="data.bordType" required>
             <mat-option  *ngFor="let bordType of data.bordTypes" [value]="bordType" >
               {{bordType}}
@@ -28,8 +28,8 @@
       <br/>
     </div>
     <div mat-dialog-actions>
-      <button [disabled]="!validate()" class="btn btn-primary" [mat-dialog-close]="data" cdkFocusInitial>Create</button>
-      <button class="btn btn-primary" (click)="onNoClick()">No Thanks</button>
+      <button [disabled]="!validate()" class="btn btn-primary" [mat-dialog-close]="data" cdkFocusInitial>Создать</button>
+      <button class="btn btn-primary" (click)="onNoClick()">Не, спасибо</button>
     </div>
   </div>
 </div>
