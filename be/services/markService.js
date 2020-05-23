@@ -1,3 +1,4 @@
+const TaskMark = require("../models/taskMarkModel");
 const Mark = require("../models/markModel");
 
 exports.getByBoardId = (async function(boardId){
@@ -25,6 +26,10 @@ exports.add = (async function(body){
 
 exports.addArray = (async function(body){
     return await Mark.bulkCreate(body, {returning: true});
+});
+
+exports.addTaskMarkArray = (async function(body){
+    return await TaskMark.bulkCreate(body, {returning: true});
 });
 
 exports.edit = (async function (body) {

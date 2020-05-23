@@ -6,6 +6,7 @@ markRouter.get("/get", markController.get);
 markRouter.get("/getByBoardId", markController.getByBoardId);
 markRouter.post("/add", markController.add);
 markRouter.post("/addArray", markController.addArray);
+markRouter.post("/addTaskMarkArray", markController.addTaskMarkArray);
 markRouter.put("/edit", markController.edit);
 markRouter.delete("/delete", markController.delete);
 
