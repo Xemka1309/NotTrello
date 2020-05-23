@@ -37,7 +37,7 @@ exports.addArray = (async function(body){
                 {where: {id: checkList.id}});
         }
         checkList.items.forEach(async clItem => {
-            clItem.check_item_id = checkList.id;
+            clItem.check_list_id = checkList.id;
             if(!clItem.id || !await CheckListItem.findAll({
                 attributes: ['id'],
                 where: {
