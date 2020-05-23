@@ -1,4 +1,5 @@
 const TaskService = require("../services/taskService");
+const ImbaService = require("../services/imbaService");
 
 exports.add = function (request, response) {
     TaskService.add(request.body)
@@ -102,7 +103,7 @@ exports.deleteTaskToPT = function (request, response){
 };
 
 exports.taskToMark = function(request, response){
-    TaskService.taskToMark(request.body)
+    ImbaService.doImbaWithMarks(request.body)
         .then(result => {
             response.status(200);
             response.send(result);

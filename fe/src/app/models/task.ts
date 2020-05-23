@@ -11,7 +11,7 @@ export class Task {
   dueTime?: string;
   completed?: boolean;
   position?: number;
-  checkLists?: CheckList[];
+  check_lists?: CheckList[];
   marks?: Mark[];
   pos?: number;
   marks_ids?: number[];

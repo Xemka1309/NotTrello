@@ -1,0 +1,85 @@
+.check-lists-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-basis: fit-content;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.check-list-container {
+  display: flex;
+  flex-direction: column;
+  flex-basis: fit-content;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+
+.check-list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 100%;
+  width: 100%;
+  height: fit-content;
+}
+
+.check-list-title {
+  display: flex;
+  font-size: 1.25em;
+  cursor: pointer;
+}
+
+.check-list-button-delete {
+  display: flex;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.check-list-button-delete:hover {
+  background-color: #aaaaaa;
+}
+
+.check-list-item {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+  width: 100%;
+  max-width: 100%;
+  font-size: 0.75em;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.m-flex {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+}
+
+.inline-block {
+  margin: 0 7px;
+  padding: 4px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.suicide-button {
+  display: flex;
+  justify-self: right;
+  height: 2em;
+  width: 2em;
+  cursor: pointer;
+}
+
+.suicide-button:hover {
+  background-color: #aaaaaa;
+}
+
+.but {
+  height: 2em;
+  width: 2em;
+}

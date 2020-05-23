@@ -32,7 +32,7 @@ export class CommentsDisplayerComponent implements OnInit {
         const date: Date = new Date(comment.create_time);
         const dateStrObject = {dateStr: date.toLocaleDateString('ru-RU',this.options)};
         this.userService.getUserById(comment.user_id.toString()).subscribe(result => {
-          this.commentsWithUsers.push(Object.assign({},comment,result,dateStrObject));
+          this.commentsWithUsers.push(Object.assign({}, comment, result, dateStrObject));
         })
       });
     });
@@ -53,7 +53,7 @@ export class CommentsDisplayerComponent implements OnInit {
       if (result.status === 200) {
         const date: Date = new Date(comment.create_time);
         const dateStrObject = {dateStr: date.toLocaleDateString('ru-RU',this.options)};
-        const commentWithUser = Object.assign({},comment,this.currentUser, dateStrObject);
+        const commentWithUser = Object.assign({}, comment, this.currentUser, dateStrObject);
         console.log(commentWithUser);
         this.commentsWithUsers.push(commentWithUser);
       }

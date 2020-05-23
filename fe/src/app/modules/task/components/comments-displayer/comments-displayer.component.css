@@ -4,7 +4,7 @@
 }
 
 .comment-form {
-  width: 85%;
+  width: 95%;
   padding: 10px;
   border: 1px solid silver;
   border-radius: 10px;
@@ -38,7 +38,7 @@
 }
 
 .border {
-  width: 85%;
+  width: 95%;
   border: 1px solid silver;
   border-radius: 7px;
   display: inline-block;

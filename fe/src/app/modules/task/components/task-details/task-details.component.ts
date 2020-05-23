@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Task} from '../../../../models/task';
 import {DialogModel} from '../task-simple/task-simple.component';
 import {Mark} from '../../../../models/mark';
+import {MarkService} from '../../../../services/mark/markService';
+import {CheckList} from '../../../../models/check-list';
 
 @Component({
   selector: 'app-task-details',
@@ -23,11 +25,15 @@ export class TaskDetailsComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TaskDetailsComponent>,
+    private markService: MarkService,
     @Inject(MAT_DIALOG_DATA) public data: DialogModel) {}
 
   ngOnInit(): void {
     this.dialogRef.disableClose = true;
     this.newTaskModel = this.data.task;
+    if (!this.newTaskModel.check_lists) {
+      this.newTaskModel.check_lists = [];
+    }
 
     this.dialogRef.beforeClosed().subscribe(result => {
       this.closeThis();
@@ -77,7 +83,14 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   private closeThis() {
+    this.preparePositions();
     this.dialogRef.close(this.newTaskModel);
+  }
+
+  private preparePositions() {
+    this.newTaskModel.check_lists.forEach((cl, i) => {
+      cl.position = i;
+    });
   }
 
   changeTitle(event) {
@@ -90,5 +103,24 @@ export class TaskDetailsComponent implements OnInit {
 
   changePriority(event) {
     this.newTaskModel.priority_id = event;
+  }
+
+  changeCheckList(event) {
+    this.newTaskModel.check_lists = event;
+  }
+
+  deleteMe() {
+    const a = {
+      deleted: true
+    } as DialogModel;
+    this.dialogRef.close(a);
+  }
+
+  addCheckList() {
+    const checkList = new CheckList();
+    checkList.items = [];
+    checkList.task_id = +this.newTaskModel.id;
+    checkList.title = 'новый чек-лист';
+    this.newTaskModel.check_lists.push(checkList);
   }
 }

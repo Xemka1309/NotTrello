@@ -5,6 +5,7 @@ import {TaskDetailsComponent} from '../task-details/task-details.component';
 import {Socket} from 'ngx-socket-io';
 import {TaskService} from '../../../../services/task/taskService';
 import { Mark } from 'src/app/models/mark';
+import {MarkService} from '../../../../services/mark/markService';
 
 @Component({
   selector: 'app-task-simple',
@@ -26,7 +27,8 @@ export class TaskSimpleComponent implements OnInit {
   private priority5 = '/assets/icons/priority5.svg';
   constructor(public dialog: MatDialog,
               private socket: Socket,
-              private taskService: TaskService) {
+              private taskService: TaskService,
+              private markService: MarkService) {
   }
 
   ngOnInit(): void {
@@ -55,9 +57,25 @@ export class TaskSimpleComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result.deleted) {
+        // todo delete task
+        return;
+      }
       console.log('The dialog was closed');
       console.log(result);
       this.taskModel = result;
+      this.taskService.updateTask(this.taskModel).subscribe(ok1 => {
+        console.log('ok!! update task!!!!');
+        console.log(ok1);
+        this.taskService.addCheckListArray(this.taskModel.check_lists).subscribe(ok => {
+          console.log('ok!! check lists!!!');
+          console.log(ok);
+          this.taskService.addMarkToTask(this.taskModel.marks_ids, +this.taskModel.id).subscribe(ok => {
+            console.log('ok!!!! MARKS!!!');
+            console.log(ok);
+          });
+        });
+      });
     });
 
   }
@@ -68,4 +86,5 @@ export interface DialogModel {
   leftPos?: string;
   task?: Task;
   marks?: Mark[];
+  deleted?: boolean;
 }

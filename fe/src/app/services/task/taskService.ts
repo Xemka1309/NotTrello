@@ -42,9 +42,9 @@ export class TaskService {
     return this.http.delete(this.deleteTaskUrl, {params});
   }
 
-  public addMarkToTask(markId: string, taskId: string): Observable<any> {
+  public addMarkToTask(markIds: number[], taskId: number): Observable<any> {
     const markTask = {
-      mark_id: markId,
+      marks_ids: markIds,
       task_id: taskId
     };
     return this.http.post<TaskMark>(this.addMarkToTaskUrl, markTask);

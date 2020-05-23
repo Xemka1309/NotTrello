@@ -60,6 +60,13 @@
         </span>
 
         <div class="task-details-sub-header">
+          Чек-листы
+        </div>
+        <div class="custom-inline-block">
+          <app-check-list [checkLists]="newTaskModel.check_lists" (state)="changeCheckList($event)"></app-check-list>
+        </div>
+
+        <div class="task-details-sub-header">
           Комментарии
         </div>
         <div class="custom-inline-block">
@@ -68,14 +75,17 @@
       </div>
 
       <div class="task-details-buttons">
-        <div class="task-details-button">
-          <span>Участники</span>
-        </div>
         <div class="task-details-button" (click)="changeState(priorityPicker)">
           <span>Изменить приоритет</span>
         </div>
         <div class="task-details-button" (click)="changeState(markPicker)">
           <span>Изменить метки</span>
+        </div>
+        <div class="task-details-button" (click)="addCheckList()">
+          Добавить чек-лист
+        </div>
+        <div class="task-details-button" (click)="deleteMe()">
+          <span>Удалить</span>
         </div>
       </div>
     </div>

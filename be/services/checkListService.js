@@ -18,25 +18,29 @@ exports.get = (async function(taskId){
 });
 
 exports.add = (async function(body){
-    return await CheckList.create(body);
+    return CheckList.create(body);
 });
 
 exports.addArray = (async function(body){
-    return body.forEach(async checkList => {
-        if(!checkList.id || !await CheckList.findAll({
-            attributes: ['id'],
-            where: {
-                id: checkList.id
+    return Promise.all(
+        body.map(async checkList => {
+            if(!checkList.id || !await
+                CheckList.findAll({
+                    attributes: ['id'],
+                    where: {
+                        id: checkList.id
+                    }
+                })) {
+                checkList = await CheckList.create(checkList);
             }
-        })
-        ) {
-            checkList = await CheckList.create(checkList);
-        } else {
-            await CheckList.update(
-                checkList,
-                {where: {id: checkList.id}});
-        }
-        checkList.items.forEach(async clItem => {
+            else {
+                await CheckList.update(
+                    checkList, {
+                        where: {
+                            id: checkList.id}
+                    });
+            }
+        await Promise.all(checkList.items.map(async clItem => {
             clItem.check_list_id = checkList.id;
             if(!clItem.id || !await CheckListItem.findAll({
                 attributes: ['id'],
@@ -51,8 +55,8 @@ exports.addArray = (async function(body){
                     clItem,
                     {where: {id: clItem.id}});
             }
-        });
-    })
+        }))
+    }))
 });
 
 exports.edit = (async function (body) {

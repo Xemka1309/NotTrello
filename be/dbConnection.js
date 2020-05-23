@@ -6,6 +6,7 @@ const sequelize = new Sequelize(conf.name, conf.login, conf.password, {
   host: conf.host,
   port: conf.port,
   logging: false,
+  sync: true,
   define: {
     timestamps: false,
     freezeTableName: true,

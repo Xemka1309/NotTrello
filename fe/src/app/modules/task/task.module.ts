@@ -14,6 +14,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DirectiveModule} from '../../directives/directive.module';
 import {MarkModule} from '../mark/mark.module';
 import {PriorityModule} from '../priority/priority.module';
+import {CheckListModule} from '../check-list/check-list.module';
 @NgModule({
   declarations: [TaskSimpleComponent, TaskDetailsComponent, CommentsDisplayerComponent],
   imports: [
@@ -29,7 +30,8 @@ import {PriorityModule} from '../priority/priority.module';
     MatCardModule,
     DirectiveModule,
     MarkModule,
-    PriorityModule
+    PriorityModule,
+    CheckListModule
   ],
   exports: [TaskSimpleComponent, TaskDetailsComponent, CommentsDisplayerComponent],
   entryComponents: [TaskDetailsComponent],

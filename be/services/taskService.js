@@ -7,22 +7,22 @@ const CheckListService = require("./checkListService");
 const CommentService = require("./commentService");
 
 exports.add = (async function(body){
-    return await Task.create(body);
+    return Task.create(body);
 });
 
 exports.addArray = (async function(body){
-    return await Task.bulkCreate(body, {returning: true});
+    return Task.bulkCreate(body, {returning: true});
 });
 
 exports.edit = (async function (body) {
-    return await Task.update(
+    return Task.update(
       body,
       { where: { id: body.id } }
     );
 });
 
 exports.delete = (async function (body) {
-    return await Task.destroy(
+    return Task.destroy(
         {where: {id: body.id}})
 });
 
@@ -59,7 +59,7 @@ exports.getById = (async function (id) {
 
 exports.getByColumn = (async function (columnId) {
     const tasks = await Task.findAll({
-        attributes: ['id','title','position','completed','priority_id'],
+        attributes: ['id','title','description','position','completed','priority_id'],
         where: {
             column_id: columnId
         },
@@ -79,7 +79,7 @@ exports.getByColumn = (async function (columnId) {
             }
         });
         taskFields.marks_ids = mark_ids.map(x => x.mark_id);
-        mark_ids.forEach(async mark => {
+        mark_ids.map(async mark => {
             marks.push(await Mark.findOne({
                 attributes: ['id','content','color'],
                 where: {
@@ -94,19 +94,19 @@ exports.getByColumn = (async function (columnId) {
 });
 
 exports.taskToPT = (async function (body) {
-    return await TaskToParticipant.create(body);
+    return TaskToParticipant.create(body);
 });
 
 exports.deleteTaskToPT = (async function (taskId, participantId) {
-    return await TaskToParticipant.destroy(
+    return TaskToParticipant.destroy(
         {where: {task_id: taskID, participant_id: participantId}})
 });
 
 exports.taskToMark = (async function (body) {
-    return await TaskMark.create(body);
+    return TaskMark.create(body);
 });
 
 exports.deleteTaskToMark = (async function (taskId, markId) {
-    return await TaskMark.destroy(
+    return TaskMark.destroy(
         {where: {task_id: taskId, mark_id: markId}})
 });
