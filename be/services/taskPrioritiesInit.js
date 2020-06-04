@@ -1,7 +1,7 @@
 const Priority = require("../models/taskPriorityModel");
 
 exports.init = (async function () {
-    return Priority.bulkCreate(
+    return await Priority.bulkCreate(
         [
             {id: 1, priority: "VERY_HIGH"},
             {id: 2, priority: "HIGH"},

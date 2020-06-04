@@ -1,13 +1,32 @@
 const Participant = require("../models/participantModel");
 const ParticipantRole = require("../models/participantRoleModel");
 
-exports.get = (async function(userId){
+exports.getByUserId = (async function(userId){
+
     return await Participant.findAll({
         attributes: ['id','board_id','user_id','role_id'],
         where: {
             user_id: userId
         }
+    })
+});
+
+exports.getByBoardId = (async function(boardId){
+    const participants = await Participant.findAll({
+        attributes: ['id','board_id','user_id','role_id'],
+        where: {
+            board_id: boardId
+        }
     });
+    const roles = await ParticipantRole.findAll({
+        attributes: ['id','role'],
+    });
+    return participants.map(partic => {
+        let particData = partic.dataValues;
+        particData.role = roles.find(role => role.id === partic.role_id).role;
+        delete particData.role_id;
+        return particData
+    })
 });
 
 exports.add = (async function(body){

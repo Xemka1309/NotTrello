@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import {StorageService} from '../../../../services/storage.service';
+import {StorageService} from '../../../../services/storage/storage.service';
 
 @Component({
   selector: 'app-log-in-form',
@@ -38,7 +38,6 @@ export class LogInFormComponent implements OnInit {
     this.userService.logIn(login, password).subscribe((result) => {
 
       if (result.status === 200) {
-        alert(result.body.message);
         this.storage.setToken(result.body.token);
         this.goToHome();
       }

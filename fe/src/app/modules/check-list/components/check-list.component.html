@@ -1,0 +1,20 @@
+<div class="check-lists-wrapper">
+  <div class="check-list-container" *ngFor="let checkList of checkLists; let i = index">
+    <div class="check-list-header">
+      <div class="check-list-title" contentEditableModel (contentEditableModelChange)="changeCheckListTitle($event, i)">{{checkList.title}}</div>
+      <div class="check-list-button-delete" (click)="deleteCheckList(i)">Удалить</div>
+    </div>
+    <div class="check-list-item" *ngFor="let item of checkList.items; let j = index">
+      <mat-checkbox class="d-flex" [checked]="item.completed" (change)="changeItemStatus($event, i, j)"></mat-checkbox>
+      <div class="m-flex">
+        <div class="inline-block" contentEditableModel (contentEditableModelChange)="changeCliContent($event, i, j)">
+          {{item.content}}
+        </div>
+      </div>
+      <div class="suicide-button" (click)="deleteCheckListItem(i, j)">
+        <img [src]="deleteStyle" class="but">
+      </div>
+    </div>
+    <button mat-button color="primary" (click)="addCheckListItem(i)">Добавить айтем</button>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="mark-popup-wrapper">
+  <div class="mark-header">
+    <span>Метки</span>
+  </div>
+
+  <div class="mark-list">
+    <div class="mark-list-item" [style.background-color]="mark.color" *ngFor="let mark of marks; let i = index;" (click)="clickOnMark(i)">
+      {{mark.content}}
+      <img class="mark-selected" [src]="markSelected" *ngIf="selectedMarks.includes(mark)">
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,33 @@
+.board{
+  float:left;
+  margin:20px;
+}
+
+h4, h5, p, button {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color:black;
+}
+
+a:hover { text-decoration: none;color:black; }
+
+h4 {
+  font-size: 30px;
+}
+
+.header-large{
+  font-size:30px;
+}
+.img-board{
+  margin:20px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.col-md-auto {
+  float:right;
+}
+

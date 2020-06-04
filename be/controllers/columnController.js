@@ -28,9 +28,10 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    ColumnService.delete(request.body)
+    ColumnService.delete({id: request.query.id})
         .then(result => {
-            response.sendStatus(200);
+            response.status(200);
+            response.send({message:"ok"});
         })
         .catch(err =>  {
             console.log(err);
@@ -40,7 +41,7 @@ exports.delete = function (request, response){
 };
 
 exports.get = function(request, response){
-    ColumnService.get(request.body.board_id)
+    ColumnService.get(request.query.id)
         .then(result => {
             response.status(200);
             response.send(result);

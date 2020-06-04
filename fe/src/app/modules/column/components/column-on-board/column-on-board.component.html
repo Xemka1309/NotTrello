@@ -1,0 +1,30 @@
+<div class="column-header">
+  <span contentEditableModel (contentEditableModelChange)="changeTitle($event)" class="column-header-title">{{columnModel.title}}</span>
+  <img [mat-menu-trigger-for]="menu" [src]="menuStyle" class="column-header-options">
+</div>
+
+<div
+  cdkDropList
+  class="column-list"
+  (cdkDropListDropped)="drop($event)"
+  [cdkDropListConnectedTo]="columnsConnectedTo"
+  [cdkDropListData]="columnModel.tasks">
+  <div class="task-box" *ngFor="let task of columnModel.tasks ; let i = index" cdkDrag>
+    <app-task-simple class="w-100" [marks]="this.boardMarks" [taskModel]="task"></app-task-simple>
+  </div>
+</div>
+<div class="column-add-task" (click)="createTask()">
+  <span>Добавить еще одну задачку</span>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="createTask()">
+    <mat-icon>add</mat-icon>
+    <span>Добавить задачку</span>
+  </button>
+  <button mat-menu-item (click)="deleteColumn()">
+    <mat-icon>delete</mat-icon>
+    <span>Удалить колонку</span>
+  </button>
+</mat-menu>
+

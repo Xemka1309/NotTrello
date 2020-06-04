@@ -1,0 +1,15 @@
+
+<div *ngIf="!hideKHuyam" class="example-box" cdkDrag [cdkDragFreeDragPosition]="dragPosition">
+  <div class="container">
+    <button (click)="sendMessage()" mat-button>Отправить</button>
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="message" />
+    </mat-form-field>
+    <div *ngFor="let message of messages">
+      <span>{{message.senderLogin}}:{{message.content}}</span>
+    </div>
+
+
+  </div>
+
+</div>

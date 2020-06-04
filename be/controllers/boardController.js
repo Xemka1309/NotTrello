@@ -26,9 +26,10 @@ exports.edit = function (request, response){
 };
 
 exports.delete = function (request, response){
-    BoardService.delete(request.body)
+    BoardService.delete(request.query.id)
         .then(result => {
-            response.sendStatus(200);
+            response.status(200);
+            response.send({message: 'ok'})
         })
         .catch(err =>  {
             console.log(err);
@@ -39,6 +40,19 @@ exports.delete = function (request, response){
 
 exports.getBoards = function(request, response){
     BoardService.getBoards(request.decoded.id)
+        .then(result => {
+            response.status(200);
+            response.send(result);
+        })
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message)
+        });
+};
+
+exports.getBoard = function(request, response){
+    BoardService.getBoard(request.query.id)
         .then(result => {
             response.status(200);
             response.send(result);
@@ -62,3 +76,30 @@ exports.getTypes = function(request, response){
             response.send(err.message)
         });
 };
+
+exports.getParticIdAndUserRole = function(request, response){
+    BoardService.getParticIdAndUserRole(request.decoded.id, request.query.id)
+        .then(result => {
+            response.status(200);
+            response.send(result);
+        })
+        .catch(err =>  {
+            console.log(err);
+            response.status(406);
+            response.send(err.message)
+        });
+};
+
+exports.isActionAllowed = function (request, response) {
+  BoardService.getParticIdAndUserRole(request.decoded.id, request.query.id)
+    .then((result) => {
+      response.status(200);
+      response.send({allowed: request.query.permissionLvl >= result.user_role.id});
+    })
+    .catch((err) => {
+      console.log(err);
+      response.status(406);
+      response.send(err.message);
+    });
+};
+

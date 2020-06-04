@@ -1,7 +1,69 @@
-<button mat-button [matMenuTriggerFor]="menu">Desks</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>My Desks</button>
-  <button mat-menu-item>Create Desk</button>
-</mat-menu>
-<button mat-button (click)="logOut()">log out</button>
+<div *ngIf="isLoggedIn">
+  <div class="menu-row-container">
+    <div class="menu-item-container">
+      <div class="menu-item custom-button" (click)="goHome()">
+        Домой
+      </div>
+      <div class="menu-item custom-button" (click)="goToProfile()">
+        Профиль
+      </div>
+    </div>
+    <div class="menu-item-container">
+      <div class="menu-item custom-button" (click)="goHome()">
+        Not Trello
+      </div>
+    </div>
 
+    <div class="menu-item-container">
+      <div class="menu-item custom-button" (click)="logOut()">
+        Выйти
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--  <nav *ngIf="isLoggedIn" class="navbar fixed-top navbar-expand-md navbar-light bg-light" >-->
+<!--    <a class="navbar-brand" href="/">Not Trello</a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
+<!--            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--  <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--    <ul class="navbar-nav mr-auto">-->
+<!--      <li class="nav-item active">-->
+<!--        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>-->
+<!--      </li>-->
+
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">Link</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item dropdown">-->
+<!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
+<!--          aria-haspopup="true" aria-expanded="false">-->
+<!--          Dropdown-->
+<!--        </a>-->
+<!--        <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--          <a class="dropdown-item" href="#">Action</a>-->
+<!--          <a class="dropdown-item" href="#">Another action</a>-->
+<!--          <div class="dropdown-divider"></div>-->
+<!--          <a class="dropdown-item" href="#">Something else here</a>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link disabled" href="#">Disabled</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--    <button (click)="goToProfile()" class="nav-item btn">-->
+<!--      <a class="nav-link">Profile</a>-->
+<!--    </button>-->
+<!--    <button (click)="logOut()" class="nav-item btn">-->
+<!--      <a class="nav-link">Logout</a>-->
+<!--    </button>-->
+<!--    <form class="form-inline my-2 my-lg-0">-->
+<!--      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</nav>-->

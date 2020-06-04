@@ -1,0 +1,49 @@
+.mark-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-width: 100px;
+  flex-basis: fit-content;
+}
+
+.mark-list-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 95%;
+  margin: 5px;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  height: fit-content;
+  min-height: 30px;
+}
+
+.mark-header {
+  display: flex;
+  border-bottom: 1px silver solid;
+  width: 100%;
+  font-size: 1.5em;
+}
+
+.mark-popup-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+span {
+  text-align: center;
+  width: 100%;
+}
+
+.mark-selected {
+  position: absolute;
+  right: 5%;
+  width: 1.25em;
+  height: 1.25em;
+}

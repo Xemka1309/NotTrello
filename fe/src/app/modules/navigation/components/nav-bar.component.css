@@ -1,0 +1,49 @@
+.menu-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  width: 100%;
+  background: #152f4f;
+  height: fit-content;
+  padding: 5px;
+}
+
+.inline {
+  display: inline-block;
+  text-align: center;
+}
+
+.menu-item-container {
+  display: flex;
+  flex-direction: row;
+  flex-basis: fit-content;
+  align-items: center;
+  justify-content: left;
+  font-size: 1em;
+  color: white;
+}
+
+.menu-item {
+  display: flex;
+  flex-basis: fit-content;
+  padding: 5px;
+  margin: 5px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.custom-button {
+  text-align: center;
+  cursor: pointer;
+  /*background-color: hsla(0,0%,100%,.24);*/
+  border-radius: 3px;
+}
+
+.custom-button:hover {
+  background-color: hsla(0,0%,100%,.24);
+  opacity: .37;
+}

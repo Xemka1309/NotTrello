@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const seq = require("../dbConnection");
 
-const Board = require("boardModel");
+const Board = require("./boardModel");
 const Mark = seq.define("mark", {
     id: {
         type: Sequelize.INTEGER,

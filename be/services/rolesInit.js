@@ -1,7 +1,7 @@
 const Role = require("../models/participantRoleModel");
 
 exports.init = (async function () {
-    return Role.bulkCreate(
+    return await Role.bulkCreate(
         [
             {id: 1, role: "ADMINISTRATOR"},
             {id: 2, role: "SENIOR"},

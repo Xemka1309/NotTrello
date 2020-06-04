@@ -1,0 +1,37 @@
+<div class="container-task-simple">
+  <span class="task-header">{{taskModel.title}}</span>
+  <span class="priority-text" [ngSwitch]="taskModel.priority_id">
+  <p class="priority-text p1"  *ngSwitchCase="1">
+    Горит
+    <img [src]="priority1" class="priority">
+  </p>
+  <p class="priority-text p2" *ngSwitchCase="2">
+    Срочная
+    <img [src]="priority2" class="priority">
+  </p>
+  <p class="priority-text p3" *ngSwitchCase="3">
+    Нужная
+    <img [src]="priority3" class="priority">
+  </p>
+  <p class="priority-text p4" *ngSwitchCase="4">
+    Желательная
+    <img [src]="priority4" class="priority">
+  </p>
+  <p class="priority-text p5" *ngSwitchCase="5">
+    <img [src]="priority5" class="priority">
+    Опциональная
+  </p>
+  <p class="priority-text p5" *ngSwitchDefault>
+      <img [src]="priority5" class="priority">
+      Неизвестно
+  </p>
+  </span>
+
+  <div *ngFor="let item of this.taskModel.marks" class="mark-container">
+    <div [style.background-color]="item.color" class="mark-item">
+      <span class="mark-text">{{item.content}}</span>
+    </div>
+  </div>
+  <img [src]="penStyle" class="button-task-details" (click)="openDetails()">
+</div>
+

@@ -1,7 +1,7 @@
 const ParticipantService = require("../services/participantService");
 
 exports.get = function(request, response){
-    ParticipantService.get(request.decoded.id)
+    ParticipantService.getByUserId(request.decoded.id)
         .then(result => {
             response.status(200);
             response.send(result);})
@@ -40,10 +40,11 @@ exports.edit = function (request, response){
 };
 
 // Body contains id
-exports.delete = function (request, response){
-    ParticipantService.delete(request.body)
-        .then(result => {
-            response.sendStatus(200);
+exports.delete = function (request, response) {
+    ParticipantService.delete(request.query.id)
+        .then(function() {
+            response.status(200);
+            response.send({message:'ok'});
         })
         .catch(err =>  {
             console.log(err);

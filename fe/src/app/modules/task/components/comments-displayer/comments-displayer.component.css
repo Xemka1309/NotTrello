@@ -1,0 +1,46 @@
+.submit {
+  margin-top: 10px;
+  width: fit-content;
+}
+
+.comment-form {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid silver;
+  border-radius: 10px;
+}
+
+.comment-input {
+  padding: 5px;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+.comment-input:focus {
+  outline: none;
+}
+
+.container-fluid {
+  padding: 5px;
+  display: inline-block;
+}
+
+.content {
+  width: 100%;
+  height: fit-content;
+  padding: 5px;
+}
+
+.comments {
+  padding-top: 20px;
+  display: inline-block;
+}
+
+.border {
+  width: 95%;
+  border: 1px solid silver;
+  border-radius: 7px;
+  display: inline-block;
+  padding: 5px;
+}

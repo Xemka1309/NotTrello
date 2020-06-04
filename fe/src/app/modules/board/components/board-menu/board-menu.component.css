@@ -1,0 +1,116 @@
+.container {
+  width: 25%;
+  height: fit-content;
+  min-height: 40%;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  top: 150px;
+  z-index: 2;
+  background-color: white;
+  border: 1px solid silver;
+  border-radius: 5px;
+}
+
+.menu-header {
+  width: 100%;
+  height: 25px;
+}
+
+.picture-container {
+  width: 40%;
+  height: 100px;
+  margin: 10px;
+  border-radius: 10px;
+  float: left;
+}
+
+.mark-container {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.picture-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.list-container {
+  width: 95%;
+  margin-left: 1%;
+}
+
+.mark-container {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  color: white;
+  vertical-align: center;
+}
+
+.mark-container:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
+.card-img {
+  opacity: 1;
+}
+
+.picture-container:hover .card-img {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.menu-title {
+  width: 80%;
+  height: 100%;
+  text-align: center;
+  float: left;
+}
+
+.mat-button {
+  width: 100%;
+  text-align: left;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.matInput {
+  width: 86%;
+  margin-left: 7%;
+  padding: 5px;
+}
+
+.close{
+  width: 10%;
+  float: left;
+}
+
+.info-field {
+  width:100%;
+  margin-top: 5px;
+  text-align: center;
+  float: left;
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.input-label {
+  display: inline-block;
+  margin-top: 15px;
+  margin-right: 10px;
+}

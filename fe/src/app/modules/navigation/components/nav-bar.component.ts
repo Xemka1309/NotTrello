@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {StorageService} from '../../../services/storage.service';
+import {StorageService} from '../../../services/storage/storage.service';
 import {Router} from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,11 +10,23 @@ import {Router} from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
   constructor(private storage: StorageService,
-              private router: Router) { }
+              private router: Router,
+              private authService: AuthService) { }
 
-  logOut() {
+  public logOut() {
     this.storage.clearToken();
     this.router.navigate(['/login']);
+  }
+  public goToProfile() {
+    this.router.navigate(['/profile']);
+  }
+
+  public get isLoggedIn() {
+    return this.authService.isAuthenticated();
+  }
+
+  public goHome() {
+    this.router.navigate(['/home']);
   }
 
   ngOnInit(): void { }

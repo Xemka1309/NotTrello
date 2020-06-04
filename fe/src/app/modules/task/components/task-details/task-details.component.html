@@ -1,0 +1,96 @@
+<mat-dialog-content>
+  <div *ngIf="popoverActive" class="custom-fixed-container" [style.left]="data.leftPos" [style.width]="data.width">
+    <div class="custom-fixed-container-inside" [ngSwitch]="popoverState">
+      <app-mark-picker *ngSwitchCase="markPicker" (clickMark)="changeMark($event)" [marks]="data.marks" [selectedMarks]="newTaskModel.marks"></app-mark-picker>
+      <app-priority-picker *ngSwitchCase="priorityPicker" [selectedPriority]="newTaskModel.priority_id" (changePriority)="changePriority($event)"></app-priority-picker>
+    </div>
+  </div>
+  <div class="task-details-container card">
+    <div contentEditable="true" class="task-details-header cp-1 card-header" contentEditableModel (contentEditableModelChange)="changeTitle($event)">
+      <div class="custom-inline-block">
+        {{newTaskModel.title}}
+      </div>
+    </div>
+    <div class="task-details-body cp-1 card-body">
+      <div class="task-details-content ">
+        <h4 class="task-details-sub-header">
+          Описание
+        </h4>
+
+        <div class="custom-inline-block">
+          <div contentEditable="true" class="custom-inline-block mh-3" contentEditableModel (contentEditableModelChange)="changeDescription($event)">
+            {{newTaskModel.description}}
+          </div>
+        </div>
+
+        <h4 class="task-details-sub-header">Метки задачи</h4>
+        <div *ngFor="let item of newTaskModel.marks" class="mark-container">
+          <div [style.background-color]="item.color" class="mark-item">
+            <span class="mark-text">{{item.content}}</span>
+          </div>
+        </div>
+
+
+        <h4 class="task-details-sub-header">Приоритет задачи</h4>
+        <span class="priority-text" [ngSwitch]="newTaskModel.priority_id">
+          <p class="priority-text p1" *ngSwitchCase="1">
+            Горит
+            <img [src]="priority1" class="priority">
+          </p>
+          <p class="priority-text p2" *ngSwitchCase="2">
+            Срочная
+            <img [src]="priority2" class="priority">
+          </p>
+          <p class="priority-text p3" *ngSwitchCase="3">
+            Нужная
+            <img [src]="priority3" class="priority">
+          </p>
+          <p class="priority-text p4" *ngSwitchCase="4">
+            Желательная
+            <img [src]="priority4" class="priority">
+          </p>
+          <p class="priority-text p5" *ngSwitchCase="5">
+            <img [src]="priority5" class="priority">
+            Опциональная
+          </p>
+          <p class="priority-text p5" *ngSwitchDefault>
+            <img [src]="priority5" class="priority">
+            Неизвестно
+          </p>
+        </span>
+
+        <h4 class="task-details-sub-header mt-1">
+          Чек-листы
+        </h4>
+        <div class="custom-inline-block">
+          <app-check-list [checkLists]="newTaskModel.check_lists" (state)="changeCheckList($event)"></app-check-list>
+        </div>
+
+        <h4 class="task-details-sub-header">
+          Комментарии
+        </h4>
+        <div class="custom-inline-block">
+          <app-comments-displayer [task_id]="newTaskModel.id"></app-comments-displayer>
+        </div>
+      </div>
+
+      <div class="task-details-buttons">
+        <div class="task-details-button" (click)="changeState(priorityPicker)">
+          <span>Изменить приоритет</span>
+        </div>
+        <div class="task-details-button" (click)="changeState(markPicker)">
+          <span>Изменить метки</span>
+        </div>
+        <div class="task-details-button" (click)="addCheckList()">
+          Добавить чек-лист
+        </div>
+        <div class="task-details-button" (click)="deleteMe()">
+          <span>Удалить</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+
+

@@ -1,7 +1,8 @@
 const Column = require("../models/columnModel");
+const TaskService = require("../services/taskService");
 
 exports.add = (async function(body){
-    return await Column.create(body);
+    return Column.create(body);
 });
 
 exports.edit = (async function (body) {
@@ -16,10 +17,20 @@ exports.delete = (async function (body) {
 });
 
 exports.get = (async function (board_id) {
-    return await Column.findAll({
+    const columns = await Column.findAll({
         attributes: ['id','title','position','board_id'],
         where: {
             board_id: board_id
-        }
+        },
+        order: [
+            ['position', 'ASC']
+           // ['name', 'DESC],
+        ],
     });
+    return Promise.all(columns.map(async function(column) {
+        const columnWithTasks = column.dataValues;
+        columnWithTasks.tasks = await TaskService.getByColumn(column.id);
+        return columnWithTasks;
+        })
+    );
 });
